@@ -1,0 +1,688 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create table d1(id int primary key , ename varchar(40));
+ERROR 1046 (3D000): No database selected
+mysql> use db3;
+Database changed
+mysql> create table d1(id int primary key , ename varchar(40));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table d1(id int, ename varchar(40),primary key(id));
+ERROR 1050 (42S01): Table 'd1' already exists
+mysql> create table d2(id int, ename varchar(40),primary key(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc d1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> desc d2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table d3(id int , ename varchar(40) , primary key(id , ename);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table d3(id int , ename varchar(40) , primary key(id , ename));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc d3;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | NO   | PRI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc d1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc d2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into d1(12,'Bhartesh');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '12,'Bhartesh')' at line 1
+mysql> insert into d1 values(12,'Bhartesh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from d1;
++----+----------+
+| id | ename    |
++----+----------+
+| 12 | Bhartesh |
++----+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into d1 values(13,'ABCD');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from d1;
++----+----------+
+| id | ename    |
++----+----------+
+| 12 | Bhartesh |
+| 13 | ABCD     |
++----+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into d3 values(12,'Bhartesh');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from d3;
++----+----------+
+| id | ename    |
++----+----------+
+| 12 | Bhartesh |
++----+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into d3 values(1,'XYZ');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from d3;
++----+----------+
+| id | ename    |
++----+----------+
+|  1 | XYZ      |
+| 12 | Bhartesh |
++----+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into d3 values(1,'POR');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from d3;
++----+----------+
+| id | ename    |
++----+----------+
+|  1 | POR      |
+|  1 | XYZ      |
+| 12 | Bhartesh |
++----+----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into d3 values(1,'XYZ');
+ERROR 1062 (23000): Duplicate entry '1-XYZ' for key 'd3.PRIMARY'
+mysql> insert into d3 values(12,'ABC');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into d3 values(12,'XYZ');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> create table d4(id int , ename varchar(30));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc d4;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| ename | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table d4 add primary key(id);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add primary key(id)' at line 1
+mysql> alter table d4 add primary key(id);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc d4;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table d4 drop primary key;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc d4;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   |     | NULL    |       |
+| ename | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table d4 modify id int null;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc d4;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| ename | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc d1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from d1;
++----+----------+
+| id | ename    |
++----+----------+
+| 12 | Bhartesh |
+| 13 | ABCD     |
++----+----------+
+2 rows in set (0.00 sec)
+
+mysql> insert into d1 values(12,'XYZ');
+ERROR 1062 (23000): Duplicate entry '12' for key 'd1.PRIMARY'
+mysql> insert into d1 values(11,'XYZ');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into d1 values(15,'XYZ');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into d1 values(16,'Rahul');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into d1 values(17,'Sunil');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into d1 values(18,'Akshay');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into d1 values(19,'Pankaj');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from d1;
++----+----------+
+| id | ename    |
++----+----------+
+| 11 | XYZ      |
+| 12 | Bhartesh |
+| 13 | ABCD     |
+| 15 | XYZ      |
+| 16 | Rahul    |
+| 17 | Sunil    |
+| 18 | Akshay   |
+| 19 | Pankaj   |
++----+----------+
+8 rows in set (0.00 sec)
+
+mysql> desc d1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| ename | varchar(40) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table demo(id int primary key,Ename varchar(20) ,PhoneNo varchar(10) unique);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc demo;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| Ename   | varchar(20) | YES  |     | NULL    |       |
+| PhoneNo | varchar(10) | YES  | UNI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table u1(id int primary key , Ename varchar(40),Phone varchar(10), unique key(phone));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table u1(id int primary key , Ename varchar(40),Phone varchar(10), constraint Unique_Phone unique key(phone));
+ERROR 1050 (42S01): Table 'u1' already exists
+mysql> create table u2(id int primary key , Ename varchar(40),Phone varchar(10), constraint Unique_Phone unique key(phone));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc u1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc u2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc demo;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| Ename   | varchar(20) | YES  |     | NULL    |       |
+| PhoneNo | varchar(10) | YES  | UNI | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select table_name , constraint_name,constraint_type from information_schema.table_constraints where table_schema='z';
+Empty set (0.01 sec)
+
+mysql> select table_name , constraint_name,constraint_type from information_schema.table_constraints where table_schema='db3';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| d1         | PRIMARY         | PRIMARY KEY     |
+| d2         | PRIMARY         | PRIMARY KEY     |
+| d3         | PRIMARY         | PRIMARY KEY     |
+| demo       | PhoneNo         | UNIQUE          |
+| demo       | PRIMARY         | PRIMARY KEY     |
+| emp        | PRIMARY         | PRIMARY KEY     |
+| u1         | Phone           | UNIQUE          |
+| u1         | PRIMARY         | PRIMARY KEY     |
+| u2         | PRIMARY         | PRIMARY KEY     |
+| u2         | Unique_Phone    | UNIQUE          |
++------------+-----------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> desc u1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc u2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table u1 drop index Phone;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc u1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table u2 drop index unique_Phone;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc u2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select table_name , constraint_name,constraint_type from information_schema.table_constraints where table_schema='db3';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| d1         | PRIMARY         | PRIMARY KEY     |
+| d2         | PRIMARY         | PRIMARY KEY     |
+| d3         | PRIMARY         | PRIMARY KEY     |
+| demo       | PhoneNo         | UNIQUE          |
+| demo       | PRIMARY         | PRIMARY KEY     |
+| emp        | PRIMARY         | PRIMARY KEY     |
+| u1         | PRIMARY         | PRIMARY KEY     |
+| u2         | PRIMARY         | PRIMARY KEY     |
++------------+-----------------+-----------------+
+8 rows in set (0.00 sec)
+
+mysql> alter table u1 add unique key(phone);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc u1;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc u2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table u2 constraint User_phone  unique key(phone);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'constraint User_phone  unique key(phone)' at line 1
+mysql> alter table u2 add constraint User_phone unique key(phone);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc u2;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Ename | varchar(40) | YES  |     | NULL    |       |
+| Phone | varchar(10) | YES  | UNI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select table_name,constraint_name,constraint_type from information schema.table_constraints where table_schema='db3';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.table_constraints where table_schema='db3'' at line 1
+mysql> select table_name, constraint_name, constraint_type from information_schema.table_constraints where table_schema='db3';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| d1         | PRIMARY         | PRIMARY KEY     |
+| d2         | PRIMARY         | PRIMARY KEY     |
+| d3         | PRIMARY         | PRIMARY KEY     |
+| demo       | PhoneNo         | UNIQUE          |
+| demo       | PRIMARY         | PRIMARY KEY     |
+| emp        | PRIMARY         | PRIMARY KEY     |
+| u1         | Phone           | UNIQUE          |
+| u1         | PRIMARY         | PRIMARY KEY     |
+| u2         | PRIMARY         | PRIMARY KEY     |
+| u2         | User_phone      | UNIQUE          |
++------------+-----------------+-----------------+
+10 rows in set (0.00 sec)
+
+mysql> create table Dept(DeptId int primary key,Dname varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table Dept(DeptId int primary key,Dname varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table Emp(EmptId int primary key,Ename varchar(20));
+ERROR 1050 (42S01): Table 'emp' already exists
+mysql> alter drop emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop emp' at line 1
+mysql> alter table drop emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop emp' at line 1
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| Name    | varchar(80) | YES  |     | NULL    |       |
+| PhoneNo | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select table_name, constraint_name, constraint_type from information_schema.table_constraints where table_schema='db3';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| d1         | PRIMARY         | PRIMARY KEY     |
+| d2         | PRIMARY         | PRIMARY KEY     |
+| d3         | PRIMARY         | PRIMARY KEY     |
+| demo       | PhoneNo         | UNIQUE          |
+| demo       | PRIMARY         | PRIMARY KEY     |
+| dept       | PRIMARY         | PRIMARY KEY     |
+| emp        | PRIMARY         | PRIMARY KEY     |
+| u1         | Phone           | UNIQUE          |
+| u1         | PRIMARY         | PRIMARY KEY     |
+| u2         | PRIMARY         | PRIMARY KEY     |
+| u2         | User_phone      | UNIQUE          |
++------------+-----------------+-----------------+
+11 rows in set (0.00 sec)
+
+mysql> desc emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int         | NO   | PRI | NULL    |       |
+| Name    | varchar(80) | YES  |     | NULL    |       |
+| PhoneNo | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc dept;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| DeptId | int         | NO   | PRI | NULL    |       |
+| Dname  | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp;
+Empty set (0.00 sec)
+
+mysql> select * from dept;
+Empty set (0.00 sec)
+
+mysql> insert into em[ values(41,'Bhartesh',9503042573);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[ values(41,'Bhartesh',9503042573)' at line 1
+mysql> insert into emp values(41,'Bhartesh',9503042573);
+ERROR 1264 (22003): Out of range value for column 'PhoneNo' at row 1
+mysql> insert into emp values(41,'Bhartesh',950303);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Dept values(10,'HR Department');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Dept values(20,'Sales Department');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------------+
+| DeptId | Dname            |
++--------+------------------+
+|     10 | HR Department    |
+|     20 | Sales Department |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into emp values(4,'Akshay',95154);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp values(45,'Deepak',95154);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp values(5,'Omakar',96444);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into emp values(15,'Suraj',94664);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------------+
+| DeptId | Dname            |
++--------+------------------+
+|     10 | HR Department    |
+|     20 | Sales Department |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp;
++----+----------+---------+
+| id | Name     | PhoneNo |
++----+----------+---------+
+|  4 | Akshay   |   95154 |
+|  5 | Omakar   |   96444 |
+| 15 | Suraj    |   94664 |
+| 41 | Bhartesh |  950303 |
+| 45 | Deepak   |   95154 |
++----+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> create table address(EmpId int ,City varchar(30),foregin key(empid) references emp(empid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(empid) references emp(empid)' at line 1
+mysql> create table address(EmpId int ,City varchar(30),foreign key(empid) references emp(empid);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table address(EmpId int ,City varchar(30),foreign key(empid) references emp(empid));
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empid' for constraint 'address_ibfk_1' in the referenced table 'emp'
+mysql> create table address(EmpId int ,City varchar(30),foreign key(empid) references emp(id));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into address values(10,'Kolhapur');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db3`.`address`, CONSTRAINT `address_ibfk_1` FOREIGN KEY (`EmpId`) REFERENCES `emp` (`id`))
+mysql> desc address;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| EmpId | int         | YES  | MUL | NULL    |       |
+| City  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into address values(110,'Kolhapur');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db3`.`address`, CONSTRAINT `address_ibfk_1` FOREIGN KEY (`EmpId`) REFERENCES `emp` (`id`))
+mysql> insert into address values(1,'Kolhapur');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`db3`.`address`, CONSTRAINT `address_ibfk_1` FOREIGN KEY (`EmpId`) REFERENCES `emp` (`id`))
+mysql> select * from emp;
++----+----------+---------+
+| id | Name     | PhoneNo |
++----+----------+---------+
+|  4 | Akshay   |   95154 |
+|  5 | Omakar   |   96444 |
+| 15 | Suraj    |   94664 |
+| 41 | Bhartesh |  950303 |
+| 45 | Deepak   |   95154 |
++----+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------------+
+| DeptId | Dname            |
++--------+------------------+
+|     10 | HR Department    |
+|     20 | Sales Department |
++--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into address values(4,'Kolhapur');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address;
++-------+----------+
+| EmpId | City     |
++-------+----------+
+|     4 | Kolhapur |
++-------+----------+
+1 row in set (0.00 sec)
+
+mysql> create table phone(empid int , phone varchar(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc phone;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| empid | int         | YES  |     | NULL    |       |
+| phone | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table phone add foreign key(empid) references emp(id));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter table phone add foreign key(empid) references emp(empid));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter table phone add foreign key(empid) references emp(empid);
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'empid' for constraint 'phone_ibfk_1' in the referenced table 'emp'
+mysql> alter table phone add foreign key(empid) references emp(id);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc phone;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| empid | int         | YES  | MUL | NULL    |       |
+| phone | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select table_name, constraint_name, constraint_type from information_schema.table_constraints where table_schema='db3';
++------------+-----------------+-----------------+
+| TABLE_NAME | CONSTRAINT_NAME | CONSTRAINT_TYPE |
++------------+-----------------+-----------------+
+| address    | address_ibfk_1  | FOREIGN KEY     |
+| d1         | PRIMARY         | PRIMARY KEY     |
+| d2         | PRIMARY         | PRIMARY KEY     |
+| d3         | PRIMARY         | PRIMARY KEY     |
+| demo       | PhoneNo         | UNIQUE          |
+| demo       | PRIMARY         | PRIMARY KEY     |
+| dept       | PRIMARY         | PRIMARY KEY     |
+| emp        | PRIMARY         | PRIMARY KEY     |
+| phone      | phone_ibfk_1    | FOREIGN KEY     |
+| u1         | Phone           | UNIQUE          |
+| u1         | PRIMARY         | PRIMARY KEY     |
+| u2         | PRIMARY         | PRIMARY KEY     |
+| u2         | User_phone      | UNIQUE          |
++------------+-----------------+-----------------+
+13 rows in set (0.00 sec)
+
+mysql> desc address;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| EmpId | int         | YES  | MUL | NULL    |       |
+| City  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql>

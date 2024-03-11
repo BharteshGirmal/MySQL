@@ -1,0 +1,521 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 25
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select current_timestamp() 'Date and Time';
++---------------------+
+| Date and Time       |
++---------------------+
+| 2022-05-26 08:09:36 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| db1                |
+| db2                |
+| db3                |
+| db4                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| project            |
+| sys                |
++--------------------+
+11 rows in set (0.02 sec)
+
+mysql> use db2;
+Database changed
+mysql> select trigger_name from information_schema.triggers where trigger_schema="db2";
++--------------+
+| TRIGGER_NAME |
++--------------+
+| tri6         |
+| tr8          |
++--------------+
+2 rows in set (0.01 sec)
+
+mysql> use db1;
+Database changed
+mysql> select emp;
+ERROR 1054 (42S22): Unknown column 'emp' in 'field list'
+mysql> select * from emp;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive | SrNO |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |    1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |    2 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |    3 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |    4 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |    5 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |    6 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |    7 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |    8 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |    9 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |   10 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |   11 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |   12 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |   13 |
+|  7788 | SCOTT    | M      | ANALYST             | 7766 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |   14 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |   15 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |   16 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |   17 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |   18 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |   19 |
+|  7902 | zzz      | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |   20 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |   21 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |   22 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |   23 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |   24 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |   25 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |   26 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |   27 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |   28 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+28 rows in set (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.01 sec)
+
+mysql> # first using Eqi Join
+mysql> select * from emp=dept having dname='sales';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=dept having dname='sales'' at line 1
+mysql> select * from emp=dept where dname='sales';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=dept where dname='sales'' at line 1
+mysql> select * from emp=dept having dept.dname='sales';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=dept having dept.dname='sales'' at line 1
+mysql> select * from emp=dept where dept.dname='sales';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=dept where dept.dname='sales'' at line 1
+mysql> select * from emp,dept where dept.dname='sales';
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+--------+-------+---------+------------+------------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive | SrNO | DEPTNO | DNAME | LOC     | PWD        | STARTEDON  |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+--------+-------+---------+------------+------------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |    1 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |    2 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |    3 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |    4 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |    5 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |    6 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |    7 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |    8 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |    9 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |   10 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |   11 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |   12 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |   13 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7788 | SCOTT    | M      | ANALYST             | 7766 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |   14 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |   15 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |   16 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |   17 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |   18 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |   19 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7902 | zzz      | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |   20 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |   21 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |   22 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |   23 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |   24 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |   25 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |   26 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |   27 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |   28 |     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+--------+-------+---------+------------+------------+
+28 rows in set (0.00 sec)
+
+mysql> # passing the department name as a input
+mysql> # without using any join we have to print
+mysql> # all the details of employee working in the department
+mysql> # and all the details of department
+mysql>
+mysql>
+mysql>
+mysql> # Q1. Write a program to display all the name of table where records are more than 7
+mysql>
+mysql>
+mysql> source "E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"
+ERROR:
+Failed to open file '"E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"', error: 22
+mysql> source "E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"
+ERROR:
+Failed to open file '"E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"', error: 22
+mysql> source "E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"
+ERROR:
+Failed to open file '"E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"', error: 22
+mysql> source "E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"
+ERROR:
+Failed to open file '"E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"', error: 22
+mysql> source "E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"
+ERROR:
+Failed to open file '"E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"', error: 22
+mysql> source "E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"
+ERROR:
+Failed to open file '"E:\C-DAC\DBT Module 4\Lab Practice\assignment.sql"', error: 22
+mysql> source E:\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.02 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'into x from dept where deptno=D_Name;
+
+        if x=0 then
+        select "No Department Rec' at line 5
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'into x from dept where deptno=D_Name;
+
+        if x=0 then
+        select "No Department Rec' at line 5
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call proc10("sales");
+ERROR 1305 (42000): PROCEDURE db1.proc10 does not exist
+mysql> call proc1("sales");
++---------------------------------+
+| Message                         |
++---------------------------------+
+| No Department Record is Present |
++---------------------------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call proc1('sales');
++---------------------------------+
+| Message                         |
++---------------------------------+
+| No Department Record is Present |
++---------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> use db1;
+Database changed
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call proc1("sales");
++---------------------------------+
+| Message                         |
++---------------------------------+
+| No Department Record is Present |
++---------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from emp;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive | SrNO |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |    1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |    2 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |    3 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |    4 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |    5 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |    6 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |    7 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |    8 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |    9 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |   10 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |   11 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |   12 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |   13 |
+|  7788 | SCOTT    | M      | ANALYST             | 7766 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |   14 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |   15 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |   16 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |   17 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |   18 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |   19 |
+|  7902 | zzz      | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |   20 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |   21 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |   22 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |   23 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |   24 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |   25 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |   26 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |   27 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |   28 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+28 rows in set (0.01 sec)
+
+mysql> select * from de[t;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[t' at line 1
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call proc1("sales");
++-------+---------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+| EMPNO | ENAME   | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive | SrNO |
++-------+---------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+|  6001 | GITA    | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |    1 |
+|  7499 | ALLEN   | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |    8 |
+|  7521 | WARD    | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |    9 |
+|  7654 | MARTIN  | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |   11 |
+|  7698 | BLAKE   | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |   12 |
+|  7844 | TURNER  | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |   17 |
+|  7900 | JAMES   | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |   19 |
+|  7919 | HOFFMAN | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |   21 |
+|  7920 | GRASS   | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |   22 |
+|  7945 | AARUSH  | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |   24 |
+|  7949 | ALEX    | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |   25 |
+|  8433 | NATASHA | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |   26 |
++-------+---------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+12 rows in set (0.00 sec)
+
++--------+-------+---------+------------+------------+
+| DEPTNO | DNAME | LOC     | PWD        | STARTEDON  |
++--------+-------+---------+------------+------------+
+|     30 | SALES | CHICAGO | sales@2017 | 13/04/1989 |
++--------+-------+---------+------------+------------+
+1 row in set (0.06 sec)
+
+Query OK, 0 rows affected (0.07 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> # sql progarm
+mysql>
+mysql> # drop procedure if exists proc1;
+mysql> # delimiter $
+mysql> # create procedure proc1(in D_Name varchar(20))
+mysql> # begin
+mysql> # declare x int default 0;
+mysql> #
+mysql> # select deptno into x from dept where dname=D_Name;
+mysql> #
+mysql> # if x=0 then
+mysql> # select "No Department Record is Present" as "Message" ;
+mysql> #
+mysql> # else
+mysql> # select * from emp where deptno=x;
+mysql> # select * from dept where deptno=x;
+mysql> # end if;
+mysql> # end $
+mysql> # delimiter ;
+mysql>
+mysql>
+mysql> # now using Cursors
+mysql> # Q1. Write a program to display all the name of table where records are more than 7
+mysql>
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'declare x int;
+declare C1 cursor for select * from emp;
+declare _EMPNO int = EMP' at line 2
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'declare x int;
+declare C1 cursor for select * from emp;
+declare _EMPNO int ;
+de' at line 2
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+ERROR 1337 (42000): Variable or condition declaration after cursor or handler declaration
+mysql> call Proc2("sales");
+ERROR 1305 (42000): PROCEDURE db1.Proc2 does not exist
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'declare C1 cursor for select * from emp;
+open C1;
+        forloop:loop
+                        fetch C1 into' at line 24
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1327 (42000): Undeclared variable: _SrNO
+mysql> source E:\C-DAC\DBT Module 4\Lab Practice\AssignQ.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call Proc2("sales");
++------+
+| x    |
++------+
+|   30 |
++------+
+1 row in set (0.01 sec)
+
++--------+--------+---------+---------------------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB                | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE | _isActive | _SrNO |
++--------+--------+---------+---------------------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+|   6001 | GITA   | F       | Compliance officers | 7920 | 1981-07-19 | 1750 |  NULL |      30 |        1 | GITA      | sales@2017 | NULL   |         1 |     1 |
++--------+--------+---------+---------------------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+1 row in set (0.01 sec)
+
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+--------------+------------+------------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB     | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME    | _PWD       | _PHONE     | _isActive | _SrNO |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+--------------+------------+------------+-----------+-------+
+|   7499 | ALLEN  | M       | SALESMAN | 7698 | 1981-02-20 | 1600 |   300 |      30 |        4 | ALWAYS TESTE | sales@2017 | 7032300096 |         1 |     8 |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+--------------+------------+------------+-----------+-------+
+1 row in set (0.02 sec)
+
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+------------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB     | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE     | _isActive | _SrNO |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+------------+-----------+-------+
+|   7521 | WARD   | M       | SALESMAN | 7698 | 1981-02-22 | 1250 |   500 |      30 |        1 | WARD      | sales@2017 | 7132300034 |         1 |     9 |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+------------+-----------+-------+
+1 row in set (0.04 sec)
+
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+------------+------------+------------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB     | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME  | _PWD       | _PHONE     | _isActive | _SrNO |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+------------+------------+------------+-----------+-------+
+|   7654 | MARTIN | M       | SALESMAN | 7698 | 1981-09-28 | 1250 |  1400 |      30 |        6 | LIFE RACER | sales@2017 | 7132300050 |         1 |    11 |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+------------+------------+------------+-----------+-------+
+1 row in set (0.06 sec)
+
++--------+--------+---------+---------+------+------------+------+-------+---------+----------+-----------+------------+------------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB    | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE     | _isActive | _SrNO |
++--------+--------+---------+---------+------+------------+------+-------+---------+----------+-----------+------------+------------+-----------+-------+
+|   7698 | BLAKE  | M       | MANAGER | 7839 | 1981-05-01 | 2850 |  NULL |      30 |        1 | BIG BEN   | sales@2017 | 7132300027 |         1 |    12 |
++--------+--------+---------+---------+------+------------+------+-------+---------+----------+-----------+------------+------------+-----------+-------+
+1 row in set (0.07 sec)
+
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB     | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE | _isActive | _SrNO |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+|   7844 | TURNER | M       | SALESMAN | 7698 | 1981-09-08 | 1500 |     0 |      30 |        5 | SAND DUST | sales@2017 | NULL   |         1 |    17 |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+1 row in set (0.09 sec)
+
++--------+--------+---------+-------+------+------------+------+-------+---------+----------+--------------+------------+------------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB  | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME    | _PWD       | _PHONE     | _isActive | _SrNO |
++--------+--------+---------+-------+------+------------+------+-------+---------+----------+--------------+------------+------------+-----------+-------+
+|   7900 | JAMES  | M       | CLERK | 7698 | 1981-12-03 |  950 |  NULL |      30 |        2 | CRAZY LEADER | sales@2017 | 7132300042 |         1 |    19 |
++--------+--------+---------+-------+------+------------+------+-------+---------+----------+--------------+------------+------------+-----------+-------+
+1 row in set (0.10 sec)
+
++--------+---------+---------+---------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+| _EMPNO | _ENAME  | _GENDER | _JOB    | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE | _isActive | _SrNO |
++--------+---------+---------+---------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+|   7919 | HOFFMAN | M       | MANAGER | 7566 | 1982-03-24 | 4150 |  NULL |      30 |        3 | INTERVAL  | sales@2017 | NULL   |         1 |    21 |
++--------+---------+---------+---------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+1 row in set (0.12 sec)
+
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB     | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE | _isActive | _SrNO |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+|   7920 | GRASS  | M       | SALESMAN | 7919 | 1980-02-14 | 2575 |  2700 |      30 |        5 | GRASS     | sales@2017 | NULL   |         1 |    22 |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+1 row in set (0.14 sec)
+
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+--------+--------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB     | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD   | _PHONE | _isActive | _SrNO |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+--------+--------+-----------+-------+
+|   7945 | AARUSH | M       | SALESMAN | 7902 | 1980-02-14 | 1350 |  2700 |      30 |     NULL | AARUSH    | ABCDEF | NULL   |         0 |    24 |
++--------+--------+---------+----------+------+------------+------+-------+---------+----------+-----------+--------+--------+-----------+-------+
+1 row in set (0.15 sec)
+
++--------+--------+---------+---------+------+------------+------+-------+---------+----------+-------------+------------+------------+-----------+-------+
+| _EMPNO | _ENAME | _GENDER | _JOB    | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME   | _PWD       | _PHONE     | _isActive | _SrNO |
++--------+--------+---------+---------+------+------------+------+-------+---------+----------+-------------+------------+------------+-----------+-------+
+|   7949 | ALEX   | M       | MANAGER | 7698 | 1982-01-24 | 1250 |   500 |      30 |        5 | QUARTERREST | sales@2017 | 7156567183 |         1 |    25 |
++--------+--------+---------+---------+------+------------+------+-------+---------+----------+-------------+------------+------------+-----------+-------+
+1 row in set (0.17 sec)
+
++--------+---------+---------+-------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+| _EMPNO | _ENAME  | _GENDER | _JOB  | _MGR | _HIREDATE  | _SAL | _COMM | _DEPTNO | _BONUSID | _USERNAME | _PWD       | _PHONE | _isActive | _SrNO |
++--------+---------+---------+-------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+|   8433 | NATASHA | F       | CLERK | 7920 | 1981-07-19 | 1750 |  NULL |      30 |        1 | NATASHA   | sales@2017 | NULL   |         1 |    26 |
++--------+---------+---------+-------+------+------------+------+-------+---------+----------+-----------+------------+--------+-----------+-------+
+1 row in set (0.20 sec)
+
+ERROR 1329 (02000): No data - zero rows fetched, selected, or processed
+mysql>
+mysql> # sql Program
+mysql>
+mysql> # drop procedure if exists Proc2 ;
+mysql> # delimiter $
+mysql> # create procedure Proc2(in Name varchar(20))
+mysql> # begin
+mysql> # declare x int;
+mysql> #
+mysql> # declare _EMPNO int ;
+mysql> # declare _ENAME varchar(20) ;
+mysql> # declare _GENDER char(1);
+mysql> # declare _JOB varchar(20) ;
+mysql> # declare  _MGR int ;
+mysql> # declare _HIREDATE DATE ;
+mysql> # declare _SAL int;
+mysql> # declare _COMM int;
+mysql> # declare _DEPTNO int;
+mysql> # declare _BONUSID int ;
+mysql> # declare _USERNAME varchar(20) ;
+mysql> # declare _PWD  varchar(20) ;
+mysql> # declare _PHONE varchar(20) ;
+mysql> # declare _isActive bool;
+mysql> # declare _SrNO int ;
+mysql> #
+mysql> # declare C1 cursor for select * from emp;
+mysql> #
+mysql> # select deptno into x from dept where dname=Name;
+mysql> # select x;
+mysql> #
+mysql> #
+mysql> # open C1;
+mysql> # forloop:loop
+mysql> # fetch C1 into _EMPNO , _ENAME,_GENDER ,_JOB, _MGR ,_HIREDATE ,_SAL ,_COMM
+mysql> # ,_DEPTNO ,_BONUSID , _USERNAME,_PWD ,_PHONE ,_isActive ,_SrNO ;
+mysql> # if _DEPTNO=x then
+mysql> # select _EMPNO , _ENAME,_GENDER ,_JOB, _MGR ,_HIREDATE ,_SAL ,_COMM
+mysql> # ,_DEPTNO ,_BONUSID , _USERNAME,_PWD ,_PHONE ,_isActive ,_SrNO ;
+mysql> # end if ;
+mysql> # end loop forloop;
+mysql> # close C1 ;
+mysql> #
+mysql> #
+mysql> # end $
+mysql> # delimiter ;
+mysql>
+mysql> #................................................................................
+mysql>
+mysql> # Q2. Display all tables where primary key are given.
+mysql>
+mysql>
+mysql>

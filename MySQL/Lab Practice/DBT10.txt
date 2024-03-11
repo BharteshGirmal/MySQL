@@ -1,0 +1,1724 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 23
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| db1                |
+| db2                |
+| db3                |
+| db4                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| project            |
+| sys                |
++--------------------+
+11 rows in set (0.01 sec)
+
+mysql> use db2;
+Database changed
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2022-05-25 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept;
+Empty set (0.02 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| a             |
+| car           |
+| demo          |
+| department    |
+| dept          |
+| employee      |
+| employee2     |
+| login         |
+| logindetails  |
+| logindetails2 |
+| v1            |
++---------------+
+11 rows in set (0.00 sec)
+
+mysql> insert into dept as select * from db1.dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'as select * from db1.dept' at line 1
+mysql> insert into dept select * from db1.dept;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept;
+Empty set (0.00 sec)
+
+mysql> drop table dept;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table dept as select * from db1.dept;
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from duplicates oredr by deptno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by deptno' at line 1
+mysql> select * from duplicate oredr by deptno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by deptno' at line 1
+mysql> select * from duplicate order by deptno;
+ERROR 1146 (42S02): Table 'db2.duplicate' doesn't exist
+mysql> select * from db1.duplicate order by deptno;
++--------+------------+---------+----------+
+| DEPTNO | DNAME      | LOC     | WALLETID |
++--------+------------+---------+----------+
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
++--------+------------+---------+----------+
+32 rows in set (0.00 sec)
+
+mysql> create table duplicate as select * from db1.duplicate;
+Query OK, 32 rows affected (0.03 sec)
+Records: 32  Duplicates: 0  Warnings: 0
+
+mysql> select * from duplicate order by deptno;
++--------+------------+---------+----------+
+| DEPTNO | DNAME      | LOC     | WALLETID |
++--------+------------+---------+----------+
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
++--------+------------+---------+----------+
+32 rows in set (0.00 sec)
+
+mysql> # compling the procedure pro7()
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro7('sales');
++----------------+
+| message Box    |
++----------------+
+| Record Deleted |
++----------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from duplicate order by deptno;
++--------+------------+---------+----------+
+| DEPTNO | DNAME      | LOC     | WALLETID |
++--------+------------+---------+----------+
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
++--------+------------+---------+----------+
+25 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from duplicate order by deptno;
++--------+------------+---------+----------+
+| DEPTNO | DNAME      | LOC     | WALLETID |
++--------+------------+---------+----------+
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     40 | HR         | ANAND   |        4 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     60 | RND        | DELHI   |        6 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     70 | OPERATIONS | BHARUCH |        7 |
++--------+------------+---------+----------+
+32 rows in set (0.00 sec)
+
+mysql> # Record Deleted and rollbacked
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into dept values(1,'MD','Pune','sS65D65','26/05/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | MD         | Pune     | sS65D65    | 26/05/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from dept where deptno<10;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> # trigger function to convert the given input string to uppercase
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+ERROR 1364 (HY000): Field 'DEPTNO' doesn't have a default value
+mysql> # adding the default values to the dept table
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     51 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values(2,3,4,5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     51 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |
+|     52 | 2          | 3        | 4          | 5          |
++--------+------------+----------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> # the default value of deptno is set using the trigger function tri5()
+mysql> insert into dept(dname,loc,pwd,startedon) values(10,22,30,40);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values(44,55,66,77);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values(4,5,6,7);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     51 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |
+|     52 | 2          | 3        | 4          | 5          |
+|     53 | 10         | 22       | 30         | 40         |
+|     54 | 44         | 55       | 66         | 77         |
+|     55 | 4          | 5        | 6          | 7          |
++--------+------------+----------+------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> # rollback
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values(4,5,6,7);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values(44,55,66,77);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     51 | 4          | 5        | 6          | 7          |
+|     52 | 44         | 55       | 66         | 77         |
+|     53 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |
++--------+------------+----------+------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| a             |
+| car           |
+| demo          |
+| department    |
+| dept          |
+| duplicate     |
+| employee      |
+| employee2     |
+| login         |
+| logindetails  |
+| logindetails2 |
+| v1            |
++---------------+
+12 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql> # Exception Handling .....................................
+mysql>
+mysql> # if we write an peocedure and gives values to a table which is not exists in the datbase
+mysql> # then the server will raise an error
+mysql> # returning an interger value of an error
+mysql>
+mysql>
+mysql> # to handle that error the syntax used is
+mysql> # Declare exit handler __(error code)__ select __(Message to user)__
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pro8();
+ERROR 1146 (42S02): Table 'db2.abc' doesn't exist
+mysql>
+mysql> # in this line the error code '1146' shows an error of table doesnt exists
+mysql>
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro8();
++---------------------------------------------------+
+| The Table does not exists Please check the tables |
++---------------------------------------------------+
+| The Table does not exists Please check the tables |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> # Exception Hnadling
+mysql>
+mysql> # to check the duplicate entry while inserting into table dept
+mysql> # should give an error while duplicate value
+mysql>
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values(1,'Purchase','kashi','bdfy','11/12/2022');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values(81,1,1,1,1);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> drop table dept;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> craete table dept like db1.dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'craete table dept like db1.dept' at line 1
+mysql> create table dept like db1.dept;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into dept select * from db1.dept;
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into dept values(81,1,1,1,1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept values(81,1,1,1,1);
+ERROR 1062 (23000): Duplicate entry '81' for key 'dept.PRIMARY'
+mysql>
+mysql> # Here the error comes of Dupliacte Entry
+mysql>
+mysql> call pro8();
++---------------------------------------------------+
+| The Table does not exists Please check the tables |
++---------------------------------------------------+
+| The Table does not exists Please check the tables |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from deptbk;
+ERROR 1146 (42S02): Table 'db2.deptbk' doesn't exist
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| a             |
+| car           |
+| demo          |
+| department    |
+| dept          |
+| duplicate     |
+| employee      |
+| employee2     |
+| login         |
+| logindetails  |
+| logindetails2 |
+| v1            |
++---------------+
+12 rows in set (0.00 sec)
+
+mysql> create table deptbk select * from project.deptbk;
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 23:16:58     |
+|     11 | hardik   | pune     | 46dsw  | 2/01/2022  | root@localhost | 2022-05-24 | 23:23:01     |
+|     55 | Shubham  | kolhapur | 46er4s | 24/10/2020 | root@localhost | 2022-05-24 | 23:24:17     |
+|     11 | hardik   | pune     | 46dsw  | 2/01/2022  | root@localhost | 2022-05-24 | 23:24:43     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 23:16:58     |
+|     11 | hardik   | pune     | 46dsw  | 2/01/2022  | root@localhost | 2022-05-24 | 23:23:01     |
+|     55 | Shubham  | kolhapur | 46er4s | 24/10/2020 | root@localhost | 2022-05-24 | 23:24:17     |
+|     11 | hardik   | pune     | 46dsw  | 2/01/2022  | root@localhost | 2022-05-24 | 23:24:43     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into dept values(85,1,1,1,1);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> insert into dept(dname,loc,pwd,startedon) values(1,'Purchase','kashi','bdfy','11/12/2022');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+ERROR 1048 (23000): Column 'DEPTNO' cannot be null
+mysql> trucate deptbk;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trucate deptbk' at line 1
+mysql> truncate deptbk;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from deptbk;
+Empty set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|      1 | 2          | 3        | 4          | 5          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     81 | 1          | 1        | 1          | 1          |
++--------+------------+----------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|      1 | 2          | 3        | 4          | 5          |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     81 | 1          | 1        | 1          | 1          |
++--------+------------+----------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> delete from dept where depno=1;
+ERROR 1054 (42S22): Unknown column 'depno' in 'where clause'
+mysql> delete from dept where deptno=1;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     81 | 1          | 1        | 1          | 1          |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
+Empty set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|     81 | 1          | 1        | 1          | 1          |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> delete from dept where deptno=81;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from deptbk;
++--------+-------+------+------+-----------+----------------+------------+--------------+
+| DEPTNO | DNAME | LOC  | PWD  | STARTEDON | InsertedBy     | InsertedON | InsertedTIME |
++--------+-------+------+------+-----------+----------------+------------+--------------+
+|     81 | 1     | 1    | 1    | 1         | root@localhost | 2022-05-25 | 19:27:20     |
++--------+-------+------+------+-----------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into dept select deptno,dname,loc,pwd,startedon from deptbk;
+ERROR 1442 (HY000): Can't update table 'deptbk' in stored function/trigger because it is already used by statement which invoked this stored function/trigger.
+mysql> insert into dept values(82,2,2,2,2);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> insert into dept values(default,2,2,2,2);
+ERROR 1364 (HY000): Field 'DEPTNO' doesn't have a default value
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> dsec dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'dsec dept' at line 1
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table dept add Amount int default 10000;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> # inserting a new coloumn in dept table
+mysql> $ giving the default values to the coloumn as 10000
+    -> ^C
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
++--------+------------+----------+------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> # trigger function set the amount value as 10000 if the user gives the less input amount
+mysql>
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept values(2,'purchase','surat','c',10,7000);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| Amount    | int         | YES  |     | 10000   |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept values(22,'purchase','surat','c',10,7000);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> insert into dept values('purchase','surat','c',10,7000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values(22,'purchase','surat','c',10,7000);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| a             |
+| car           |
+| demo          |
+| department    |
+| dept          |
+| deptbk        |
+| duplicate     |
+| employee      |
+| employee2     |
+| login         |
+| logindetails  |
+| logindetails2 |
+| v1            |
++---------------+
+13 rows in set (0.00 sec)
+
+mysql> select * from deotbk;
+ERROR 1146 (42S02): Table 'db2.deotbk' doesn't exist
+mysql> select * from deopbk;
+ERROR 1146 (42S02): Table 'db2.deopbk' doesn't exist
+mysql> select * from deptbk;
++--------+-------+------+------+-----------+----------------+------------+--------------+
+| DEPTNO | DNAME | LOC  | PWD  | STARTEDON | InsertedBy     | InsertedON | InsertedTIME |
++--------+-------+------+------+-----------+----------------+------------+--------------+
+|     81 | 1     | 1    | 1    | 1         | root@localhost | 2022-05-25 | 19:27:20     |
++--------+-------+------+------+-----------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from duplicate;
++--------+------------+---------+----------+
+| DEPTNO | DNAME      | LOC     | WALLETID |
++--------+------------+---------+----------+
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     10 | SALES      | PUNE    |        1 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     10 | SALES      | PUNE    |        1 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
+|     10 | SALES      | PUNE    |        1 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     40 | HR         | ANAND   |        4 |
+|     30 | ACCOUNTS   | SURAT   |        3 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     60 | RND        | DELHI   |        6 |
+|     50 | ADMIN      | MUMBAI  |        5 |
+|     70 | OPERATIONS | BHARUCH |        7 |
+|     10 | SALES      | PUNE    |        1 |
+|     20 | PURCHASE   | BARODA  |        2 |
++--------+------------+---------+----------+
+32 rows in set (0.00 sec)
+
+mysql>
+
+
+
+mysql> select trigger_name from information_schema.triggers where trigger_schema-'db2';
+Empty set, 18 warnings (0.01 sec)
+
+mysql> select trigger_name from information_schema.triggers where trigger_schema-'db1';
+Empty set, 18 warnings (0.00 sec)
+
+mysql> select trigger_name from information_schema.triggers where trigger_schema-'project';
+Empty set, 18 warnings (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept values(82,2,2,2,2);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+ERROR 1048 (23000): Column 'DEPTNO' cannot be null
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
++--------+------------+----------+------------+------------+--------+
+5 rows in set (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept values(3,'abcd','mumbai','c',10,7000);
+ERROR 1054 (42S22): Unknown column 'deptno' in 'field list'
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| Amount    | int         | YES  |     | 10000   |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> drop trigger trig1 , trig2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', trig2' at line 1
+mysql> drop trigger trig1 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger trig2 ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop trigger trig3 ;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop trigger trig4 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger trig5 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger trig6 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger trig7 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger tri7 ;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop trigger tri6 ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop trigger tri5 ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop trigger tri4 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> drop trigger tri3 ;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022');
+ERROR 1364 (HY000): Field 'DEPTNO' doesn't have a default value
+mysql> insert into dept values('Purchase','kashi','bdfy','11/12/2022');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values(222,'Purchase','kashi','bdfy','11/12/2022');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values(222,'Purchase','kashi','bdfy','11/12/2022',2000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Purchase','kashi','bdfy','11/12/2022',5000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values(2,'purchase','surat','c',10,7000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|      2 | PURCHASE   | SURAT    | c          | 10         |  10000 |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  10000 |
++--------+------------+----------+------------+------------+--------+
+7 rows in set (0.00 sec)
+
+mysql> insert into dept values(222,'Purchase','kashi','bdfy','11/12/2022',20000);
+ERROR 1062 (23000): Duplicate entry '222' for key 'dept.PRIMARY'
+mysql> insert into dept values(22,'Purchase','kashi','bdfy','11/12/2022',20000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|      2 | PURCHASE   | SURAT    | c          | 10         |  10000 |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     22 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  20000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  10000 |
++--------+------------+----------+------------+------------+--------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql> # Cursors .........................................
+mysql>
+mysql> # cursor fetches the data from a table and stores into a temporary work area
+mysql> # it fetches the data in forward direction only
+mysql> # it is not updatable
+mysql>
+mysql>
+mysql> # compling a cursor Procedure
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Loop1;
+        close C1
+end' at line 14
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Loop1;
+        close C1 ;
+end' at line 14
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Loop1;
+        close C1 ;
+end' at line 14
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|      2 | PURCHASE   | SURAT    | c          | 10         |  10000 |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     22 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  20000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  10000 |
++--------+------------+----------+------------+------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> insert into dept(dname,loc,pwd,startedon) values('Marketing','pune','bdfy','12/2/2021',25000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into dept values(default,'Marketing','pune','bdfy','12/2/2021',25000);
+ERROR 1364 (HY000): Field 'DEPTNO' doesn't have a default value
+mysql> insert into dept values(1,'Marketing','pune','bdfy','12/2/2021',25000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into dept values(1,'Marketing','mumbai','bc4654','1/05/2022',2500);
+ERROR 1062 (23000): Duplicate entry '1' for key 'dept.PRIMARY'
+mysql> insert into dept values(3,'Marketing','mumbai','bc4654','1/05/2022',2500);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|      1 | MARKETING  | PUNE     | bdfy       | 12/2/2021  |  25000 |
+|      2 | PURCHASE   | SURAT    | c          | 10         |  10000 |
+|      3 | MARKETING  | MUMBAI   | bc4654     | 1/05/2022  |  10000 |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     22 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  20000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  10000 |
++--------+------------+----------+------------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> # fetching the data using the cursors
+mysql> call pro9();
+ERROR 1328 (HY000): Incorrect number of FETCH variables
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pro9();
+ERROR 1328 (HY000): Incorrect number of FETCH variables
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|      1 | MARKETING  | PUNE     | bdfy       | 12/2/2021  |  25000 |
+|      2 | PURCHASE   | SURAT    | c          | 10         |  10000 |
+|      3 | MARKETING  | MUMBAI   | bc4654     | 1/05/2022  |  10000 |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     22 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  20000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  10000 |
++--------+------------+----------+------------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> call pro9();
+ERROR 1328 (HY000): Incorrect number of FETCH variables
+mysql> call pro9()
+    -> ;
+ERROR 1328 (HY000): Incorrect number of FETCH variables
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pro9();
++---------+-----------+------+------+------------+---------+
+| _deptno | _dname    | _loc | _pwd | _startedon | _amount |
++---------+-----------+------+------+------------+---------+
+|       1 | MARKETING | PUNE | bdfy | 12/2/2021  |   25000 |
++---------+-----------+------+------+------------+---------+
+1 row in set (0.00 sec)
+
++---------+----------+-------+------+------------+---------+
+| _deptno | _dname   | _loc  | _pwd | _startedon | _amount |
++---------+----------+-------+------+------------+---------+
+|       2 | PURCHASE | SURAT | c    | 10         |   10000 |
++---------+----------+-------+------+------------+---------+
+1 row in set (0.00 sec)
+
++---------+-----------+--------+--------+------------+---------+
+| _deptno | _dname    | _loc   | _pwd   | _startedon | _amount |
++---------+-----------+--------+--------+------------+---------+
+|       3 | MARKETING | MUMBAI | bc4654 | 1/05/2022  |   10000 |
++---------+-----------+--------+--------+------------+---------+
+1 row in set (0.01 sec)
+
++---------+------------+----------+--------+------------+---------+
+| _deptno | _dname     | _loc     | _pwd   | _startedon | _amount |
++---------+------------+----------+--------+------------+---------+
+|      10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 |   10000 |
++---------+------------+----------+--------+------------+---------+
+1 row in set (0.01 sec)
+
++---------+----------+--------+-----------+------------+---------+
+| _deptno | _dname   | _loc   | _pwd      | _startedon | _amount |
++---------+----------+--------+-----------+------------+---------+
+|      20 | RESEARCH | DALLAS | a12recmpm | 12/04/1989 |   10000 |
++---------+----------+--------+-----------+------------+---------+
+1 row in set (0.01 sec)
+
++---------+----------+-------+------+------------+---------+
+| _deptno | _dname   | _loc  | _pwd | _startedon | _amount |
++---------+----------+-------+------+------------+---------+
+|      22 | PURCHASE | KASHI | bdfy | 11/12/2022 |   20000 |
++---------+----------+-------+------+------------+---------+
+1 row in set (0.03 sec)
+
++---------+--------+---------+------------+------------+---------+
+| _deptno | _dname | _loc    | _pwd       | _startedon | _amount |
++---------+--------+---------+------------+------------+---------+
+|      30 | SALES  | CHICAGO | sales@2017 | 13/04/1989 |   10000 |
++---------+--------+---------+------------+------------+---------+
+1 row in set (0.03 sec)
+
++---------+------------+--------+---------+------------+---------+
+| _deptno | _dname     | _loc   | _pwd    | _startedon | _amount |
++---------+------------+--------+---------+------------+---------+
+|      40 | OPERATIONS | BOSTON | opr@123 | 12/07/1989 |   10000 |
++---------+------------+--------+---------+------------+---------+
+1 row in set (0.06 sec)
+
++---------+--------+------+----------+------------+---------+
+| _deptno | _dname | _loc | _pwd     | _startedon | _amount |
++---------+--------+------+----------+------------+---------+
+|      50 | HR     | PUNE | PUN@8877 | 22/12/1989 |   10000 |
++---------+--------+------+----------+------------+---------+
+1 row in set (0.07 sec)
+
++---------+----------+-------+------+------------+---------+
+| _deptno | _dname   | _loc  | _pwd | _startedon | _amount |
++---------+----------+-------+------+------------+---------+
+|     222 | PURCHASE | KASHI | bdfy | 11/12/2022 |   10000 |
++---------+----------+-------+------+------------+---------+
+1 row in set (0.07 sec)
+
++-------------------------------------------+
+| message Box                               |
++-------------------------------------------+
+| No more records to fetch from the cursor! |
++-------------------------------------------+
+1 row in set (0.09 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro9();
++--------+-----------+------+------+-----------+--------+
+| DeptNo | DeptName  | Loc  | PWD  | StartedOn | Amount |
++--------+-----------+------+------+-----------+--------+
+|      1 | MARKETING | PUNE | bdfy | 12/2/2021 |  25000 |
++--------+-----------+------+------+-----------+--------+
+1 row in set (0.00 sec)
+
++--------+----------+-------+------+-----------+--------+
+| DeptNo | DeptName | Loc   | PWD  | StartedOn | Amount |
++--------+----------+-------+------+-----------+--------+
+|      2 | PURCHASE | SURAT | c    | 10        |  10000 |
++--------+----------+-------+------+-----------+--------+
+1 row in set (0.00 sec)
+
++--------+-----------+--------+--------+-----------+--------+
+| DeptNo | DeptName  | Loc    | PWD    | StartedOn | Amount |
++--------+-----------+--------+--------+-----------+--------+
+|      3 | MARKETING | MUMBAI | bc4654 | 1/05/2022 |  10000 |
++--------+-----------+--------+--------+-----------+--------+
+1 row in set (0.01 sec)
+
++--------+------------+----------+--------+------------+--------+
+| DeptNo | DeptName   | Loc      | PWD    | StartedOn  | Amount |
++--------+------------+----------+--------+------------+--------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm | 24/03/1989 |  10000 |
++--------+------------+----------+--------+------------+--------+
+1 row in set (0.02 sec)
+
++--------+----------+--------+-----------+------------+--------+
+| DeptNo | DeptName | Loc    | PWD       | StartedOn  | Amount |
++--------+----------+--------+-----------+------------+--------+
+|     20 | RESEARCH | DALLAS | a12recmpm | 12/04/1989 |  10000 |
++--------+----------+--------+-----------+------------+--------+
+1 row in set (0.03 sec)
+
++--------+----------+-------+------+------------+--------+
+| DeptNo | DeptName | Loc   | PWD  | StartedOn  | Amount |
++--------+----------+-------+------+------------+--------+
+|     22 | PURCHASE | KASHI | bdfy | 11/12/2022 |  20000 |
++--------+----------+-------+------+------------+--------+
+1 row in set (0.04 sec)
+
++--------+----------+---------+------------+------------+--------+
+| DeptNo | DeptName | Loc     | PWD        | StartedOn  | Amount |
++--------+----------+---------+------------+------------+--------+
+|     30 | SALES    | CHICAGO | sales@2017 | 13/04/1989 |  10000 |
++--------+----------+---------+------------+------------+--------+
+1 row in set (0.05 sec)
+
++--------+------------+--------+---------+------------+--------+
+| DeptNo | DeptName   | Loc    | PWD     | StartedOn  | Amount |
++--------+------------+--------+---------+------------+--------+
+|     40 | OPERATIONS | BOSTON | opr@123 | 12/07/1989 |  10000 |
++--------+------------+--------+---------+------------+--------+
+1 row in set (0.07 sec)
+
++--------+----------+------+----------+------------+--------+
+| DeptNo | DeptName | Loc  | PWD      | StartedOn  | Amount |
++--------+----------+------+----------+------------+--------+
+|     50 | HR       | PUNE | PUN@8877 | 22/12/1989 |  10000 |
++--------+----------+------+----------+------------+--------+
+1 row in set (0.08 sec)
+
++--------+----------+-------+------+------------+--------+
+| DeptNo | DeptName | Loc   | PWD  | StartedOn  | Amount |
++--------+----------+-------+------+------------+--------+
+|    222 | PURCHASE | KASHI | bdfy | 11/12/2022 |  10000 |
++--------+----------+-------+------+------------+--------+
+1 row in set (0.10 sec)
+
++---------------------------+
+| message Box               |
++---------------------------+
+| No More Records tp Fetch  |
++---------------------------+
+1 row in set (0.10 sec)
+
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc d;
+ERROR 1146 (42S02): Table 'db2.d' doesn't exist
+mysql> create table d like dept;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc d;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
+| Amount    | int         | YES  |     | 10000   |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  | Amount |
++--------+------------+----------+------------+------------+--------+
+|      1 | MARKETING  | PUNE     | bdfy       | 12/2/2021  |  25000 |
+|      2 | PURCHASE   | SURAT    | c          | 10         |  10000 |
+|      3 | MARKETING  | MUMBAI   | bc4654     | 1/05/2022  |  10000 |
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |  10000 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |  10000 |
+|     22 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  20000 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI    | bdfy       | 11/12/2022 |  10000 |
++--------+------------+----------+------------+------------+--------+
+10 rows in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pro10();
++---------------------------+
+| message Box               |
++---------------------------+
+| No More Records tp Fetch  |
++---------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from d;
++--------+------------+---------+------------+------------+--------+
+| DEPTNO | DNAME      | LOC     | PWD        | STARTEDON  | Amount |
++--------+------------+---------+------------+------------+--------+
+|     30 | SALES      | CHICAGO | sales@2017 | 13/04/1989 |  10000 |
+|     40 | OPERATIONS | BOSTON  | opr@123    | 12/07/1989 |  10000 |
+|     50 | HR         | PUNE    | PUN@8877   | 22/12/1989 |  10000 |
+|    222 | PURCHASE   | KASHI   | bdfy       | 11/12/2022 |  10000 |
++--------+------------+---------+------------+------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> # the data is get fetched into the table d
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro11();
+ERROR 1318 (42000): Incorrect number of arguments for PROCEDURE db2.pro11; expected 1, got 0
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro11();
+ERROR 1318 (42000): Incorrect number of arguments for PROCEDURE db2.pro11; expected 1, got 0
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro11();
+ERROR 1318 (42000): Incorrect number of arguments for PROCEDURE db2.pro11; expected 1, got 0
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call pro11();
++--------+-----------+------+------+-----------+--------+
+| DeptNo | DeptName  | Loc  | PWD  | StartedOn | Amount |
++--------+-----------+------+------+-----------+--------+
+|      1 | MARKETING | PUNE | bdfy | 12/2/2021 |  25000 |
++--------+-----------+------+------+-----------+--------+
+1 row in set (0.00 sec)
+
++--------+----------+-------+------+-----------+--------+
+| DeptNo | DeptName | Loc   | PWD  | StartedOn | Amount |
++--------+----------+-------+------+-----------+--------+
+|      2 | PURCHASE | SURAT | c    | 10        |  10000 |
++--------+----------+-------+------+-----------+--------+
+1 row in set (0.01 sec)
+
++--------+-----------+--------+--------+-----------+--------+
+| DeptNo | DeptName  | Loc    | PWD    | StartedOn | Amount |
++--------+-----------+--------+--------+-----------+--------+
+|      3 | MARKETING | MUMBAI | bc4654 | 1/05/2022 |  10000 |
++--------+-----------+--------+--------+-----------+--------+
+1 row in set (0.02 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+ 

@@ -1,0 +1,122 @@
+
+primarydb> //salary between 2000 and 4000,  salary between 5700 and 7800.
+
+primarydb> db.emp.find ( { $or: [ { sal:{ $gte : 2000 } }, { sal: {$lte: 4000 } } ] }, {_id:0, ename:1, job:1, sal:1 } );
+[
+  { ename: 'james', job: 'manager', sal: 4700 },
+  { ename: 'king', job: 'president', sal: 5000 },
+  { ename: 'smith', job: 'manager', sal: 3400 },
+  { ename: 'jack', job: 'accountant', sal: 2700 },
+  { ename: 'martin', job: 'salesman', sal: 2900 },
+  { ename: 'crow', job: 'salesman', sal: 3200 },
+  { ename: 'blake', job: 'clerk', sal: 1200 },
+  { ename: 'scott', job: 'salesman', sal: 2500 },
+  { ename: 'richards', job: 'clerk', sal: 1500 },
+  { ename: 'peter', job: 'analyst', sal: 3500 },
+  { ename: 'sharmin', job: 'programmer', sal: 4999 },
+  { ename: 'saleel', job: 'programmer', sal: 2900 },
+  { ename: 'vrushali', job: 'analyst', sal: 4999 },
+  { ename: 'vasant', job: 'salesman', sal: 2200 },
+  { ename: 'vasu', job: 'salesman', sal: 2200 },
+  { ename: 'bob', job: 'manager', sal: 4900 },
+  { ename: 'rahul', job: 'clerk', sal: 1200 },
+  { ename: 'raju', job: 'administrator', sal: 3400 },
+  { ename: 'neel', job: 'administrator', sal: 4200 },
+  { ename: 'saleel', job: 'analyst', sal: 3700 }
+]
+Type "it" for more
+primarydb> db.emp.find ( { $and: [ { sal:{ $gte : 2000 } }, { sal: {$lte: 4000 } } ] }, {_id:0, ename:1, job:1, sal:1 } );
+[
+  { ename: 'smith', job: 'manager', sal: 3400 },
+  { ename: 'jack', job: 'accountant', sal: 2700 },
+  { ename: 'martin', job: 'salesman', sal: 2900 },
+  { ename: 'crow', job: 'salesman', sal: 3200 },
+  { ename: 'scott', job: 'salesman', sal: 2500 },
+  { ename: 'peter', job: 'analyst', sal: 3500 },
+  { ename: 'saleel', job: 'programmer', sal: 2900 },
+  { ename: 'vasant', job: 'salesman', sal: 2200 },
+  { ename: 'vasu', job: 'salesman', sal: 2200 },
+  { ename: 'raju', job: 'administrator', sal: 3400 },
+  { ename: 'saleel', job: 'analyst', sal: 3700 },
+  { ename: 'amit', job: 'administrator', sal: 3500 },
+  { ename: 'dinesh', job: 'programmer', sal: 3500 },
+  { ename: 'amit', job: 'administrator', sal: 3500 },
+  { ename: 'dinesh', job: 'programmer', sal: 3500 },
+  { ename: 'rudra', job: 'programmer', sal: 2400 },
+  { ename: 'pankaj', job: 'programmer', sal: 3600 },
+  { ename: 'anoop', job: 'programmer', sal: 2300 },
+  { ename: 'arjun', job: 'auditor', sal: 3200 },
+  { ename: 'sangita', job: 'auditor', sal: 3100 }
+]
+Type "it" for more
+primarydb> db.emp.find ( { $and: [ { sal:{ $gte : 2000 } }, { sal: {$lte: 4000 } } ] }, {_id:0, ename:1, job:1, sal:1 } ).count();
+27
+primarydb> db.emp.find ( { $and: [ { sal:{ $gte : 5700 } }, { sal: {$lte: 6800 } } ] }, {_id:0, ename:1, job:1, sal:1 } ).count();
+7
+primarydb> db.emp.find ( { $and: [{ $and: [ { sal:{ $gte : 5700 } }, { sal: {$lte: 6800 } } ] }, { sal:{ $gte : 2000 } }, { sal: {$lte: 4000 } } ] }, {_id:0, ename:1, job:1, sal:1 } ).count();
+0
+primarydb> db.emp.find ( { $or: [{ $and: [ { sal:{ $gte : 5700 } }, { sal: {$lte: 6800 } } ] }, { sal:{ $gte : 2000 } }, { sal: {$lte: 4000 } } ] }, {_id:0, ename:1, job:1, sal:1 } );
+[
+  { ename: 'james', job: 'manager', sal: 4700 },
+  { ename: 'king', job: 'president', sal: 5000 },
+  { ename: 'smith', job: 'manager', sal: 3400 },
+  { ename: 'jack', job: 'accountant', sal: 2700 },
+  { ename: 'martin', job: 'salesman', sal: 2900 },
+  { ename: 'crow', job: 'salesman', sal: 3200 },
+  { ename: 'blake', job: 'clerk', sal: 1200 },
+  { ename: 'scott', job: 'salesman', sal: 2500 },
+  { ename: 'richards', job: 'clerk', sal: 1500 },
+  { ename: 'peter', job: 'analyst', sal: 3500 },
+  { ename: 'sharmin', job: 'programmer', sal: 4999 },
+  { ename: 'saleel', job: 'programmer', sal: 2900 },
+  { ename: 'vrushali', job: 'analyst', sal: 4999 },
+  { ename: 'vasant', job: 'salesman', sal: 2200 },
+  { ename: 'vasu', job: 'salesman', sal: 2200 },
+  { ename: 'bob', job: 'manager', sal: 4900 },
+  { ename: 'rahul', job: 'clerk', sal: 1200 },
+  { ename: 'raju', job: 'administrator', sal: 3400 },
+  { ename: 'neel', job: 'administrator', sal: 4200 },
+  { ename: 'saleel', job: 'analyst', sal: 3700 }
+]
+Type "it" for more
+primarydb> db.emp.find({$or:[{$and:[{sal:{$gte:2000}},{sal:{$lte:4000}}]},{$and:[{sal:{$gte:5700}},{sal:{$lte:6800}}]}]},{_id:0,ename:1,job:1,sal:1});
+[
+  { ename: 'smith', job: 'manager', sal: 3400 },
+  { ename: 'jack', job: 'accountant', sal: 2700 },
+  { ename: 'martin', job: 'salesman', sal: 2900 },
+  { ename: 'crow', job: 'salesman', sal: 3200 },
+  { ename: 'scott', job: 'salesman', sal: 2500 },
+  { ename: 'peter', job: 'analyst', sal: 3500 },
+  { ename: 'saleel', job: 'programmer', sal: 2900 },
+  { ename: 'vasant', job: 'salesman', sal: 2200 },
+  { ename: 'vasu', job: 'salesman', sal: 2200 },
+  { ename: 'raju', job: 'administrator', sal: 3400 },
+  { ename: 'saleel', job: 'analyst', sal: 3700 },
+  { ename: 'amit', job: 'administrator', sal: 3500 },
+  { ename: 'dinesh', job: 'programmer', sal: 3500 },
+  { ename: 'amit', job: 'administrator', sal: 3500 },
+  { ename: 'dinesh', job: 'programmer', sal: 3500 },
+  { ename: 'rudra', job: 'programmer', sal: 2400 },
+  { ename: 'pankaj', job: 'programmer', sal: 3600 },
+  { ename: 'anoop', job: 'programmer', sal: 2300 },
+  { ename: 'arjun', job: 'auditor', sal: 3200 },
+  { ename: 'sangita', job: 'auditor', sal: 3100 }
+]
+Type "it" for more
+primarydb> it
+[
+  { ename: 'amol', job: 'auditor', sal: 3800 },
+  { ename: 'gita', job: 'writer', sal: 2150 },
+  { ename: 'pinky', job: 'Computer Programmer', sal: 3500 },
+  { ename: 'sita', job: 'writer', sal: 3755 },
+  { ename: 'sangu', job: 'Computer Programmer', sal: 6000 },
+  { ename: 'supriya', job: 'Computer Programmer', sal: 3500 },
+  { ename: 'laxman', job: 'Computer Programmer', sal: 6500 },
+  { ename: 'rupal', job: 'WEB Programmer', sal: 6500 },
+  { ename: 'snehal', job: 'WEB Programmer', sal: 2500 },
+  { ename: 'aditi', job: 'WEB Programmer', sal: 5700 },
+  { ename: 'ram', job: 'WEB Programmer', sal: 6200 },
+  { ename: 'jasu', job: 'Computer Programmer', sal: 5800 },
+  { ename: 'zara', job: 'WEB Programmer', sal: 3700 },
+  { ename: 'tanvi', job: 'WEB Programmer', sal: 5700 }
+]

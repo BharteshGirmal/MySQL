@@ -1,0 +1,1711 @@
+Microsoft Windows [Version 10.0.17763.2928]
+(c) 2018 Microsoft Corporation. All rights reserved.
+
+C:\Users\faculty>mongo
+MongoDB shell version v5.0.8
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("8aaab11d-b2ce-4577-a1e3-2cc205ecaab2") }
+MongoDB server version: 5.0.8
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+---
+The server generated these startup warnings when booting:
+        2022-05-27T08:06:32.631+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+        2022-05-27T08:06:32.632+05:30: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db
+test
+> db.getName();
+test
+> use primaryDB;
+switched to db primaryDB
+> db.getName();
+primaryDB
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db
+primaryDB
+> show tables;
+>
+>
+> db.getCollectionNames();
+[ ]
+>
+> db.createCollecton("books")
+uncaught exception: TypeError: db.createCollecton is not a function :
+@(shell):1:1
+> db.createCollection("books")
+{ "ok" : 1 }
+>
+>
+> show tables;
+books
+> db.getCollectionNames();
+[ "books" ]
+>
+>
+>
+>
+> db.createCollection("items")
+{ "ok" : 1 }
+>
+> show tables;
+books
+items
+> db.getCollectionNames();
+[ "books", "items" ]
+>
+>
+>
+>
+> db.books.insert({"title":"JAVA C.R.", "author":"omkar"});
+WriteResult({ "nInserted" : 1 })
+>
+>
+> db
+primaryDB
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+>
+>
+>
+>
+> db.books.insert({"title":"MySQL", "author":"pooja", "price":1200});
+WriteResult({ "nInserted" : 1 })
+>
+>
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+>
+>
+>
+> db.books.insertOne({"title":"Neo4j", "author":"martin", "cost":{"currency":"Rs.", "price":1700 }});
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("62903f6a8271b158d2478649")
+}
+>
+> db.db.books.find();
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+>
+>
+>
+> db.books.insertOne({"title":"redis", "author":"saleel","phone":[12345, 77777], "email":["firstmail@gmail.com", "SecondMain@yahoomail.com"], "cost":{"currency":"$", "price":1300 }});
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("6290404f8271b158d247864a")
+}
+>
+>
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ], "cost" : { "currency" : "$", "price" : 1300 } }
+>
+> db.books.find().forEach(printjson);
+{
+        "_id" : ObjectId("62903d638271b158d2478647"),
+        "title" : "JAVA C.R.",
+        "author" : "omkar"
+}
+{
+        "_id" : ObjectId("62903e1a8271b158d2478648"),
+        "title" : "MySQL",
+        "author" : "pooja",
+        "price" : 1200
+}
+{
+        "_id" : ObjectId("62903f6a8271b158d2478649"),
+        "title" : "Neo4j",
+        "author" : "martin",
+        "cost" : {
+                "currency" : "Rs.",
+                "price" : 1700
+        }
+}
+{
+        "_id" : ObjectId("6290404f8271b158d247864a"),
+        "title" : "redis",
+        "author" : "saleel",
+        "phone" : [
+                12345,
+                77777
+        ],
+        "email" : [
+                "firstmail@gmail.com",
+                "SecondMain@yahoomail.com"
+        ],
+        "cost" : {
+                "currency" : "$",
+                "price" : 1300
+        }
+}
+> db.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, author:[{"name":"Ram", "city":"pune"}, {"name":"rajan","city":"baroda", "phone":787878}]},   {"title":"hive","ISBN":"jdi83", "cost":"Rs. 1250"});
+uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+>
+>
+> db.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, "author":[{"namedb.db.books.find();
+>
+> d\b.books.find();
+uncaught exception: SyntaxError: invalid escape sequence :
+@(shell):1:1
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ], "cost" : { "currency" : "$", "price" : 1300 } }
+> db.books.insertMany({"title":"hBase","ISBN":"SXfg102", "cost":{"currency":"$", "price":1300 }, author:[{"name":"Ram", "city":"pune"}, {"name":"rajan","city":"baroda", "phone":787878}]},   {"title":"hive","ISBN":"jdi83", "cost":"Rs. 1250"}});
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:238
+> db.books.insertMany({"title":"hBase", "ISBN":"ds4f", "cost": {"currency":"Rs", "prie":1300}, author:[{"neme":"Ram","city":"pune"}, {name:"rajan","city":"baroda","phone":787878}] },  {"title":"hive", "ISBN":"dkei834","cost":"Rs.1250"} );
+uncaught exception: TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.books.insertMany([{"title":"hBase", "ISBN":"ds4f", "cost": {"currency":"Rs", "prie":1300}, author:[{"neme":"Ram","city":"pune"}, {name:"rajan","city":"baroda","phone":787878}] },  {"title":"hive", "ISBN":"dkei834","cost":"Rs.1250"} ]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("6290459b8271b158d247864b"),
+                ObjectId("6290459b8271b158d247864c")
+        ]
+}
+> db.books.find().forEach(printjson)
+{
+        "_id" : ObjectId("62903d638271b158d2478647"),
+        "title" : "JAVA C.R.",
+        "author" : "omkar"
+}
+{
+        "_id" : ObjectId("62903e1a8271b158d2478648"),
+        "title" : "MySQL",
+        "author" : "pooja",
+        "price" : 1200
+}
+{
+        "_id" : ObjectId("62903f6a8271b158d2478649"),
+        "title" : "Neo4j",
+        "author" : "martin",
+        "cost" : {
+                "currency" : "Rs.",
+                "price" : 1700
+        }
+}
+{
+        "_id" : ObjectId("6290404f8271b158d247864a"),
+        "title" : "redis",
+        "author" : "saleel",
+        "phone" : [
+                12345,
+                77777
+        ],
+        "email" : [
+                "firstmail@gmail.com",
+                "SecondMain@yahoomail.com"
+        ],
+        "cost" : {
+                "currency" : "$",
+                "price" : 1300
+        }
+}
+{
+        "_id" : ObjectId("6290459b8271b158d247864b"),
+        "title" : "hBase",
+        "ISBN" : "ds4f",
+        "cost" : {
+                "currency" : "Rs",
+                "prie" : 1300
+        },
+        "author" : [
+                {
+                        "neme" : "Ram",
+                        "city" : "pune"
+                },
+                {
+                        "name" : "rajan",
+                        "city" : "baroda",
+                        "phone" : 787878
+                }
+        ]
+}
+{
+        "_id" : ObjectId("6290459b8271b158d247864c"),
+        "title" : "hive",
+        "ISBN" : "dkei834",
+        "cost" : "Rs.1250"
+}
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ], "cost" : { "currency" : "$", "price" : 1300 } }
+{ "_id" : ObjectId("6290459b8271b158d247864b"), "title" : "hBase", "ISBN" : "ds4f", "cost" : { "currency" : "Rs", "prie" : 1300 }, "author" : [ { "neme" : "Ram", "city" : "pune" }, { "name" : "rajan", "city" : "baroda", "phone" : 787878 } ] }
+{ "_id" : ObjectId("6290459b8271b158d247864c"), "title" : "hive", "ISBN" : "dkei834", "cost" : "Rs.1250" }
+>
+>
+> db.books.find({}, {"Title":true});
+{ "_id" : ObjectId("62903d638271b158d2478647") }
+{ "_id" : ObjectId("62903e1a8271b158d2478648") }
+{ "_id" : ObjectId("62903f6a8271b158d2478649") }
+{ "_id" : ObjectId("6290404f8271b158d247864a") }
+{ "_id" : ObjectId("6290459b8271b158d247864b") }
+{ "_id" : ObjectId("6290459b8271b158d247864c") }
+>
+>
+>
+>
+> db.books.find({}, {"title":true});
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R." }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL" }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j" }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis" }
+{ "_id" : ObjectId("6290459b8271b158d247864b"), "title" : "hBase" }
+{ "_id" : ObjectId("6290459b8271b158d247864c"), "title" : "hive" }
+>
+> db.books.find({}, {"_id":false, "title":true});
+{ "title" : "JAVA C.R." }
+{ "title" : "MySQL" }
+{ "title" : "Neo4j" }
+{ "title" : "redis" }
+{ "title" : "hBase" }
+{ "title" : "hive" }
+>
+> db.books.find({}, {"_id":false, "cost": 0});
+{ "title" : "JAVA C.R.", "author" : "omkar" }
+{ "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "title" : "Neo4j", "author" : "martin" }
+{ "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ] }
+{ "title" : "hBase", "ISBN" : "ds4f", "author" : [ { "neme" : "Ram", "city" : "pune" }, { "name" : "rajan", "city" : "baroda", "phone" : 787878 } ] }
+{ "title" : "hive", "ISBN" : "dkei834" }
+>
+>
+>
+>
+> db
+primaryDB
+> db.getCollectionNames();
+[ "books", "emp", "items" ]
+>
+> db.emp.find();
+{ "_id" : ObjectId("629049b2fc70df11aafff867"), "empid" : 1021, "ename" : "smith", "address" : { "building" : "469", "coord" : [ -73.961704, 40.662942 ], "street" : "Flatbush Avenue", "zipcode" : "11225" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "red", "cyan", "gray" ], "fruit" : [ "grapes", "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "43564", "isActive" : true } }, { "PAN" : { "PAN-No" : "smh838", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-05-01T00:00:00Z"), "sal" : 3400, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff868"), "empid" : 1022, "ename" : "james", "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Red", "Blue", "Green", "Yellow" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-07-09T00:00:00Z"), "sal" : 4700, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff869"), "empid" : 1020, "ename" : "king", "address" : { "building" : "1007", "coord" : [ -73.856077, 40.848447 ], "street" : "Morris Park Ave", "zipcode" : "10462" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "blue", "black" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93478", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "president", "mgr" : null, "hiredate" : ISODate("1981-11-17T00:00:00Z"), "sal" : 5000, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86a"), "empid" : 1023, "ename" : "jack", "address" : { "building" : "2780", "coord" : [ -73.98241999999999, 40.579505 ], "street" : "Stillwell Avenue", "zipcode" : "11224" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Air Force Blue", "Apple Green" ], "fruit" : [ "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "12321", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "accountant", "mgr" : 1022, "hiredate" : ISODate("1981-04-02T00:00:00Z"), "sal" : 2700, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86b"), "empid" : 1024, "ename" : "martin", "address" : { "building" : "8825", "coord" : [ -73.8803827, 40.7643124 ], "street" : "Astoria Boulevard", "zipcode" : "11369" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Banana Yellow" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "72877", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-02-20T00:00:00Z"), "sal" : 2900, "comm" : 735, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86c"), "empid" : 1023, "ename" : "scott", "address" : { "building" : "97-22", "coord" : [ -73.8601152, 40.7311739 ], "street" : "63 Road", "zipcode" : "11374" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Ash Grey", "White" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93872", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-09-28T00:00:00Z"), "sal" : 2500, "comm" : 350, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86d"), "empid" : 1025, "ename" : "crow", "address" : { "building" : "2206", "coord" : [ -74.1377286, 40.6119572 ], "street" : "Victory Boulevard", "zipcode" : "10314" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Apple Green", "Ash Grey" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "77876", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-09-08T00:00:00Z"), "sal" : 3200, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86e"), "empid" : 1026, "ename" : "blake", "address" : { "building" : "7114", "coord" : [ -73.9068506, 40.6199034 ], "street" : "Avenue U", "zipcode" : "11234" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Brass", "Bright Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "12321", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1024, "hiredate" : ISODate("1981-12-03T00:00:00Z"), "sal" : 1200, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86f"), "empid" : 1030, "ename" : "saleel", "address" : { "building" : "7715", "coord" : [ -73.9973325, 40.61174889999999 ], "street" : "18 Avenue", "zipcode" : "11214" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Coral" ], "fruit" : [ "Dates", "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73822", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1020, "hiredate" : ISODate("1982-12-09T00:00:00Z"), "sal" : 2900, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff870"), "empid" : 1027, "ename" : "richards", "address" : { "building" : "6409", "coord" : [ -74.00528899999999, 40.628886 ], "street" : "11 Avenue", "zipcode" : "11219" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Charcoal", "Cherry" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "83972", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1024, "hiredate" : ISODate("1981-02-22T00:00:00Z"), "sal" : 1500, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff871"), "empid" : 1028, "ename" : "peter", "address" : { "building" : "1839", "coord" : [ -73.9482609, 40.6408271 ], "street" : "Nostrand Avenue", "zipcode" : "11226" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Brown" ], "fruit" : [ "banana", "Jackfruit" ], "cards" : [ { "aadhar" : { "aadhar-No" : "92783", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "analyst", "mgr" : 1025, "hiredate" : ISODate("1981-12-03T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff872"), "empid" : 1032, "ename" : "vrushali", "address" : { "building" : "1", "coord" : [ -73.96926909999999, 40.7685235 ], "street" : "East   66 Street", "zipcode" : "10065" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Iceberg" ], "fruit" : [ "Orange", "Papaya", "Kiwi" ], "cards" : [ { "aadhar" : { "aadhar-No" : "22343", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "analyst", "mgr" : 1030, "hiredate" : ISODate("1982-02-23T00:00:00Z"), "sal" : 4999, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff873"), "empid" : 1031, "ename" : "sharmin", "address" : { "building" : "1269", "coord" : [ -73.871194, 40.6730975 ], "street" : "Sutter Avenue", "zipcode" : "11208" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Cream" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "16523", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1020, "hiredate" : ISODate("1983-01-12T00:00:00Z"), "sal" : 4999, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff874"), "empid" : 1033, "ename" : "vasant", "address" : { "building" : "705", "coord" : [ -73.9653967, 40.6064339 ], "street" : "Kings Highway", "zipcode" : "11223" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Bright Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93824", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1029, "hiredate" : ISODate("1982-02-24T00:00:00Z"), "sal" : 2200, "comm" : 0, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff875"), "empid" : 1029, "ename" : "bob", "address" : { "building" : "2300", "coord" : [ -73.8786113, 40.8502883 ], "street" : "Southern Boulevard", "zipcode" : "10460" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Copper" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "73122", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1980-12-17T00:00:00Z"), "sal" : 4900, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff876"), "empid" : 1035, "ename" : "rahul", "address" : { "building" : "265-15", "coord" : [ -73.7032601, 40.7386417 ], "street" : "Hillside Avenue", "zipcode" : "11004" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Indian Red" ], "fruit" : [ "Lychee", "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "00998", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1029, "hiredate" : ISODate("1981-12-31T00:00:00Z"), "sal" : 1200, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff877"), "empid" : 1034, "ename" : "vasu", "address" : { "building" : "203", "coord" : [ -73.97822040000001, 40.6435254 ], "street" : "Church Avenue", "zipcode" : "11218" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ "Dates" ], "cards" : [ { "aadhar" : { "aadhar-No" : "19826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1029, "hiredate" : ISODate("1980-02-14T00:00:00Z"), "sal" : 2200, "comm" : 250, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff878"), "empid" : 1036, "ename" : "raju", "address" : { "building" : "6909", "coord" : [ -74.0259567, 40.6353674 ], "street" : "3 Avenue", "zipcode" : "11209" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Indian Yellow" ], "fruit" : [ "Crab apples" ], "cards" : [ { "aadhar" : { "aadhar-No" : "55622", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "administrator", "mgr" : 1031, "hiredate" : ISODate("1983-06-15T00:00:00Z"), "sal" : 3400, "comm" : null, "deptno" : 50 }
+{ "_id" : ObjectId("629049b2fc70df11aafff879"), "empid" : 1037, "ename" : "ramu", "address" : { "building" : "522", "coord" : [ -73.95171, 40.767461 ], "street" : "East   74 Street", "zipcode" : "10021" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Lemon" ], "fruit" : [ "Jackfruit", "banana", "Apple" ], "cards" : [ { "aadhar" : { "aadhar-No" : "00983", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1031, "hiredate" : ISODate("1983-07-12T00:00:00Z"), "sal" : 1400, "comm" : null, "deptno" : 50 }
+{ "_id" : ObjectId("629049b2fc70df11aafff87a"), "empid" : 1039, "ename" : "saleel", "address" : { "building" : "129-08", "coord" : [ -73.839297, 40.78147 ], "street" : "20 Avenue", "zipcode" : "11356" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Cherry", "Charcoal" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "66675", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "analyst", "mgr" : 1022, "hiredate" : ISODate("1982-12-09T00:00:00Z"), "sal" : 3700, "comm" : null, "deptno" : 50 }
+Type "it" for more
+>
+> it
+{ "_id" : ObjectId("629049b2fc70df11aafff87b"), "empid" : 1038, "ename" : "neel", "address" : { "building" : "284", "coord" : [ -73.9829239, 40.6580753 ], "street" : "Prospect Park West", "zipcode" : "11215" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Apple Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "00098", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "administrator", "mgr" : 1030, "hiredate" : ISODate("1983-03-14T00:00:00Z"), "sal" : 4200, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff87c"), "empid" : 1040, "ename" : "amit", "address" : { "building" : "759", "coord" : [ -73.9925306, 40.7309346 ], "street" : "Broadway", "zipcode" : "10003" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Indian Red" ], "fruit" : [ "Crab apples" ], "cards" : [ { "aadhar" : { "aadhar-No" : "66623", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "administrator", "mgr" : 1029, "hiredate" : ISODate("1982-12-08T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 50, "phone" : [ 85088422, NumberLong("9822884228") ] }
+{ "_id" : ObjectId("629049b2fc70df11aafff87d"), "empid" : 1041, "ename" : "dinesh", "address" : { "building" : "3406", "coord" : [ -73.94024739999999, 40.7623288 ], "street" : "10 Street", "zipcode" : "11106" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Air Force Blue" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "77767", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1021, "hiredate" : ISODate("1982-12-09T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 50, "phone" : [ 85088422, NumberLong("9822884228") ], "skills" : { "languages" : [ "C++", "JAVA" ], "web" : [ "php", "java", "jquery" ] } }
+{ "_id" : ObjectId("629049b2fc70df11aafff87e"), "empid" : 1042, "ename" : "amit", "address" : { "building" : "502", "coord" : [ -73.976112, 40.786714 ], "street" : "Amsterdam Avenue", "zipcode" : "10024" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Orange" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "77787", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "administrator", "mgr" : 1029, "hiredate" : ISODate("1981-11-03T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 50, "phone" : [ "9850884228", "9822884228" ] }
+{ "_id" : ObjectId("629049b2fc70df11aafff87f"), "empid" : 1043, "ename" : "dinesh", "address" : { "building" : "730", "coord" : [ -73.96805719999999, 40.7925587 ], "street" : "Columbus Avenue", "zipcode" : "10025" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Navy Blue" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "77789", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1021, "hiredate" : ISODate("1981-11-04T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 50, "phone" : [ "020-25420200", NumberLong("9822336644") ], "skills" : { "languages" : [ "C++", "JAVA" ], "web" : [ "php", "java", "jquery" ] } }
+{ "_id" : ObjectId("629049b2fc70df11aafff880"), "empid" : 1044, "ename" : "rudra", "address" : { "building" : "18", "coord" : [ -73.996984, 40.72589 ], "street" : "West Houston Street", "zipcode" : "10012" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Lime" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "55543", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1021, "hiredate" : ISODate("1981-11-04T00:00:00Z"), "sal" : 2400, "comm" : null, "deptno" : 50, "phone" : "020-25420212", "skills" : { "web" : [ "php", "java", "jquery" ], "database" : [ "oracle", "ms-sql server", "mongodb" ] } }
+{ "_id" : ObjectId("629049b2fc70df11aafff881"), "empid" : 1048, "ename" : "neel", "address" : { "building" : "195", "coord" : [ -73.9246028, 40.6522396 ], "street" : "East   56 Street", "zipcode" : "11203" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Orange" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "99099", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1039, "hiredate" : ISODate("1980-03-14T00:00:00Z"), "sal" : 1800, "comm" : 1400, "deptno" : 50, "phone" : "022-2534565", "skills" : { "language" : "ruby", "database" : { "rdbms" : [ "oracle", "db2" ], "nosql" : [ "mongodb", "hive", "hbase" ] } } }
+{ "_id" : ObjectId("629049b2fc70df11aafff882"), "empid" : 1047, "ename" : "nitish", "address" : { "building" : "60", "coord" : [ -74.0085357, 40.70620539999999 ], "street" : "Wall Street", "zipcode" : "10005" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Coral", "Cream" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "99890", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1039, "hiredate" : ISODate("1980-03-14T00:00:00Z"), "sal" : 1300, "comm" : 1200, "deptno" : 50, "phone" : "022-2548345", "skills" : { "language" : [ ".NET", "java" ], "database" : { "rdbms" : [ "oracle", "db2" ], "nosql" : [ "mongodb", "hive" ] }, "web" : [ "json", "jquery", "javascript", "php" ] } }
+{ "_id" : ObjectId("629049b2fc70df11aafff883"), "empid" : 1046, "ename" : "anoop", "address" : { "building" : "103-05", "coord" : [ -73.8642349, 40.75356 ], "street" : "37 Avenue", "zipcode" : "11368" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Navy Blue" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "83722", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1029, "hiredate" : ISODate("1980-02-17T00:00:00Z"), "sal" : 2300, "comm" : 1200, "deptno" : 50, "phone" : "022-2548345", "skills" : { "language" : [ ".NET", "java" ], "database" : "oracle", "web" : [ "json", "jquery", "javascript" ] } }
+{ "_id" : ObjectId("629049b2fc70df11aafff884"), "empid" : 1045, "ename" : "pankaj", "address" : { "building" : "531", "coord" : [ -73.9634876, 40.6940001 ], "street" : "Myrtle Avenue", "zipcode" : "11205" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "White" ], "fruit" : [ "Peach" ], "cards" : [ { "aadhar" : { "aadhar-No" : "55565", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1023, "hiredate" : ISODate("1980-02-17T00:00:00Z"), "sal" : 3600, "comm" : null, "deptno" : 40, "phone" : "022-2548345", "skills" : { "language" : ".NET", "database" : "ms-sql server" } }
+{ "_id" : ObjectId("629049b2fc70df11aafff885"), "empid" : 1049, "ename" : "arjun", "address" : { "building" : "107", "coord" : [ -74.00920839999999, 40.7132925 ], "street" : "Church Street", "zipcode" : "10007" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Sky Blue", "Navy Blue", "Blue" ], "fruit" : [ "Lychee" ], "cards" : [ { "aadhar" : { "aadhar-No" : "55434", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "auditor", "mgr" : 1020, "hiredate" : ISODate("1984-05-05T00:00:00Z"), "sal" : 3200, "comm" : null, "hra" : 1500, "da" : 1200, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff886"), "empid" : 1050, "ename" : "amol", "address" : { "building" : "1006", "coord" : [ -73.84856870000002, 40.8903781 ], "street" : "East 233 Street", "zipcode" : "10466" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Snow White" ], "fruit" : [ "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "44445", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "auditor", "mgr" : 1047, "hiredate" : ISODate("1984-05-06T00:00:00Z"), "sal" : 3800, "comm" : null, "hra" : 1000, "da" : 900, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff887"), "empid" : 1051, "ename" : "sangita", "address" : { "building" : "56", "coord" : [ -73.991495, 40.692273 ], "street" : "Court Street", "zipcode" : "11201" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "White" ], "fruit" : [ "Papaya" ], "cards" : [ { "aadhar" : { "aadhar-No" : "99983", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "auditor", "mgr" : 1040, "hiredate" : ISODate("1984-03-30T00:00:00Z"), "sal" : 3100, "comm" : null, "hra" : 1000, "da" : 1500, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff888"), "empid" : 1052, "ename" : "gita", "address" : { "building" : "7615", "coord" : [ -74.0228449, 40.6281815 ], "street" : "5 Avenue", "zipcode" : "11209" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Indian Red" ], "fruit" : [ "Kiwi" ], "cards" : [ { "aadhar" : { "aadhar-No" : "44460", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "writer", "language" : [ "english", "hindi" ], "mgr" : 1049, "hiredate" : ISODate("1984-03-29T00:00:00Z"), "sal" : 2150, "comm" : 750, "hra" : 1300, "da" : 1700, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff889"), "empid" : 1053, "ename" : "sita", "address" : { "building" : "120", "coord" : [ -73.9998042, 40.7251256 ], "street" : "Prince Street", "zipcode" : "10012" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Snow White" ], "fruit" : [ "Guava" ], "cards" : [ { "aadhar" : { "aadhar-No" : "12233", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "writer", "language" : [ "english", "hindi", "marathi" ], "mgr" : 1049, "hiredate" : ISODate("1984-03-30T00:00:00Z"), "sal" : 3755, "comm" : 750, "hra" : 1100, "da" : 1100, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff88a"), "empid" : 2001, "ename" : "pinky", "address" : { "building" : "1236", "coord" : [ -73.8893654, 40.81376179999999 ], "street" : "238 Spofford Ave", "zipcode" : "10474" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ "banana", "Jackfruit" ], "cards" : [ { "aadhar" : { "aadhar-No" : "33434", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 1039, "hiredate" : ISODate("1983-07-17T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff88b"), "empid" : 2004, "ename" : "sangu", "address" : { "building" : "405", "coord" : [ -73.97534999999999, 40.7516269 ], "street" : "Lexington Avenue", "zipcode" : "10174" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Apple Green" ], "fruit" : [ "Passion Fruit" ], "cards" : [ { "aadhar" : { "aadhar-No" : "33321", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 2002, "hiredate" : ISODate("1980-07-17T00:00:00Z"), "sal" : 6000, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff88c"), "empid" : 2003, "ename" : "supriya", "address" : { "building" : "1069", "coord" : [ -73.902463, 40.694924 ], "street" : "Wyckoff Avenue", "zipcode" : "11385" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Snow White" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "33343", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 2001, "hiredate" : ISODate("1983-07-17T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff88d"), "empid" : 2005, "ename" : "laxman", "address" : { "building" : "2491", "coord" : [ -74.1459332, 40.6103714 ], "street" : "Victory Boulevard", "zipcode" : "10314" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "76565", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01" } } ], "job" : "Computer Programmer", "mgr" : 2001, "hiredate" : ISODate("1980-11-17T00:00:00Z"), "sal" : 6500, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff88e"), "empid" : 2002, "ename" : "priti", "address" : { "building" : "625", "coord" : [ -73.990494, 40.7569545 ], "street" : "8 Avenue", "zipcode" : "10018" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Violet" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "55565", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 1037, "hiredate" : ISODate("1983-07-17T00:00:00Z"), "sal" : 5500, "comm" : null, "deptno" : 20 }
+Type "it" for more
+> it
+{ "_id" : ObjectId("629049b2fc70df11aafff88f"), "empid" : 2007, "ename" : "raj", "address" : { "building" : "87-69", "coord" : [ -73.8309503, 40.7001121 ], "street" : "Lefferts Boulevard", "zipcode" : "11418" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Dark Orange" ], "fruit" : [ "Papaya" ], "cards" : [ { "aadhar" : { "aadhar-No" : "87767", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 1039, "hiredate" : ISODate("1981-08-17T00:00:00Z"), "sal" : 7000, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff890"), "empid" : 2006, "ename" : "rahsmi", "address" : { "building" : "7905", "coord" : [ -73.8740217, 40.7135015 ], "street" : "Metropolitan Avenue", "zipcode" : "11379" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Orange" ], "fruit" : [ "Peach" ], "cards" : [ { "aadhar" : { "aadhar-No" : "77625", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 2002, "hiredate" : ISODate("1982-05-17T00:00:00Z"), "sal" : 5600, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff891"), "empid" : 2009, "ename" : "janhavi", "address" : { "building" : "464", "coord" : [ -73.9791458, 40.744328 ], "street" : "3 Avenue", "zipcode" : "10016" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Violet" ], "fruit" : [ "Papaya" ], "cards" : [ { "aadhar" : { "aadhar-No" : "11117", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 2002, "hiredate" : ISODate("1983-08-17T00:00:00Z"), "sal" : 4700, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff892"), "empid" : 2008, "ename" : "roselin", "address" : { "building" : "1418", "coord" : [ -73.95685019999999, 40.7753401 ], "street" : "Third Avenue", "zipcode" : "10028" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "White" ], "fruit" : [ "watermelon", "mango" ], "cards" : [ { "aadhar" : { "aadhar-No" : "22223", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 2005, "hiredate" : ISODate("1983-02-17T00:00:00Z"), "sal" : 800, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff893"), "empid" : 2011, "ename" : "snehal", "address" : { "building" : "1031", "coord" : [ -73.9075537, 40.6438684 ], "street" : "East   92 Street", "zipcode" : "11236" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ "apple" ], "cards" : [ { "aadhar" : { "aadhar-No" : "66667", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 1039, "hiredate" : ISODate("1983-07-17T00:00:00Z"), "sal" : 2500, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff894"), "empid" : 2012, "ename" : "rupal", "address" : { "building" : "1111", "coord" : [ -74.0796436, 40.59878339999999 ], "street" : "Hylan Boulevard", "zipcode" : "10305" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Violet" ], "fruit" : [ "grapes" ], "cards" : [ { "aadhar" : { "aadhar-No" : "12374", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 1037, "hiredate" : ISODate("1983-07-17T00:00:00Z"), "sal" : 6500, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff895"), "empid" : 2013, "ename" : "bandish", "address" : { "building" : "976", "coord" : [ -73.92701509999999, 40.6620192 ], "street" : "Rutland Road", "zipcode" : "11212" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Snow White" ], "fruit" : [ "mango" ], "cards" : [ { "aadhar" : { "aadhar-No" : "93710", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01" } } ], "job" : "WEB Programmer", "mgr" : 2001, "hiredate" : ISODate("1983-07-17T00:00:00Z"), "sal" : 7000, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff896"), "empid" : 2010, "ename" : "jasu", "address" : { "building" : "437", "coord" : [ -73.975393, 40.757365 ], "street" : "Madison Avenue", "zipcode" : "10022" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Lawn Green" ], "fruit" : [ "Fig", "apple" ], "cards" : [ { "aadhar" : { "aadhar-No" : "44446", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "Computer Programmer", "mgr" : 2007, "hiredate" : ISODate("1983-04-17T00:00:00Z"), "sal" : 5800, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff897"), "empid" : 2014, "ename" : "madhavi", "address" : { "building" : "148", "coord" : [ -73.9806854, 40.7778589 ], "street" : "West   72 Street", "zipcode" : "10023" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Apple Green" ], "fruit" : [ "mango" ], "cards" : [ { "aadhar" : { "aadhar-No" : "00900", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2002, "hiredate" : ISODate("1980-07-17T00:00:00Z"), "sal" : 6900, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff898"), "empid" : 2015, "ename" : "ram", "address" : { "building" : "364", "coord" : [ -73.96084119999999, 40.8014307 ], "street" : "West  110 Street", "zipcode" : "10025" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ "cherry", "grapes" ], "cards" : [ { "aadhar" : { "aadhar-No" : "00600", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2001, "hiredate" : ISODate("1980-11-17T00:00:00Z"), "sal" : 6200, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff899"), "empid" : 2016, "ename" : "aditi", "address" : { "building" : "1423", "coord" : [ -73.9615132, 40.6253268 ], "street" : "Avenue J", "zipcode" : "11230" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Orange" ], "fruit" : [ "lime", "Guava" ], "cards" : [ { "aadhar" : { "aadhar-No" : "88788", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2002, "hiredate" : ISODate("1982-05-17T00:00:00Z"), "sal" : 5700, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff89a"), "empid" : 2017, "ename" : "neeraj", "address" : { "building" : "0", "coord" : [ -84.2040813, 9.9986585 ], "street" : "Guardia Airport Parking", "zipcode" : "11371" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Dark Orange" ], "fruit" : [ "pineapple" ], "cards" : [ { "aadhar" : { "aadhar-No" : "55475", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 1039, "hiredate" : ISODate("1981-08-17T00:00:00Z"), "sal" : 7700, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff89b"), "empid" : 2018, "ename" : "meera", "address" : { "building" : "73", "coord" : [ -74.1178949, 40.5734906 ], "street" : "New Dorp Plaza", "zipcode" : "10306" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "White" ], "fruit" : [ "watermelon" ], "cards" : [ { "aadhar" : { "aadhar-No" : "92832", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2005, "hiredate" : ISODate("1983-02-17T00:00:00Z"), "sal" : 801, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff89c"), "empid" : 2019, "ename" : "zara", "address" : { "building" : "277", "coord" : [ -73.8941893, 40.8634684 ], "street" : "East Kingsbridge Road", "zipcode" : "10458" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Violet" ], "fruit" : [ "Dragon Fruit" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73878", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2002, "hiredate" : ISODate("1983-08-17T00:00:00Z"), "sal" : 3700, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff89d"), "empid" : 2020, "ename" : "tanvi", "address" : { "building" : "203", "coord" : [ -74.15235919999999, 40.5563756 ], "street" : "Giffords Lane", "zipcode" : "10308" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Lawn Green" ], "fruit" : [ "Avocado" ], "cards" : [ { "aadhar" : { "aadhar-No" : "87828", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01" } } ], "job" : "WEB Programmer", "mgr" : 2007, "hiredate" : ISODate("1983-04-17T00:00:00Z"), "sal" : 5700, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff89e"), "empid" : 2022, "ename" : "Emma", "address" : { "building" : "2031", "coord" : [ -78.15235919457, 47.5568756 ], "street" : "Keesey Street", "zipcode" : "11310" }, "isDocActive" : false, "gender" : "female", "canVote" : false, "canDrive" : true, "color" : [ "Lawn Green", "Sky Blue" ], "fruit" : [ "Avocado", "Grapes", "Orance" ], "cards" : [ { "aadhar" : { "aadhar-No" : "23232", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2001, "hiredate" : ISODate("1982-08-17T00:00:00Z"), "sal" : 7000, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff89f"), "empid" : 2023, "ename" : "Olivia", "address" : { "building" : "031", "coord" : [ -78.15231429456999, 42.5560956 ], "street" : "Hazel Grove", "zipcode" : "133038" }, "isDocActive" : true, "gender" : "female", "canVote" : false, "canDrive" : true, "color" : [ "Lawn Green", "Sky Blue" ], "fruit" : [ "Banana", "Grapes", "Orance" ], "cards" : [ { "aadhar" : { "aadhar-No" : "23435", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2001, "hiredate" : ISODate("1981-06-17T00:00:00Z"), "sal" : 9000, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff8a0"), "empid" : 2024, "ename" : "Mia", "address" : { "building" : "032", "coord" : [ -78.15235919457, 43.5578756 ], "street" : "Kidd Cottages", "zipcode" : "33038" }, "isDocActive" : false, "gender" : "female", "canVote" : false, "canDrive" : true, "color" : [ "Light Pink", "Light Blue" ], "fruit" : [ "Orance" ], "cards" : [ { "aadhar" : { "aadhar-No" : "64434", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2001, "hiredate" : ISODate("1983-04-17T00:00:00Z"), "sal" : 9500, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff8a1"), "empid" : 2021, "ename" : "Emma", "address" : { "building" : "2031", "coord" : [ -78.15235919457, 47.5568756 ], "street" : "Giffords Lane", "zipcode" : "11309" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Lawn Green", "Sky Blue" ], "fruit" : [ "Avocado", "Grapes", "Orance" ], "cards" : [ { "aadhar" : { "aadhar-No" : "02920", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2001, "hiredate" : ISODate("1982-04-17T00:00:00Z"), "sal" : 7700, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff8a2"), "empid" : 2025, "ename" : "Emily", "address" : { "building" : "7036", "coord" : [ -78.15299819456999, 40.5568756 ], "street" : "Adams Row", "zipcode" : "15310" }, "isDocActive" : false, "gender" : "female", "canVote" : false, "canDrive" : false, "color" : [ "Yellow" ], "fruit" : [ "Grapes" ], "cards" : [ { "aadhar" : { "aadhar-No" : "75463", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "WEB Programmer", "mgr" : 2004, "hiredate" : ISODate("1981-04-19T00:00:00Z"), "sal" : 7600, "comm" : null, "deptno" : 40 }
+> db.emp.find({}, {ename:true, job:true,sal:true});
+{ "_id" : ObjectId("629049b2fc70df11aafff867"), "ename" : "smith", "job" : "manager", "sal" : 3400 }
+{ "_id" : ObjectId("629049b2fc70df11aafff868"), "ename" : "james", "job" : "manager", "sal" : 4700 }
+{ "_id" : ObjectId("629049b2fc70df11aafff869"), "ename" : "king", "job" : "president", "sal" : 5000 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86a"), "ename" : "jack", "job" : "accountant", "sal" : 2700 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86b"), "ename" : "martin", "job" : "salesman", "sal" : 2900 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86c"), "ename" : "scott", "job" : "salesman", "sal" : 2500 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86d"), "ename" : "crow", "job" : "salesman", "sal" : 3200 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86e"), "ename" : "blake", "job" : "clerk", "sal" : 1200 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86f"), "ename" : "saleel", "job" : "programmer", "sal" : 2900 }
+{ "_id" : ObjectId("629049b2fc70df11aafff870"), "ename" : "richards", "job" : "clerk", "sal" : 1500 }
+{ "_id" : ObjectId("629049b2fc70df11aafff871"), "ename" : "peter", "job" : "analyst", "sal" : 3500 }
+{ "_id" : ObjectId("629049b2fc70df11aafff872"), "ename" : "vrushali", "job" : "analyst", "sal" : 4999 }
+{ "_id" : ObjectId("629049b2fc70df11aafff873"), "ename" : "sharmin", "job" : "programmer", "sal" : 4999 }
+{ "_id" : ObjectId("629049b2fc70df11aafff874"), "ename" : "vasant", "job" : "salesman", "sal" : 2200 }
+{ "_id" : ObjectId("629049b2fc70df11aafff875"), "ename" : "bob", "job" : "manager", "sal" : 4900 }
+{ "_id" : ObjectId("629049b2fc70df11aafff876"), "ename" : "rahul", "job" : "clerk", "sal" : 1200 }
+{ "_id" : ObjectId("629049b2fc70df11aafff877"), "ename" : "vasu", "job" : "salesman", "sal" : 2200 }
+{ "_id" : ObjectId("629049b2fc70df11aafff878"), "ename" : "raju", "job" : "administrator", "sal" : 3400 }
+{ "_id" : ObjectId("629049b2fc70df11aafff879"), "ename" : "ramu", "job" : "clerk", "sal" : 1400 }
+{ "_id" : ObjectId("629049b2fc70df11aafff87a"), "ename" : "saleel", "job" : "analyst", "sal" : 3700 }
+Type "it" for more
+> db.emp.find({}, _id:falise,{ename:true, job:true,sal:true});
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:19
+> db.emp.find({},{ _id:falise,ename:true, job:true,sal:true});
+uncaught exception: ReferenceError: falise is not defined :
+@(shell):1:18
+> db.emp.find({},{ _id:false,ename:true, job:true,sal:true});
+{ "ename" : "smith", "job" : "manager", "sal" : 3400 }
+{ "ename" : "james", "job" : "manager", "sal" : 4700 }
+{ "ename" : "king", "job" : "president", "sal" : 5000 }
+{ "ename" : "jack", "job" : "accountant", "sal" : 2700 }
+{ "ename" : "martin", "job" : "salesman", "sal" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "sal" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "sal" : 3200 }
+{ "ename" : "blake", "job" : "clerk", "sal" : 1200 }
+{ "ename" : "saleel", "job" : "programmer", "sal" : 2900 }
+{ "ename" : "richards", "job" : "clerk", "sal" : 1500 }
+{ "ename" : "peter", "job" : "analyst", "sal" : 3500 }
+{ "ename" : "vrushali", "job" : "analyst", "sal" : 4999 }
+{ "ename" : "sharmin", "job" : "programmer", "sal" : 4999 }
+{ "ename" : "vasant", "job" : "salesman", "sal" : 2200 }
+{ "ename" : "bob", "job" : "manager", "sal" : 4900 }
+{ "ename" : "rahul", "job" : "clerk", "sal" : 1200 }
+{ "ename" : "vasu", "job" : "salesman", "sal" : 2200 }
+{ "ename" : "raju", "job" : "administrator", "sal" : 3400 }
+{ "ename" : "ramu", "job" : "clerk", "sal" : 1400 }
+{ "ename" : "saleel", "job" : "analyst", "sal" : 3700 }
+Type "it" for more
+>
+> db.emp.find({"job":"manager"});
+{ "_id" : ObjectId("629049b2fc70df11aafff867"), "empid" : 1021, "ename" : "smith", "address" : { "building" : "469", "coord" : [ -73.961704, 40.662942 ], "street" : "Flatbush Avenue", "zipcode" : "11225" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "red", "cyan", "gray" ], "fruit" : [ "grapes", "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "43564", "isActive" : true } }, { "PAN" : { "PAN-No" : "smh838", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-05-01T00:00:00Z"), "sal" : 3400, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff868"), "empid" : 1022, "ename" : "james", "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Red", "Blue", "Green", "Yellow" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-07-09T00:00:00Z"), "sal" : 4700, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff875"), "empid" : 1029, "ename" : "bob", "address" : { "building" : "2300", "coord" : [ -73.8786113, 40.8502883 ], "street" : "Southern Boulevard", "zipcode" : "10460" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Copper" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "73122", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1980-12-17T00:00:00Z"), "sal" : 4900, "comm" : null, "deptno" : 30 }
+> db.emp.find({"job":"manager"},{_id:0, ename:1, job:1, sal:1, address:1});
+{ "ename" : "smith", "address" : { "building" : "469", "coord" : [ -73.961704, 40.662942 ], "street" : "Flatbush Avenue", "zipcode" : "11225" }, "job" : "manager", "sal" : 3400 }
+{ "ename" : "james", "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "job" : "manager", "sal" : 4700 }
+{ "ename" : "bob", "address" : { "building" : "2300", "coord" : [ -73.8786113, 40.8502883 ], "street" : "Southern Boulevard", "zipcode" : "10460" }, "job" : "manager", "sal" : 4900 }
+>
+>
+> db.emp.find({"job":"manager"},{_id:0, ename:1, job:1, sal:1, address:1}).pretty();
+{
+        "ename" : "smith",
+        "address" : {
+                "building" : "469",
+                "coord" : [
+                        -73.961704,
+                        40.662942
+                ],
+                "street" : "Flatbush Avenue",
+                "zipcode" : "11225"
+        },
+        "job" : "manager",
+        "sal" : 3400
+}
+{
+        "ename" : "james",
+        "address" : {
+                "building" : "351",
+                "coord" : [
+                        -73.98513559999999,
+                        40.7676919
+                ],
+                "street" : "West   57 Street",
+                "zipcode" : "10019"
+        },
+        "job" : "manager",
+        "sal" : 4700
+}
+{
+        "ename" : "bob",
+        "address" : {
+                "building" : "2300",
+                "coord" : [
+                        -73.8786113,
+                        40.8502883
+                ],
+                "street" : "Southern Boulevard",
+                "zipcode" : "10460"
+        },
+        "job" : "manager",
+        "sal" : 4900
+}
+> db.emp.find({"job":"manager"},{_id:0, ename:1, job:1, sal:1});
+{ "ename" : "smith", "job" : "manager", "sal" : 3400 }
+{ "ename" : "james", "job" : "manager", "sal" : 4700 }
+{ "ename" : "bob", "job" : "manager", "sal" : 4900 }
+>
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, sal:1});
+{ "ename" : "smith", "job" : "manager", "sal" : 3400 }
+{ "ename" : "james", "job" : "manager", "sal" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "sal" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "sal" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "sal" : 3200 }
+{ "ename" : "vasant", "job" : "salesman", "sal" : 2200 }
+{ "ename" : "bob", "job" : "manager", "sal" : 4900 }
+{ "ename" : "vasu", "job" : "salesman", "sal" : 2200 }
+>
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+>
+>
+> db.emp.find({ename:/^a/},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "anoop", "job" : "programmer", "Salary" : 2300 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+{ "ename" : "aditi", "job" : "WEB Programmer", "Salary" : 5700 }
+>
+>
+> db.emp.find({ename:/a/},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "jack", "job" : "accountant", "Salary" : 2700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "blake", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "saleel", "job" : "programmer", "Salary" : 2900 }
+{ "ename" : "richards", "job" : "clerk", "Salary" : 1500 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "rahul", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "ramu", "job" : "clerk", "Salary" : 1400 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "rudra", "job" : "programmer", "Salary" : 2400 }
+{ "ename" : "anoop", "job" : "programmer", "Salary" : 2300 }
+{ "ename" : "pankaj", "job" : "programmer", "Salary" : 3600 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+Type "it" for more
+>
+> db.emp.find({ename:/^a/},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "anoop", "job" : "programmer", "Salary" : 2300 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+{ "ename" : "aditi", "job" : "WEB Programmer", "Salary" : 5700 }
+> db.emp.find({ename:/^am/},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+>
+>
+>
+> db.emp.find({ename:/t$/},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+>
+> db.emp.find({ename:/t/},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "nitish", "job" : "programmer", "Salary" : 1300 }
+{ "ename" : "sangita", "job" : "auditor", "Salary" : 3100 }
+{ "ename" : "gita", "job" : "writer", "Salary" : 2150 }
+{ "ename" : "sita", "job" : "writer", "Salary" : 3755 }
+{ "ename" : "priti", "job" : "Computer Programmer", "Salary" : 5500 }
+{ "ename" : "aditi", "job" : "WEB Programmer", "Salary" : 5700 }
+{ "ename" : "tanvi", "job" : "WEB Programmer", "Salary" : 5700 }
+>
+>
+> db.emp.find({},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "king", "job" : "president", "Salary" : 5000 }
+{ "ename" : "jack", "job" : "accountant", "Salary" : 2700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "blake", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "saleel", "job" : "programmer", "Salary" : 2900 }
+{ "ename" : "richards", "job" : "clerk", "Salary" : 1500 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "rahul", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "ramu", "job" : "clerk", "Salary" : 1400 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+Type "it" for more
+>
+>
+> db.emp.find({},{_id:0, ename:1, job:1, Salary:"$sal"})[0];
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+> db.emp.find({},{_id:0, ename:1, job:1, Salary:"$sal"})[6];
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+> db.emp.find({},{})[6];
+{
+        "_id" : ObjectId("629049b2fc70df11aafff86d"),
+        "empid" : 1025,
+        "ename" : "crow",
+        "address" : {
+                "building" : "2206",
+                "coord" : [
+                        -74.1377286,
+                        40.6119572
+                ],
+                "street" : "Victory Boulevard",
+                "zipcode" : "10314"
+        },
+        "isDocActive" : false,
+        "gender" : "male",
+        "canVote" : true,
+        "canDrive" : true,
+        "color" : [
+                "Apple Green",
+                "Ash Grey"
+        ],
+        "fruit" : [ ],
+        "cards" : [
+                {
+                        "aadhar" : {
+                                "aadhar-No" : "77876",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "PAN" : {
+                                "PAN-No" : "Kinj093",
+                                "isActive" : false
+                        }
+                },
+                {
+                        "voter" : {
+                                "voterID" : "Ind03o3",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "licence" : {
+                                "licence-No" : "LMV9478",
+                                "issueDate" : "2020-01-01",
+                                "expireDate" : "2040-01-01",
+                                "isActive" : true
+                        }
+                }
+        ],
+        "job" : "salesman",
+        "mgr" : 1023,
+        "hiredate" : ISODate("1981-09-08T00:00:00Z"),
+        "sal" : 3200,
+        "comm" : null,
+        "deptno" : 20
+}
+> db.emp.find()[6];
+{
+        "_id" : ObjectId("629049b2fc70df11aafff86d"),
+        "empid" : 1025,
+        "ename" : "crow",
+        "address" : {
+                "building" : "2206",
+                "coord" : [
+                        -74.1377286,
+                        40.6119572
+                ],
+                "street" : "Victory Boulevard",
+                "zipcode" : "10314"
+        },
+        "isDocActive" : false,
+        "gender" : "male",
+        "canVote" : true,
+        "canDrive" : true,
+        "color" : [
+                "Apple Green",
+                "Ash Grey"
+        ],
+        "fruit" : [ ],
+        "cards" : [
+                {
+                        "aadhar" : {
+                                "aadhar-No" : "77876",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "PAN" : {
+                                "PAN-No" : "Kinj093",
+                                "isActive" : false
+                        }
+                },
+                {
+                        "voter" : {
+                                "voterID" : "Ind03o3",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "licence" : {
+                                "licence-No" : "LMV9478",
+                                "issueDate" : "2020-01-01",
+                                "expireDate" : "2040-01-01",
+                                "isActive" : true
+                        }
+                }
+        ],
+        "job" : "salesman",
+        "mgr" : 1023,
+        "hiredate" : ISODate("1981-09-08T00:00:00Z"),
+        "sal" : 3200,
+        "comm" : null,
+        "deptno" : 20
+}
+>
+>
+> db.emp.find()[99];
+> db.emp.find()[29];
+{
+        "_id" : ObjectId("629049b2fc70df11aafff884"),
+        "empid" : 1045,
+        "ename" : "pankaj",
+        "address" : {
+                "building" : "531",
+                "coord" : [
+                        -73.9634876,
+                        40.6940001
+                ],
+                "street" : "Myrtle Avenue",
+                "zipcode" : "11205"
+        },
+        "isDocActive" : false,
+        "gender" : "male",
+        "canVote" : true,
+        "canDrive" : true,
+        "color" : [
+                "White"
+        ],
+        "fruit" : [
+                "Peach"
+        ],
+        "cards" : [
+                {
+                        "aadhar" : {
+                                "aadhar-No" : "55565",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "PAN" : {
+                                "PAN-No" : "Kinj093",
+                                "isActive" : false
+                        }
+                },
+                {
+                        "voter" : {
+                                "voterID" : "Ind03o3",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "licence" : {
+                                "licence-No" : "LMV9478",
+                                "issueDate" : "2020-01-01",
+                                "expireDate" : "2040-01-01",
+                                "isActive" : true
+                        }
+                }
+        ],
+        "job" : "programmer",
+        "mgr" : 1023,
+        "hiredate" : ISODate("1980-02-17T00:00:00Z"),
+        "sal" : 3600,
+        "comm" : null,
+        "deptno" : 40,
+        "phone" : "022-2548345",
+        "skills" : {
+                "language" : ".NET",
+                "database" : "ms-sql server"
+        }
+}
+>
+>
+> db.emp.find()[29].ename;
+pankaj
+>
+> db.emp.find()[29].ename[29].job;
+uncaught exception: TypeError: db.emp.find(...)[29].ename[29] is undefined :
+@(shell):1:1
+>
+>
+> db.emp.find()[29].ename.job;
+>
+> db.emp.find()[29].ename;
+pankaj
+>
+> db.emp.find({},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "king", "job" : "president", "Salary" : 5000 }
+{ "ename" : "jack", "job" : "accountant", "Salary" : 2700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "blake", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "saleel", "job" : "programmer", "Salary" : 2900 }
+{ "ename" : "richards", "job" : "clerk", "Salary" : 1500 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "rahul", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "ramu", "job" : "clerk", "Salary" : 1400 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+Type "it" for more
+>
+>
+> db.emp.find({},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:1});
+{ "ename" : "Emily", "job" : "WEB Programmer", "Salary" : 7600 }
+{ "ename" : "Emma", "job" : "WEB Programmer", "Salary" : 7000 }
+{ "ename" : "Emma", "job" : "WEB Programmer", "Salary" : 7700 }
+{ "ename" : "Mia", "job" : "WEB Programmer", "Salary" : 9500 }
+{ "ename" : "Olivia", "job" : "WEB Programmer", "Salary" : 9000 }
+{ "ename" : "aditi", "job" : "WEB Programmer", "Salary" : 5700 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+{ "ename" : "anoop", "job" : "programmer", "Salary" : 2300 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+{ "ename" : "bandish", "job" : "WEB Programmer", "Salary" : 7000 }
+{ "ename" : "blake", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "gita", "job" : "writer", "Salary" : 2150 }
+{ "ename" : "jack", "job" : "accountant", "Salary" : 2700 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+Type "it" for more
+> it
+{ "ename" : "janhavi", "job" : "Computer Programmer", "Salary" : 4700 }
+{ "ename" : "jasu", "job" : "Computer Programmer", "Salary" : 5800 }
+{ "ename" : "king", "job" : "president", "Salary" : 5000 }
+{ "ename" : "laxman", "job" : "Computer Programmer", "Salary" : 6500 }
+{ "ename" : "madhavi", "job" : "WEB Programmer", "Salary" : 6900 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "meera", "job" : "WEB Programmer", "Salary" : 801 }
+{ "ename" : "neel", "job" : "administrator", "Salary" : 4200 }
+{ "ename" : "neel", "job" : "programmer", "Salary" : 1800 }
+{ "ename" : "neeraj", "job" : "WEB Programmer", "Salary" : 7700 }
+{ "ename" : "nitish", "job" : "programmer", "Salary" : 1300 }
+{ "ename" : "pankaj", "job" : "programmer", "Salary" : 3600 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "pinky", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "priti", "job" : "Computer Programmer", "Salary" : 5500 }
+{ "ename" : "rahsmi", "job" : "Computer Programmer", "Salary" : 5600 }
+{ "ename" : "rahul", "job" : "clerk", "Salary" : 1200 }
+{ "ename" : "raj", "job" : "Computer Programmer", "Salary" : 7000 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "ram", "job" : "WEB Programmer", "Salary" : 6200 }
+Type "it" for more
+> it
+{ "ename" : "ramu", "job" : "clerk", "Salary" : 1400 }
+{ "ename" : "richards", "job" : "clerk", "Salary" : 1500 }
+{ "ename" : "roselin", "job" : "Computer Programmer", "Salary" : 800 }
+{ "ename" : "rudra", "job" : "programmer", "Salary" : 2400 }
+{ "ename" : "rupal", "job" : "WEB Programmer", "Salary" : 6500 }
+{ "ename" : "saleel", "job" : "programmer", "Salary" : 2900 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "sangita", "job" : "auditor", "Salary" : 3100 }
+{ "ename" : "sangu", "job" : "Computer Programmer", "Salary" : 6000 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "sita", "job" : "writer", "Salary" : 3755 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "snehal", "job" : "WEB Programmer", "Salary" : 2500 }
+{ "ename" : "supriya", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "tanvi", "job" : "WEB Programmer", "Salary" : 5700 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "zara", "job" : "WEB Programmer", "Salary" : 3700 }
+>
+> db.emp.find({},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:-1});
+{ "ename" : "zara", "job" : "WEB Programmer", "Salary" : 3700 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "tanvi", "job" : "WEB Programmer", "Salary" : 5700 }
+{ "ename" : "supriya", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "snehal", "job" : "WEB Programmer", "Salary" : 2500 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "sita", "job" : "writer", "Salary" : 3755 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "sangu", "job" : "Computer Programmer", "Salary" : 6000 }
+{ "ename" : "sangita", "job" : "auditor", "Salary" : 3100 }
+{ "ename" : "saleel", "job" : "programmer", "Salary" : 2900 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "rupal", "job" : "WEB Programmer", "Salary" : 6500 }
+{ "ename" : "rudra", "job" : "programmer", "Salary" : 2400 }
+{ "ename" : "roselin", "job" : "Computer Programmer", "Salary" : 800 }
+{ "ename" : "richards", "job" : "clerk", "Salary" : 1500 }
+{ "ename" : "ramu", "job" : "clerk", "Salary" : 1400 }
+Type "it" for more
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({sal:1});
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({Salary:1});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({sal:1});
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({sal:-1});
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+>
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).limit(5);
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).skip(2).limit(5);
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:1}).skip(2).limit(5);
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:1})
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:1}).skip(2)
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:1}).skip(2). limit(2);
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+>
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({ename:1}).skip(2)
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+>
+>
+>
+> db.emp.count();
+60
+>
+>
+> db.emp.count({$or:[{job:'manager'}, {job:'salesman'}]}});
+uncaught exception: SyntaxError: missing ) after argument list :
+@(shell):1:54
+> db.emp.count({$or:[{job:'manager'}, {job:'salesman'}]});
+8
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]});
+{ "_id" : ObjectId("629049b2fc70df11aafff867"), "empid" : 1021, "ename" : "smith", "address" : { "building" : "469", "coord" : [ -73.961704, 40.662942 ], "street" : "Flatbush Avenue", "zipcode" : "11225" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "red", "cyan", "gray" ], "fruit" : [ "grapes", "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "43564", "isActive" : true } }, { "PAN" : { "PAN-No" : "smh838", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-05-01T00:00:00Z"), "sal" : 3400, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff868"), "empid" : 1022, "ename" : "james", "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Red", "Blue", "Green", "Yellow" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-07-09T00:00:00Z"), "sal" : 4700, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86b"), "empid" : 1024, "ename" : "martin", "address" : { "building" : "8825", "coord" : [ -73.8803827, 40.7643124 ], "street" : "Astoria Boulevard", "zipcode" : "11369" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Banana Yellow" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "72877", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-02-20T00:00:00Z"), "sal" : 2900, "comm" : 735, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86c"), "empid" : 1023, "ename" : "scott", "address" : { "building" : "97-22", "coord" : [ -73.8601152, 40.7311739 ], "street" : "63 Road", "zipcode" : "11374" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Ash Grey", "White" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93872", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-09-28T00:00:00Z"), "sal" : 2500, "comm" : 350, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86d"), "empid" : 1025, "ename" : "crow", "address" : { "building" : "2206", "coord" : [ -74.1377286, 40.6119572 ], "street" : "Victory Boulevard", "zipcode" : "10314" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Apple Green", "Ash Grey" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "77876", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-09-08T00:00:00Z"), "sal" : 3200, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff874"), "empid" : 1033, "ename" : "vasant", "address" : { "building" : "705", "coord" : [ -73.9653967, 40.6064339 ], "street" : "Kings Highway", "zipcode" : "11223" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Bright Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93824", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1029, "hiredate" : ISODate("1982-02-24T00:00:00Z"), "sal" : 2200, "comm" : 0, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff875"), "empid" : 1029, "ename" : "bob", "address" : { "building" : "2300", "coord" : [ -73.8786113, 40.8502883 ], "street" : "Southern Boulevard", "zipcode" : "10460" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Copper" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "73122", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1980-12-17T00:00:00Z"), "sal" : 4900, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff877"), "empid" : 1034, "ename" : "vasu", "address" : { "building" : "203", "coord" : [ -73.97822040000001, 40.6435254 ], "street" : "Church Avenue", "zipcode" : "11218" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ "Dates" ], "cards" : [ { "aadhar" : { "aadhar-No" : "19826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1029, "hiredate" : ISODate("1980-02-14T00:00:00Z"), "sal" : 2200, "comm" : 250, "deptno" : 40 }
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id":1});
+uncaught exception: SyntaxError: "" literal not terminated before end of script :
+@(shell):1:64
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:1});
+{ "_id" : ObjectId("629049b2fc70df11aafff867") }
+{ "_id" : ObjectId("629049b2fc70df11aafff868") }
+{ "_id" : ObjectId("629049b2fc70df11aafff86b") }
+{ "_id" : ObjectId("629049b2fc70df11aafff86c") }
+{ "_id" : ObjectId("629049b2fc70df11aafff86d") }
+{ "_id" : ObjectId("629049b2fc70df11aafff874") }
+{ "_id" : ObjectId("629049b2fc70df11aafff875") }
+{ "_id" : ObjectId("629049b2fc70df11aafff877") }
+>
+>
+>
+> db.emp.count({$or:[{job:'manager'}, {job:'salesman'}]});
+8
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]}).count();
+8
+>
+>
+> db.emp.countDocument({$or:[{job:'manager'}, {job:'salesman'}]});
+uncaught exception: TypeError: db.emp.countDocument is not a function :
+@(shell):1:1
+> db.emp.countDocuments({$or:[{job:'manager'}, {job:'salesman'}]});
+8
+>
+> db.emp.count[Documents]({$or:[{job:'manager'}, {job:'salesman'}]});
+uncaught exception: ReferenceError: Documents is not defined :
+@(shell):1:1
+>
+>
+> db.emp.countDocuments({$or:[{job:'manager'}, {job:'salesman'}]});
+8
+> db.emp.countDocuments({});
+60
+> db.emp.find({}, {_id:0, job:1});
+{ "job" : "manager" }
+{ "job" : "manager" }
+{ "job" : "president" }
+{ "job" : "accountant" }
+{ "job" : "salesman" }
+{ "job" : "salesman" }
+{ "job" : "salesman" }
+{ "job" : "clerk" }
+{ "job" : "programmer" }
+{ "job" : "clerk" }
+{ "job" : "analyst" }
+{ "job" : "analyst" }
+{ "job" : "programmer" }
+{ "job" : "salesman" }
+{ "job" : "manager" }
+{ "job" : "clerk" }
+{ "job" : "salesman" }
+{ "job" : "administrator" }
+{ "job" : "clerk" }
+{ "job" : "analyst" }
+Type "it" for more
+>
+>
+> db.emp.distinct("job");
+[
+        "Computer Programmer",
+        "WEB Programmer",
+        "accountant",
+        "administrator",
+        "analyst",
+        "auditor",
+        "clerk",
+        "manager",
+        "president",
+        "programmer",
+        "salesman",
+        "writer"
+]
+> db.emp.distinct("job").count();
+uncaught exception: TypeError: db.emp.distinct(...).count is not a function :
+@(shell):1:1
+>
+>
+>
+> db.emp.distinct("job");
+[
+        "Computer Programmer",
+        "WEB Programmer",
+        "accountant",
+        "administrator",
+        "analyst",
+        "auditor",
+        "clerk",
+        "manager",
+        "president",
+        "programmer",
+        "salesman",
+        "writer"
+]
+> db.emp.find({sal:500},{_id:0, ename:1, job:1, Salary:"$sal"});
+> db.emp.find({sal:5000},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "king", "job" : "president", "Salary" : 5000 }
+>
+>
+> db.emp.find({$and:[{sal:{$gte:2000 }}, {sal:{$lte:5000}}]},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "king", "job" : "president", "Salary" : 5000 }
+{ "ename" : "jack", "job" : "accountant", "Salary" : 2700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "saleel", "job" : "programmer", "Salary" : 2900 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "neel", "job" : "administrator", "Salary" : 4200 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+Type "it" for more
+> db.emp.find({$and:[{sal:{$gte:3000 }}, {sal:{$lte:5000}}]},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "king", "job" : "president", "Salary" : 5000 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "vrushali", "job" : "analyst", "Salary" : 4999 }
+{ "ename" : "sharmin", "job" : "programmer", "Salary" : 4999 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "neel", "job" : "administrator", "Salary" : 4200 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "pankaj", "job" : "programmer", "Salary" : 3600 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+{ "ename" : "sangita", "job" : "auditor", "Salary" : 3100 }
+{ "ename" : "sita", "job" : "writer", "Salary" : 3755 }
+Type "it" for more
+> db.emp.find({$and:[{sal:{$gte:3000 }}, {sal:{$lte:4500}}]},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "neel", "job" : "administrator", "Salary" : 4200 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "pankaj", "job" : "programmer", "Salary" : 3600 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+{ "ename" : "sangita", "job" : "auditor", "Salary" : 3100 }
+{ "ename" : "sita", "job" : "writer", "Salary" : 3755 }
+{ "ename" : "pinky", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "supriya", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "zara", "job" : "WEB Programmer", "Salary" : 3700 }
+> db.emp.find({$and:[{sal:{$gte:3000 }}, {sal:{$lte:4500}}]},{_id:0, ename:1, job:1, Salary:"$sal"}).count();
+18
+> db.emp.find({$and:[{sal:{$gte:3000 }}, {sal:{$lte:4500}}]},{_id:0, ename:1, job:1, Salary:"$sal"}).sort({sal:1})
+{ "ename" : "sangita", "job" : "auditor", "Salary" : 3100 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "arjun", "job" : "auditor", "Salary" : 3200 }
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "raju", "job" : "administrator", "Salary" : 3400 }
+{ "ename" : "peter", "job" : "analyst", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "amit", "job" : "administrator", "Salary" : 3500 }
+{ "ename" : "dinesh", "job" : "programmer", "Salary" : 3500 }
+{ "ename" : "pinky", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "supriya", "job" : "Computer Programmer", "Salary" : 3500 }
+{ "ename" : "pankaj", "job" : "programmer", "Salary" : 3600 }
+{ "ename" : "saleel", "job" : "analyst", "Salary" : 3700 }
+{ "ename" : "zara", "job" : "WEB Programmer", "Salary" : 3700 }
+{ "ename" : "sita", "job" : "writer", "Salary" : 3755 }
+{ "ename" : "amol", "job" : "auditor", "Salary" : 3800 }
+{ "ename" : "neel", "job" : "administrator", "Salary" : 4200 }
+>
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}]},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "martin", "job" : "salesman", "Salary" : 2900 }
+{ "ename" : "scott", "job" : "salesman", "Salary" : 2500 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "vasant", "job" : "salesman", "Salary" : 2200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+{ "ename" : "vasu", "job" : "salesman", "Salary" : 2200 }
+> db.emp.find({$or:[{job:'manager'}, {job:'salesman'}], sal:{$gt:3000}},{_id:0, ename:1, job:1, Salary:"$sal"});
+{ "ename" : "smith", "job" : "manager", "Salary" : 3400 }
+{ "ename" : "james", "job" : "manager", "Salary" : 4700 }
+{ "ename" : "crow", "job" : "salesman", "Salary" : 3200 }
+{ "ename" : "bob", "job" : "manager", "Salary" : 4900 }
+>
+>
+> db.getCollectionNames();
+[ "books", "emp", "items" ]
+>
+>
+> db.emp.renameCollection('employee');
+{ "ok" : 1 }
+>
+>
+>
+> db.getCollectionNames();
+[ "books", "employee", "items" ]
+>
+>
+> db.items.drop();
+true
+>
+>
+> db.getCollectionNames();
+[ "books", "employee" ]
+>
+> db.empolyee.renameCollection('emp');
+{
+        "ok" : 0,
+        "errmsg" : "Source collection primaryDB.empolyee does not exist",
+        "code" : 26,
+        "codeName" : "NamespaceNotFound"
+}
+> db.employee.renameCollection('emp');
+{ "ok" : 1 }
+>
+> db.getCollectionNames();
+[ "books", "emp" ]
+>
+>
+>
+> db;
+primaryDB
+> db
+primaryDB
+> use secondaryDB;
+switched to db secondaryDB
+> db
+secondaryDB
+> db.getCollectionNames();
+[ ]
+>
+>
+> db.getSiblingDB('primaryDB').getCollectionNames();
+[ "books", "emp" ]
+> db
+secondaryDB
+>
+>
+> db.getSiblingDB('primaryDB').emp.find();
+{ "_id" : ObjectId("629049b2fc70df11aafff867"), "empid" : 1021, "ename" : "smith", "address" : { "building" : "469", "coord" : [ -73.961704, 40.662942 ], "street" : "Flatbush Avenue", "zipcode" : "11225" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "red", "cyan", "gray" ], "fruit" : [ "grapes", "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "43564", "isActive" : true } }, { "PAN" : { "PAN-No" : "smh838", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-05-01T00:00:00Z"), "sal" : 3400, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff868"), "empid" : 1022, "ename" : "james", "address" : { "building" : "351", "coord" : [ -73.98513559999999, 40.7676919 ], "street" : "West   57 Street", "zipcode" : "10019" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Red", "Blue", "Green", "Yellow" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1981-07-09T00:00:00Z"), "sal" : 4700, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff869"), "empid" : 1020, "ename" : "king", "address" : { "building" : "1007", "coord" : [ -73.856077, 40.848447 ], "street" : "Morris Park Ave", "zipcode" : "10462" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "blue", "black" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93478", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "president", "mgr" : null, "hiredate" : ISODate("1981-11-17T00:00:00Z"), "sal" : 5000, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86a"), "empid" : 1023, "ename" : "jack", "address" : { "building" : "2780", "coord" : [ -73.98241999999999, 40.579505 ], "street" : "Stillwell Avenue", "zipcode" : "11224" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Air Force Blue", "Apple Green" ], "fruit" : [ "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "12321", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "accountant", "mgr" : 1022, "hiredate" : ISODate("1981-04-02T00:00:00Z"), "sal" : 2700, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86b"), "empid" : 1024, "ename" : "martin", "address" : { "building" : "8825", "coord" : [ -73.8803827, 40.7643124 ], "street" : "Astoria Boulevard", "zipcode" : "11369" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Banana Yellow" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "72877", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-02-20T00:00:00Z"), "sal" : 2900, "comm" : 735, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86c"), "empid" : 1023, "ename" : "scott", "address" : { "building" : "97-22", "coord" : [ -73.8601152, 40.7311739 ], "street" : "63 Road", "zipcode" : "11374" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Ash Grey", "White" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93872", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-09-28T00:00:00Z"), "sal" : 2500, "comm" : 350, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86d"), "empid" : 1025, "ename" : "crow", "address" : { "building" : "2206", "coord" : [ -74.1377286, 40.6119572 ], "street" : "Victory Boulevard", "zipcode" : "10314" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Apple Green", "Ash Grey" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "77876", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1023, "hiredate" : ISODate("1981-09-08T00:00:00Z"), "sal" : 3200, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86e"), "empid" : 1026, "ename" : "blake", "address" : { "building" : "7114", "coord" : [ -73.9068506, 40.6199034 ], "street" : "Avenue U", "zipcode" : "11234" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Brass", "Bright Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "12321", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1024, "hiredate" : ISODate("1981-12-03T00:00:00Z"), "sal" : 1200, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff86f"), "empid" : 1030, "ename" : "saleel", "address" : { "building" : "7715", "coord" : [ -73.9973325, 40.61174889999999 ], "street" : "18 Avenue", "zipcode" : "11214" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Coral" ], "fruit" : [ "Dates", "Orange" ], "cards" : [ { "aadhar" : { "aadhar-No" : "73822", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1020, "hiredate" : ISODate("1982-12-09T00:00:00Z"), "sal" : 2900, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff870"), "empid" : 1027, "ename" : "richards", "address" : { "building" : "6409", "coord" : [ -74.00528899999999, 40.628886 ], "street" : "11 Avenue", "zipcode" : "11219" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Charcoal", "Cherry" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "83972", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1024, "hiredate" : ISODate("1981-02-22T00:00:00Z"), "sal" : 1500, "comm" : null, "deptno" : 10 }
+{ "_id" : ObjectId("629049b2fc70df11aafff871"), "empid" : 1028, "ename" : "peter", "address" : { "building" : "1839", "coord" : [ -73.9482609, 40.6408271 ], "street" : "Nostrand Avenue", "zipcode" : "11226" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Brown" ], "fruit" : [ "banana", "Jackfruit" ], "cards" : [ { "aadhar" : { "aadhar-No" : "92783", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "analyst", "mgr" : 1025, "hiredate" : ISODate("1981-12-03T00:00:00Z"), "sal" : 3500, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff872"), "empid" : 1032, "ename" : "vrushali", "address" : { "building" : "1", "coord" : [ -73.96926909999999, 40.7685235 ], "street" : "East   66 Street", "zipcode" : "10065" }, "isDocActive" : true, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Iceberg" ], "fruit" : [ "Orange", "Papaya", "Kiwi" ], "cards" : [ { "aadhar" : { "aadhar-No" : "22343", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "analyst", "mgr" : 1030, "hiredate" : ISODate("1982-02-23T00:00:00Z"), "sal" : 4999, "comm" : null, "deptno" : 20 }
+{ "_id" : ObjectId("629049b2fc70df11aafff873"), "empid" : 1031, "ename" : "sharmin", "address" : { "building" : "1269", "coord" : [ -73.871194, 40.6730975 ], "street" : "Sutter Avenue", "zipcode" : "11208" }, "isDocActive" : false, "gender" : "female", "canVote" : true, "canDrive" : true, "color" : [ "Cream" ], "fruit" : [ "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "16523", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "programmer", "mgr" : 1020, "hiredate" : ISODate("1983-01-12T00:00:00Z"), "sal" : 4999, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff874"), "empid" : 1033, "ename" : "vasant", "address" : { "building" : "705", "coord" : [ -73.9653967, 40.6064339 ], "street" : "Kings Highway", "zipcode" : "11223" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Bright Green" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "93824", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1029, "hiredate" : ISODate("1982-02-24T00:00:00Z"), "sal" : 2200, "comm" : 0, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff875"), "empid" : 1029, "ename" : "bob", "address" : { "building" : "2300", "coord" : [ -73.8786113, 40.8502883 ], "street" : "Southern Boulevard", "zipcode" : "10460" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Copper" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "73122", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "manager", "mgr" : 1020, "hiredate" : ISODate("1980-12-17T00:00:00Z"), "sal" : 4900, "comm" : null, "deptno" : 30 }
+{ "_id" : ObjectId("629049b2fc70df11aafff876"), "empid" : 1035, "ename" : "rahul", "address" : { "building" : "265-15", "coord" : [ -73.7032601, 40.7386417 ], "street" : "Hillside Avenue", "zipcode" : "11004" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Indian Red" ], "fruit" : [ "Lychee", "Indian Fig" ], "cards" : [ { "aadhar" : { "aadhar-No" : "00998", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1029, "hiredate" : ISODate("1981-12-31T00:00:00Z"), "sal" : 1200, "comm" : null, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff877"), "empid" : 1034, "ename" : "vasu", "address" : { "building" : "203", "coord" : [ -73.97822040000001, 40.6435254 ], "street" : "Church Avenue", "zipcode" : "11218" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "India Green" ], "fruit" : [ "Dates" ], "cards" : [ { "aadhar" : { "aadhar-No" : "19826", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "salesman", "mgr" : 1029, "hiredate" : ISODate("1980-02-14T00:00:00Z"), "sal" : 2200, "comm" : 250, "deptno" : 40 }
+{ "_id" : ObjectId("629049b2fc70df11aafff878"), "empid" : 1036, "ename" : "raju", "address" : { "building" : "6909", "coord" : [ -74.0259567, 40.6353674 ], "street" : "3 Avenue", "zipcode" : "11209" }, "isDocActive" : true, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Indian Yellow" ], "fruit" : [ "Crab apples" ], "cards" : [ { "aadhar" : { "aadhar-No" : "55622", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "administrator", "mgr" : 1031, "hiredate" : ISODate("1983-06-15T00:00:00Z"), "sal" : 3400, "comm" : null, "deptno" : 50 }
+{ "_id" : ObjectId("629049b2fc70df11aafff879"), "empid" : 1037, "ename" : "ramu", "address" : { "building" : "522", "coord" : [ -73.95171, 40.767461 ], "street" : "East   74 Street", "zipcode" : "10021" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Lemon" ], "fruit" : [ "Jackfruit", "banana", "Apple" ], "cards" : [ { "aadhar" : { "aadhar-No" : "00983", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "clerk", "mgr" : 1031, "hiredate" : ISODate("1983-07-12T00:00:00Z"), "sal" : 1400, "comm" : null, "deptno" : 50 }
+{ "_id" : ObjectId("629049b2fc70df11aafff87a"), "empid" : 1039, "ename" : "saleel", "address" : { "building" : "129-08", "coord" : [ -73.839297, 40.78147 ], "street" : "20 Avenue", "zipcode" : "11356" }, "isDocActive" : false, "gender" : "male", "canVote" : true, "canDrive" : true, "color" : [ "Cherry", "Charcoal" ], "fruit" : [ ], "cards" : [ { "aadhar" : { "aadhar-No" : "66675", "isActive" : true } }, { "PAN" : { "PAN-No" : "Kinj093", "isActive" : false } }, { "voter" : { "voterID" : "Ind03o3", "isActive" : true } }, { "licence" : { "licence-No" : "LMV9478", "issueDate" : "2020-01-01", "expireDate" : "2040-01-01", "isActive" : true } } ], "job" : "analyst", "mgr" : 1022, "hiredate" : ISODate("1982-12-09T00:00:00Z"), "sal" : 3700, "comm" : null, "deptno" : 50 }
+Type "it" for more
+>
+>
+>
+>
+> db.getSiblingDB('primaryDB').emp.find({}, {_id:0, ename:true}).limt(5);
+uncaught exception: TypeError: db.getSiblingDB(...).emp.find(...).limt is not a function :
+@(shell):1:1
+>
+>
+> db.getSiblingDB('primaryDB').emp.find({}, {_id:0, ename:true}).limit(5);
+{ "ename" : "smith" }
+{ "ename" : "james" }
+{ "ename" : "king" }
+{ "ename" : "jack" }
+{ "ename" : "martin" }
+>
+>
+> show dbs
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+primaryDB  0.000GB
+> db
+secondaryDB
+> db.createCollection('abc');
+{ "ok" : 1 }
+> show dbs
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+primaryDB    0.000GB
+secondaryDB  0.000GB
+>
+>
+> db
+secondaryDB
+>
+>
+> db
+secondaryDB
+> db.getSiblingDB('primaryDB').emp.find()[0]
+{
+        "_id" : ObjectId("629049b2fc70df11aafff867"),
+        "empid" : 1021,
+        "ename" : "smith",
+        "address" : {
+                "building" : "469",
+                "coord" : [
+                        -73.961704,
+                        40.662942
+                ],
+                "street" : "Flatbush Avenue",
+                "zipcode" : "11225"
+        },
+        "isDocActive" : false,
+        "gender" : "male",
+        "canVote" : true,
+        "canDrive" : true,
+        "color" : [
+                "red",
+                "cyan",
+                "gray"
+        ],
+        "fruit" : [
+                "grapes",
+                "Orange"
+        ],
+        "cards" : [
+                {
+                        "aadhar" : {
+                                "aadhar-No" : "43564",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "PAN" : {
+                                "PAN-No" : "smh838",
+                                "isActive" : false
+                        }
+                },
+                {
+                        "voter" : {
+                                "voterID" : "Ind03o3",
+                                "isActive" : true
+                        }
+                },
+                {
+                        "licence" : {
+                                "licence-No" : "LMV9478",
+                                "issueDate" : "2020-01-01",
+                                "expireDate" : "2040-01-01",
+                                "isActive" : true
+                        }
+                }
+        ],
+        "job" : "manager",
+        "mgr" : 1020,
+        "hiredate" : ISODate("1981-05-01T00:00:00Z"),
+        "sal" : 3400,
+        "comm" : null,
+        "deptno" : 10
+}
+> db
+secondaryDB
+> use primaryDB;
+switched to db primaryDB
+> show tables;
+books
+emp
+> show dbs;
+admin        0.000GB
+config       0.000GB
+local        0.000GB
+primaryDB    0.000GB
+secondaryDB  0.000GB
+> secondaryDB.drop();
+uncaught exception: ReferenceError: secondaryDB is not defined :
+@(shell):1:1
+>
+>
+>
+> drop secondaryDB;
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:5
+>
+>
+> db.secondaryDB.drop();
+false
+>
+> db.drop('secondaryDB');
+uncaught exception: TypeError: db.drop is not a function :
+@(shell):1:1
+> db.dropsecondaryDB();
+uncaught exception: TypeError: db.dropsecondaryDB is not a function :
+@(shell):1:1
+> use secondaryDB
+switched to db secondaryDB
+> db.dropDatabase();
+{ "ok" : 1 }
+>
+>
+> show dbs;
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+primaryDB  0.000GB
+> db
+secondaryDB
+> use primaryDB
+switched to db primaryDB
+> db
+primaryDB
+>
+>
+> use secondaryDB
+switched to db secondaryDB
+>
+> db
+secondaryDB
+> show dbs;
+admin      0.000GB
+config     0.000GB
+local      0.000GB
+primaryDB  0.000GB
+>
+>
+>
+>
+>
+> db.books.find();
+> use  primaryDB;
+switched to db primaryDB
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ], "cost" : { "currency" : "$", "price" : 1300 } }
+{ "_id" : ObjectId("6290459b8271b158d247864b"), "title" : "hBase", "ISBN" : "ds4f", "cost" : { "currency" : "Rs", "prie" : 1300 }, "author" : [ { "neme" : "Ram", "city" : "pune" }, { "name" : "rajan", "city" : "baroda", "phone" : 787878 } ] }
+{ "_id" : ObjectId("6290459b8271b158d247864c"), "title" : "hive", "ISBN" : "dkei834", "cost" : "Rs.1250" }
+>
+>
+>
+> db.books.remove({title:"hive"});
+WriteResult({ "nRemoved" : 1 })
+>
+>
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ], "cost" : { "currency" : "$", "price" : 1300 } }
+{ "_id" : ObjectId("6290459b8271b158d247864b"), "title" : "hBase", "ISBN" : "ds4f", "cost" : { "currency" : "Rs", "prie" : 1300 }, "author" : [ { "neme" : "Ram", "city" : "pune" }, { "name" : "rajan", "city" : "baroda", "phone" : 787878 } ] }
+>
+>
+> db.books.remove({"_id" : ObjectId("6290459b8271b158d247864b")});
+WriteResult({ "nRemoved" : 1 })
+>
+> db.books.find();
+{ "_id" : ObjectId("62903d638271b158d2478647"), "title" : "JAVA C.R.", "author" : "omkar" }
+{ "_id" : ObjectId("62903e1a8271b158d2478648"), "title" : "MySQL", "author" : "pooja", "price" : 1200 }
+{ "_id" : ObjectId("62903f6a8271b158d2478649"), "title" : "Neo4j", "author" : "martin", "cost" : { "currency" : "Rs.", "price" : 1700 } }
+{ "_id" : ObjectId("6290404f8271b158d247864a"), "title" : "redis", "author" : "saleel", "phone" : [ 12345, 77777 ], "email" : [ "firstmail@gmail.com", "SecondMain@yahoomail.com" ], "cost" : { "currency" : "$", "price" : 1300 } }
+>
+>
+>
+> db.books.drop();
+true
+>
+> show tables;
+emp
+> db.createCollection('books');
+{ "ok" : 1 }
+> show tables;
+books
+emp
+>
+>
+> var x = {}
+> x
+{ }
+> print(x)
+[object Object]
+>
+> x
+{ }
+>
+> x.Title = "MongoDB";
+MongoDB
+>
+>
+> x
+{ "Title" : "MongoDB" }
+> x.cost=1200
+1200
+>
+> x
+{ "Title" : "MongoDB", "cost" : 1200 }
+> db.books.insert(x);
+WriteResult({ "nInserted" : 1 })
+>
+> db.books.find();
+{ "_id" : ObjectId("6290643a8271b158d247864d"), "Title" : "MongoDB", "cost" : 1200 }
+>
+>
+> x
+{ "Title" : "MongoDB", "cost" : 1200 }
+> x.Title= "Redis"
+Redis
+> x
+{ "Title" : "Redis", "cost" : 1200 }
+> x.cost= 1600
+1600
+> x._id=1
+1
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 1 }
+> db.books.insert(x);
+WriteResult({ "nInserted" : 1 })
+> db.books.find();
+{ "_id" : ObjectId("6290643a8271b158d247864d"), "Title" : "MongoDB", "cost" : 1200 }
+{ "_id" : 1, "Title" : "Redis", "cost" : 1600 }
+>
+>
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 1 }
+>
+>
+> db.books.insert(x);
+WriteResult({
+        "nInserted" : 0,
+        "writeError" : {
+                "code" : 11000,
+                "errmsg" : "E11000 duplicate key error collection: primaryDB.books index: _id_ dup key: { _id: 1.0 }"
+        }
+})
+> x._id:10
+SyntaxError: unexpected token: ':' :
+@(shell):1:5
+> x._id=10
+10
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 10 }
+>
+>
+> db.books.insert(x);
+WriteResult({ "nInserted" : 1 })
+>
+>
+> x._id=8
+8
+> db.books.insert(x);
+WriteResult({ "nInserted" : 1 })
+> db.books.find();
+{ "_id" : ObjectId("6290643a8271b158d247864d"), "Title" : "MongoDB", "cost" : 1200 }
+{ "_id" : 1, "Title" : "Redis", "cost" : 1600 }
+{ "_id" : 10, "Title" : "Redis", "cost" : 1600 }
+{ "_id" : 8, "Title" : "Redis", "cost" : 1600 }
+>
+>
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 8 }
+> var y ={}
+> y.title='abc'
+abc
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 8 }
+> x._id=9
+9
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 9 }
+> y
+{ "title" : "abc" }
+>
+>
+> db.books.insertMany(x, y);
+TypeError: documents.map is not a function :
+DBCollection.prototype.insertMany@src/mongo/shell/crud_api.js:307:17
+@(shell):1:1
+> db.books.insert(x, y);
+WriteResult({ "nInserted" : 1 })
+>
+>
+> db.books.find();
+{ "_id" : ObjectId("6290643a8271b158d247864d"), "Title" : "MongoDB", "cost" : 1200 }
+{ "_id" : 1, "Title" : "Redis", "cost" : 1600 }
+{ "_id" : 10, "Title" : "Redis", "cost" : 1600 }
+{ "_id" : 8, "Title" : "Redis", "cost" : 1600 }
+{ "_id" : 9, "Title" : "Redis", "cost" : 1600 }
+> db.books.remove({});
+WriteResult({ "nRemoved" : 5 })
+> db.books.find();
+> x
+{ "Title" : "Redis", "cost" : 1600, "_id" : 9 }
+> y
+{ "title" : "abc" }
+> db.books.insertMany([x, y]);
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                9,
+                ObjectId("629066aa8271b158d247864e")
+        ]
+}
+> db.books.find();
+{ "_id" : 9, "Title" : "Redis", "cost" : 1600 }
+{ "_id" : ObjectId("629066aa8271b158d247864e"), "title" : "abc" }
+>
+>
+>
+> function fn() {
+... return "Hello Wrold";
+... }
+>
+>
+> fn()
+Hello Wrold
+>
+> function add(x, y) {
+... return (x + y);
+... }
+> add(5,6)
+11
+>
+> function fn1(x,y) {
+... if x > 100 {
+... return (x);
+... }
+... else {
+... retrun(x+y);
+... }
+... }
+SyntaxError: missing ( before condition :
+@(shell):2:3
+> function fn1(x,y) { if x > 100 { return (x); } else { return(x+y); } }
+SyntaxError: missing ( before condition :
+@(shell):1:23
+>
+>
+> function fn1(x,y) { if (x > 100) { return (x); } else { return(x+y); } }
+>
+> fn1(20,20);
+40
+> fn1(120,20);
+120
+>

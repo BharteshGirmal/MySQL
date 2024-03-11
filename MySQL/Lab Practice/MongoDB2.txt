@@ -1,0 +1,5992 @@
+Microsoft Windows [Version 10.0.22000.556]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\shree>mongosh primarydb
+Current Mongosh Log ID: 6292e91935e87d050bf0c744
+Connecting to:          mongodb://127.0.0.1:27017/primarydb?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.4.2
+Using MongoDB:          5.0.8
+Using Mongosh:          1.4.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting:
+   2022-05-28T23:01:30.176+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+Warning: Found ~/.mongorc.js, but not ~/.mongoshrc.js. ~/.mongorc.js will not be loaded.
+  You may want to copy or rename ~/.mongorc.js to ~/.mongoshrc.js.
+primarydb>
+
+primarydb> // showing the databases
+
+primarydb> show dbs
+admin        40.00 KiB
+config       72.00 KiB
+local        72.00 KiB
+primarydb    48.00 KiB
+secondarydb   8.00 KiB
+primarydb>
+
+primarydb> db.getCollectionNames()
+[ 'emp' ]
+primarydb>
+
+primarydb> db.emp.find().limit(1)
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c5"),
+    empid: 1024,
+    ename: 'martin',
+    address: {
+      building: '8825',
+      coord: [ -73.8803827, 40.7643124 ],
+      street: 'Astoria Boulevard',
+      zipcode: '11369'
+    },
+    isDocActive: true,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Banana Yellow' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '72877', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1023,
+    hiredate: ISODate("1981-02-20T00:00:00.000Z"),
+    sal: 2900,
+    comm: 735,
+    deptno: 30
+  }
+]
+primarydb> // using forEach(printjson)
+
+primarydb> db.emp.find().forEach(printjson)
+{
+  _id: ObjectId("6290ca445b76af4f00cf63c5"),
+  empid: 1024,
+  ename: 'martin',
+  address: {
+    building: '8825',
+    coord: [ -73.8803827, 40.7643124 ],
+    street: 'Astoria Boulevard',
+    zipcode: '11369'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Banana Yellow' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '72877', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'salesman',
+  mgr: 1023,
+  hiredate: ISODate("1981-02-20T00:00:00.000Z"),
+  sal: 2900,
+  comm: 735,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63c6"),
+  empid: 1021,
+  ename: 'smith',
+  address: {
+    building: '469',
+    coord: [ -73.961704, 40.662942 ],
+    street: 'Flatbush Avenue',
+    zipcode: '11225'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'red', 'cyan', 'gray' ],
+  fruit: [ 'grapes', 'Orange' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '43564', isActive: true } },
+    { PAN: { 'PAN-No': 'smh838', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'manager',
+  mgr: 1020,
+  hiredate: ISODate("1981-05-01T00:00:00.000Z"),
+  sal: 3400,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63c7"),
+  empid: 1023,
+  ename: 'jack',
+  address: {
+    building: '2780',
+    coord: [ -73.98241999999999, 40.579505 ],
+    street: 'Stillwell Avenue',
+    zipcode: '11224'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Air Force Blue', 'Apple Green' ],
+  fruit: [ 'Orange' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '12321', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'accountant',
+  mgr: 1022,
+  hiredate: ISODate("1981-04-02T00:00:00.000Z"),
+  sal: 2700,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63c8"),
+  empid: 1029,
+  ename: 'bob',
+  address: {
+    building: '2300',
+    coord: [ -73.8786113, 40.8502883 ],
+    street: 'Southern Boulevard',
+    zipcode: '10460'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Copper' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '73122', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'manager',
+  mgr: 1020,
+  hiredate: ISODate("1980-12-17T00:00:00.000Z"),
+  sal: 4900,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63c9"),
+  empid: 1027,
+  ename: 'richards',
+  address: {
+    building: '6409',
+    coord: [ -74.00528899999999, 40.628886 ],
+    street: '11 Avenue',
+    zipcode: '11219'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Charcoal', 'Cherry' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '83972', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'clerk',
+  mgr: 1024,
+  hiredate: ISODate("1981-02-22T00:00:00.000Z"),
+  sal: 1500,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ca"),
+  empid: 1028,
+  ename: 'peter',
+  address: {
+    building: '1839',
+    coord: [ -73.9482609, 40.6408271 ],
+    street: 'Nostrand Avenue',
+    zipcode: '11226'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Brown' ],
+  fruit: [ 'banana', 'Jackfruit' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '92783', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'analyst',
+  mgr: 1025,
+  hiredate: ISODate("1981-12-03T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63cb"),
+  empid: 1022,
+  ename: 'james',
+  address: {
+    building: '351',
+    coord: [ -73.98513559999999, 40.7676919 ],
+    street: 'West   57 Street',
+    zipcode: '10019'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Red', 'Blue', 'Green', 'Yellow' ],
+  fruit: [ 'Indian Fig' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '73826', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'manager',
+  mgr: 1020,
+  hiredate: ISODate("1981-07-09T00:00:00.000Z"),
+  sal: 4700,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63cc"),
+  empid: 1026,
+  ename: 'blake',
+  address: {
+    building: '7114',
+    coord: [ -73.9068506, 40.6199034 ],
+    street: 'Avenue U',
+    zipcode: '11234'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Brass', 'Bright Green' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '12321', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'clerk',
+  mgr: 1024,
+  hiredate: ISODate("1981-12-03T00:00:00.000Z"),
+  sal: 1200,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63cd"),
+  empid: 1032,
+  ename: 'vrushali',
+  address: {
+    building: '1',
+    coord: [ -73.96926909999999, 40.7685235 ],
+    street: 'East   66 Street',
+    zipcode: '10065'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Iceberg' ],
+  fruit: [ 'Orange', 'Papaya', 'Kiwi' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '22343', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'analyst',
+  mgr: 1030,
+  hiredate: ISODate("1982-02-23T00:00:00.000Z"),
+  sal: 4999,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ce"),
+  empid: 1031,
+  ename: 'sharmin',
+  address: {
+    building: '1269',
+    coord: [ -73.871194, 40.6730975 ],
+    street: 'Sutter Avenue',
+    zipcode: '11208'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Cream' ],
+  fruit: [ 'Indian Fig' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '16523', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1020,
+  hiredate: ISODate("1983-01-12T00:00:00.000Z"),
+  sal: 4999,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63cf"),
+  empid: 1033,
+  ename: 'vasant',
+  address: {
+    building: '705',
+    coord: [ -73.9653967, 40.6064339 ],
+    street: 'Kings Highway',
+    zipcode: '11223'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Bright Green' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '93824', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'salesman',
+  mgr: 1029,
+  hiredate: ISODate("1982-02-24T00:00:00.000Z"),
+  sal: 2200,
+  comm: 0,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d0"),
+  empid: 1023,
+  ename: 'scott',
+  address: {
+    building: '97-22',
+    coord: [ -73.8601152, 40.7311739 ],
+    street: '63 Road',
+    zipcode: '11374'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Ash Grey', 'White' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '93872', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'salesman',
+  mgr: 1023,
+  hiredate: ISODate("1981-09-28T00:00:00.000Z"),
+  sal: 2500,
+  comm: 350,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d1"),
+  empid: 1025,
+  ename: 'crow',
+  address: {
+    building: '2206',
+    coord: [ -74.1377286, 40.6119572 ],
+    street: 'Victory Boulevard',
+    zipcode: '10314'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Apple Green', 'Ash Grey' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '77876', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'salesman',
+  mgr: 1023,
+  hiredate: ISODate("1981-09-08T00:00:00.000Z"),
+  sal: 3200,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d2"),
+  empid: 1038,
+  ename: 'neel',
+  address: {
+    building: '284',
+    coord: [ -73.9829239, 40.6580753 ],
+    street: 'Prospect Park West',
+    zipcode: '11215'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Apple Green' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '00098', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'administrator',
+  mgr: 1030,
+  hiredate: ISODate("1983-03-14T00:00:00.000Z"),
+  sal: 4200,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d3"),
+  empid: 1034,
+  ename: 'vasu',
+  address: {
+    building: '203',
+    coord: [ -73.97822040000001, 40.6435254 ],
+    street: 'Church Avenue',
+    zipcode: '11218'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'India Green' ],
+  fruit: [ 'Dates' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '19826', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'salesman',
+  mgr: 1029,
+  hiredate: ISODate("1980-02-14T00:00:00.000Z"),
+  sal: 2200,
+  comm: 250,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d4"),
+  empid: 1037,
+  ename: 'ramu',
+  address: {
+    building: '522',
+    coord: [ -73.95171, 40.767461 ],
+    street: 'East   74 Street',
+    zipcode: '10021'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Lemon' ],
+  fruit: [ 'Jackfruit', 'banana', 'Apple' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '00983', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'clerk',
+  mgr: 1031,
+  hiredate: ISODate("1983-07-12T00:00:00.000Z"),
+  sal: 1400,
+  comm: null,
+  deptno: 50
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d5"),
+  empid: 1020,
+  ename: 'king',
+  address: {
+    building: '1007',
+    coord: [ -73.856077, 40.848447 ],
+    street: 'Morris Park Ave',
+    zipcode: '10462'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'blue', 'black' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '93478', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'president',
+  mgr: null,
+  hiredate: ISODate("1981-11-17T00:00:00.000Z"),
+  sal: 5000,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d6"),
+  empid: 1036,
+  ename: 'raju',
+  address: {
+    building: '6909',
+    coord: [ -74.0259567, 40.6353674 ],
+    street: '3 Avenue',
+    zipcode: '11209'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Indian Yellow' ],
+  fruit: [ 'Crab apples' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '55622', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'administrator',
+  mgr: 1031,
+  hiredate: ISODate("1983-06-15T00:00:00.000Z"),
+  sal: 3400,
+  comm: null,
+  deptno: 50
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d7"),
+  empid: 1035,
+  ename: 'rahul',
+  address: {
+    building: '265-15',
+    coord: [ -73.7032601, 40.7386417 ],
+    street: 'Hillside Avenue',
+    zipcode: '11004'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Indian Red' ],
+  fruit: [ 'Lychee', 'Indian Fig' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '00998', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'clerk',
+  mgr: 1029,
+  hiredate: ISODate("1981-12-31T00:00:00.000Z"),
+  sal: 1200,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d8"),
+  empid: 1030,
+  ename: 'saleel',
+  address: {
+    building: '7715',
+    coord: [ -73.9973325, 40.61174889999999 ],
+    street: '18 Avenue',
+    zipcode: '11214'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Coral' ],
+  fruit: [ 'Dates', 'Orange' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '73822', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1020,
+  hiredate: ISODate("1982-12-09T00:00:00.000Z"),
+  sal: 2900,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63d9"),
+  empid: 1039,
+  ename: 'saleel',
+  address: {
+    building: '129-08',
+    coord: [ -73.839297, 40.78147 ],
+    street: '20 Avenue',
+    zipcode: '11356'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Cherry', 'Charcoal' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '66675', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'analyst',
+  mgr: 1022,
+  hiredate: ISODate("1982-12-09T00:00:00.000Z"),
+  sal: 3700,
+  comm: null,
+  deptno: 50
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63da"),
+  empid: 1042,
+  ename: 'amit',
+  address: {
+    building: '502',
+    coord: [ -73.976112, 40.786714 ],
+    street: 'Amsterdam Avenue',
+    zipcode: '10024'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Orange' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '77787', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'administrator',
+  mgr: 1029,
+  hiredate: ISODate("1981-11-03T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 50,
+  phone: [ '9850884228', '9822884228' ]
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63db"),
+  empid: 1041,
+  ename: 'dinesh',
+  address: {
+    building: '3406',
+    coord: [ -73.94024739999999, 40.7623288 ],
+    street: '10 Street',
+    zipcode: '11106'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Air Force Blue' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '77767', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1021,
+  hiredate: ISODate("1982-12-09T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 50,
+  phone: [ 85088422, Long("9822884228") ],
+  skills: { languages: [ 'C++', 'JAVA' ], web: [ 'php', 'java', 'jquery' ] }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63dc"),
+  empid: 1040,
+  ename: 'amit',
+  address: {
+    building: '759',
+    coord: [ -73.9925306, 40.7309346 ],
+    street: 'Broadway',
+    zipcode: '10003'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Indian Red' ],
+  fruit: [ 'Crab apples' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '66623', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'administrator',
+  mgr: 1029,
+  hiredate: ISODate("1982-12-08T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 50,
+  phone: [ 85088422, Long("9822884228") ]
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63dd"),
+  empid: 1043,
+  ename: 'dinesh',
+  address: {
+    building: '730',
+    coord: [ -73.96805719999999, 40.7925587 ],
+    street: 'Columbus Avenue',
+    zipcode: '10025'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Navy Blue' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '77789', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1021,
+  hiredate: ISODate("1981-11-04T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 50,
+  phone: [ '020-25420200', Long("9822336644") ],
+  skills: { languages: [ 'C++', 'JAVA' ], web: [ 'php', 'java', 'jquery' ] }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63de"),
+  empid: 1044,
+  ename: 'rudra',
+  address: {
+    building: '18',
+    coord: [ -73.996984, 40.72589 ],
+    street: 'West Houston Street',
+    zipcode: '10012'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Lime' ],
+  fruit: [ 'Indian Fig' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '55543', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1021,
+  hiredate: ISODate("1981-11-04T00:00:00.000Z"),
+  sal: 2400,
+  comm: null,
+  deptno: 50,
+  phone: '020-25420212',
+  skills: {
+    web: [ 'php', 'java', 'jquery' ],
+    database: [ 'oracle', 'ms-sql server', 'mongodb' ]
+  }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63df"),
+  empid: 1046,
+  ename: 'anoop',
+  address: {
+    building: '103-05',
+    coord: [ -73.8642349, 40.75356 ],
+    street: '37 Avenue',
+    zipcode: '11368'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Navy Blue' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '83722', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1029,
+  hiredate: ISODate("1980-02-17T00:00:00.000Z"),
+  sal: 2300,
+  comm: 1200,
+  deptno: 50,
+  phone: '022-2548345',
+  skills: {
+    language: [ '.NET', 'java' ],
+    database: 'oracle',
+    web: [ 'json', 'jquery', 'javascript' ]
+  }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e0"),
+  empid: 1045,
+  ename: 'pankaj',
+  address: {
+    building: '531',
+    coord: [ -73.9634876, 40.6940001 ],
+    street: 'Myrtle Avenue',
+    zipcode: '11205'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'White' ],
+  fruit: [ 'Peach' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '55565', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1023,
+  hiredate: ISODate("1980-02-17T00:00:00.000Z"),
+  sal: 3600,
+  comm: null,
+  deptno: 40,
+  phone: '022-2548345',
+  skills: { language: '.NET', database: 'ms-sql server' }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e1"),
+  empid: 1047,
+  ename: 'nitish',
+  address: {
+    building: '60',
+    coord: [ -74.0085357, 40.70620539999999 ],
+    street: 'Wall Street',
+    zipcode: '10005'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Coral', 'Cream' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '99890', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1039,
+  hiredate: ISODate("1980-03-14T00:00:00.000Z"),
+  sal: 1300,
+  comm: 1200,
+  deptno: 50,
+  phone: '022-2548345',
+  skills: {
+    language: [ '.NET', 'java' ],
+    database: { rdbms: [ 'oracle', 'db2' ], nosql: [ 'mongodb', 'hive' ] },
+    web: [ 'json', 'jquery', 'javascript', 'php' ]
+  }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e2"),
+  empid: 1049,
+  ename: 'arjun',
+  address: {
+    building: '107',
+    coord: [ -74.00920839999999, 40.7132925 ],
+    street: 'Church Street',
+    zipcode: '10007'
+  },
+  isDocActive: true,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Sky Blue', 'Navy Blue', 'Blue' ],
+  fruit: [ 'Lychee' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '55434', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'auditor',
+  mgr: 1020,
+  hiredate: ISODate("1984-05-05T00:00:00.000Z"),
+  sal: 3200,
+  comm: null,
+  hra: 1500,
+  da: 1200,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e3"),
+  empid: 1048,
+  ename: 'neel',
+  address: {
+    building: '195',
+    coord: [ -73.9246028, 40.6522396 ],
+    street: 'East   56 Street',
+    zipcode: '11203'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Orange' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '99099', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'programmer',
+  mgr: 1039,
+  hiredate: ISODate("1980-03-14T00:00:00.000Z"),
+  sal: 1800,
+  comm: 1400,
+  deptno: 50,
+  phone: '022-2534565',
+  skills: {
+    language: 'ruby',
+    database: {
+      rdbms: [ 'oracle', 'db2' ],
+      nosql: [ 'mongodb', 'hive', 'hbase' ]
+    }
+  }
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e4"),
+  empid: 1050,
+  ename: 'amol',
+  address: {
+    building: '1006',
+    coord: [ -73.84856870000002, 40.8903781 ],
+    street: 'East 233 Street',
+    zipcode: '10466'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Snow White' ],
+  fruit: [ 'Orange' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '44445', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'auditor',
+  mgr: 1047,
+  hiredate: ISODate("1984-05-06T00:00:00.000Z"),
+  sal: 3800,
+  comm: null,
+  hra: 1000,
+  da: 900,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e5"),
+  empid: 1052,
+  ename: 'gita',
+  address: {
+    building: '7615',
+    coord: [ -74.0228449, 40.6281815 ],
+    street: '5 Avenue',
+    zipcode: '11209'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Indian Red' ],
+  fruit: [ 'Kiwi' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '44460', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'writer',
+  language: [ 'english', 'hindi' ],
+  mgr: 1049,
+  hiredate: ISODate("1984-03-29T00:00:00.000Z"),
+  sal: 2150,
+  comm: 750,
+  hra: 1300,
+  da: 1700,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e6"),
+  empid: 1051,
+  ename: 'sangita',
+  address: {
+    building: '56',
+    coord: [ -73.991495, 40.692273 ],
+    street: 'Court Street',
+    zipcode: '11201'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'White' ],
+  fruit: [ 'Papaya' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '99983', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'auditor',
+  mgr: 1040,
+  hiredate: ISODate("1984-03-30T00:00:00.000Z"),
+  sal: 3100,
+  comm: null,
+  hra: 1000,
+  da: 1500,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e7"),
+  empid: 1053,
+  ename: 'sita',
+  address: {
+    building: '120',
+    coord: [ -73.9998042, 40.7251256 ],
+    street: 'Prince Street',
+    zipcode: '10012'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Snow White' ],
+  fruit: [ 'Guava' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '12233', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'writer',
+  language: [ 'english', 'hindi', 'marathi' ],
+  mgr: 1049,
+  hiredate: ISODate("1984-03-30T00:00:00.000Z"),
+  sal: 3755,
+  comm: 750,
+  hra: 1100,
+  da: 1100,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e8"),
+  empid: 2001,
+  ename: 'pinky',
+  address: {
+    building: '1236',
+    coord: [ -73.8893654, 40.81376179999999 ],
+    street: '238 Spofford Ave',
+    zipcode: '10474'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'India Green' ],
+  fruit: [ 'banana', 'Jackfruit' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '33434', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 1039,
+  hiredate: ISODate("1983-07-17T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63e9"),
+  empid: 2002,
+  ename: 'priti',
+  address: {
+    building: '625',
+    coord: [ -73.990494, 40.7569545 ],
+    street: '8 Avenue',
+    zipcode: '10018'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Violet' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '55565', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 1037,
+  hiredate: ISODate("1983-07-17T00:00:00.000Z"),
+  sal: 5500,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ea"),
+  empid: 2003,
+  ename: 'supriya',
+  address: {
+    building: '1069',
+    coord: [ -73.902463, 40.694924 ],
+    street: 'Wyckoff Avenue',
+    zipcode: '11385'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Snow White' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '33343', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1983-07-17T00:00:00.000Z"),
+  sal: 3500,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63eb"),
+  empid: 2004,
+  ename: 'sangu',
+  address: {
+    building: '405',
+    coord: [ -73.97534999999999, 40.7516269 ],
+    street: 'Lexington Avenue',
+    zipcode: '10174'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Apple Green' ],
+  fruit: [ 'Passion Fruit' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '33321', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2002,
+  hiredate: ISODate("1980-07-17T00:00:00.000Z"),
+  sal: 6000,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ec"),
+  empid: 2006,
+  ename: 'rahsmi',
+  address: {
+    building: '7905',
+    coord: [ -73.8740217, 40.7135015 ],
+    street: 'Metropolitan Avenue',
+    zipcode: '11379'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Orange' ],
+  fruit: [ 'Peach' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '77625', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2002,
+  hiredate: ISODate("1982-05-17T00:00:00.000Z"),
+  sal: 5600,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ed"),
+  empid: 2007,
+  ename: 'raj',
+  address: {
+    building: '87-69',
+    coord: [ -73.8309503, 40.7001121 ],
+    street: 'Lefferts Boulevard',
+    zipcode: '11418'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Dark Orange' ],
+  fruit: [ 'Papaya' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '87767', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 1039,
+  hiredate: ISODate("1981-08-17T00:00:00.000Z"),
+  sal: 7000,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ee"),
+  empid: 2008,
+  ename: 'roselin',
+  address: {
+    building: '1418',
+    coord: [ -73.95685019999999, 40.7753401 ],
+    street: 'Third Avenue',
+    zipcode: '10028'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'White' ],
+  fruit: [ 'watermelon', 'mango' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '22223', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2005,
+  hiredate: ISODate("1983-02-17T00:00:00.000Z"),
+  sal: 800,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ef"),
+  empid: 2010,
+  ename: 'jasu',
+  address: {
+    building: '437',
+    coord: [ -73.975393, 40.757365 ],
+    street: 'Madison Avenue',
+    zipcode: '10022'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Lawn Green' ],
+  fruit: [ 'Fig', 'apple' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '44446', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2007,
+  hiredate: ISODate("1983-04-17T00:00:00.000Z"),
+  sal: 5800,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f0"),
+  empid: 2005,
+  ename: 'laxman',
+  address: {
+    building: '2491',
+    coord: [ -74.1459332, 40.6103714 ],
+    street: 'Victory Boulevard',
+    zipcode: '10314'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'India Green' ],
+  fruit: [],
+  cards: [
+    { aadhar: { 'aadhar-No': '76565', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01'
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1980-11-17T00:00:00.000Z"),
+  sal: 6500,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f1"),
+  empid: 2009,
+  ename: 'janhavi',
+  address: {
+    building: '464',
+    coord: [ -73.9791458, 40.744328 ],
+    street: '3 Avenue',
+    zipcode: '10016'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Violet' ],
+  fruit: [ 'Papaya' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '11117', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'Computer Programmer',
+  mgr: 2002,
+  hiredate: ISODate("1983-08-17T00:00:00.000Z"),
+  sal: 4700,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f2"),
+  empid: 2011,
+  ename: 'snehal',
+  address: {
+    building: '1031',
+    coord: [ -73.9075537, 40.6438684 ],
+    street: 'East   92 Street',
+    zipcode: '11236'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'India Green' ],
+  fruit: [ 'apple' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '66667', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 1039,
+  hiredate: ISODate("1983-07-17T00:00:00.000Z"),
+  sal: 2500,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f3"),
+  empid: 2012,
+  ename: 'rupal',
+  address: {
+    building: '1111',
+    coord: [ -74.0796436, 40.59878339999999 ],
+    street: 'Hylan Boulevard',
+    zipcode: '10305'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Violet' ],
+  fruit: [ 'grapes' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '12374', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 1037,
+  hiredate: ISODate("1983-07-17T00:00:00.000Z"),
+  sal: 6500,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f4"),
+  empid: 2013,
+  ename: 'bandish',
+  address: {
+    building: '976',
+    coord: [ -73.92701509999999, 40.6620192 ],
+    street: 'Rutland Road',
+    zipcode: '11212'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Snow White' ],
+  fruit: [ 'mango' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '93710', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01'
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1983-07-17T00:00:00.000Z"),
+  sal: 7000,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f5"),
+  empid: 2014,
+  ename: 'madhavi',
+  address: {
+    building: '148',
+    coord: [ -73.9806854, 40.7778589 ],
+    street: 'West   72 Street',
+    zipcode: '10023'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Apple Green' ],
+  fruit: [ 'mango' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '00900', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2002,
+  hiredate: ISODate("1980-07-17T00:00:00.000Z"),
+  sal: 6900,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f6"),
+  empid: 2015,
+  ename: 'ram',
+  address: {
+    building: '364',
+    coord: [ -73.96084119999999, 40.8014307 ],
+    street: 'West  110 Street',
+    zipcode: '10025'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'India Green' ],
+  fruit: [ 'cherry', 'grapes' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '00600', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1980-11-17T00:00:00.000Z"),
+  sal: 6200,
+  comm: null,
+  deptno: 20
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f7"),
+  empid: 2016,
+  ename: 'aditi',
+  address: {
+    building: '1423',
+    coord: [ -73.9615132, 40.6253268 ],
+    street: 'Avenue J',
+    zipcode: '11230'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Orange' ],
+  fruit: [ 'lime', 'Guava' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '88788', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2002,
+  hiredate: ISODate("1982-05-17T00:00:00.000Z"),
+  sal: 5700,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f8"),
+  empid: 2017,
+  ename: 'neeraj',
+  address: {
+    building: '0',
+    coord: [ -84.2040813, 9.9986585 ],
+    street: 'Guardia Airport Parking',
+    zipcode: '11371'
+  },
+  isDocActive: false,
+  gender: 'male',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Dark Orange' ],
+  fruit: [ 'pineapple' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '55475', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 1039,
+  hiredate: ISODate("1981-08-17T00:00:00.000Z"),
+  sal: 7700,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63f9"),
+  empid: 2018,
+  ename: 'meera',
+  address: {
+    building: '73',
+    coord: [ -74.1178949, 40.5734906 ],
+    street: 'New Dorp Plaza',
+    zipcode: '10306'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'White' ],
+  fruit: [ 'watermelon' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '92832', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2005,
+  hiredate: ISODate("1983-02-17T00:00:00.000Z"),
+  sal: 801,
+  comm: null,
+  deptno: 30
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63fa"),
+  empid: 2019,
+  ename: 'zara',
+  address: {
+    building: '277',
+    coord: [ -73.8941893, 40.8634684 ],
+    street: 'East Kingsbridge Road',
+    zipcode: '10458'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Violet' ],
+  fruit: [ 'Dragon Fruit' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '73878', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2002,
+  hiredate: ISODate("1983-08-17T00:00:00.000Z"),
+  sal: 3700,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63fb"),
+  empid: 2020,
+  ename: 'tanvi',
+  address: {
+    building: '203',
+    coord: [ -74.15235919999999, 40.5563756 ],
+    street: 'Giffords Lane',
+    zipcode: '10308'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Lawn Green' ],
+  fruit: [ 'Avocado' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '87828', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01'
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2007,
+  hiredate: ISODate("1983-04-17T00:00:00.000Z"),
+  sal: 5700,
+  comm: null,
+  deptno: 40
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63fc"),
+  empid: 2021,
+  ename: 'Emma',
+  address: {
+    building: '2031',
+    coord: [ -78.15235919457, 47.5568756 ],
+    street: 'Giffords Lane',
+    zipcode: '11309'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: true,
+  canDrive: true,
+  color: [ 'Lawn Green', 'Sky Blue' ],
+  fruit: [ 'Avocado', 'Grapes', 'Orance' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '02920', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1982-04-17T00:00:00.000Z"),
+  sal: 7700,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63fd"),
+  empid: 2022,
+  ename: 'Emma',
+  address: {
+    building: '2031',
+    coord: [ -78.15235919457, 47.5568756 ],
+    street: 'Keesey Street',
+    zipcode: '11310'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: false,
+  canDrive: true,
+  color: [ 'Lawn Green', 'Sky Blue' ],
+  fruit: [ 'Avocado', 'Grapes', 'Orance' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '23232', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1982-08-17T00:00:00.000Z"),
+  sal: 7000,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63fe"),
+  empid: 2024,
+  ename: 'Mia',
+  address: {
+    building: '032',
+    coord: [ -78.15235919457, 43.5578756 ],
+    street: 'Kidd Cottages',
+    zipcode: '33038'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: false,
+  canDrive: true,
+  color: [ 'Light Pink', 'Light Blue' ],
+  fruit: [ 'Orance' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '64434', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1983-04-17T00:00:00.000Z"),
+  sal: 9500,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf63ff"),
+  empid: 2023,
+  ename: 'Olivia',
+  address: {
+    building: '031',
+    coord: [ -78.15231429456999, 42.5560956 ],
+    street: 'Hazel Grove',
+    zipcode: '133038'
+  },
+  isDocActive: true,
+  gender: 'female',
+  canVote: false,
+  canDrive: true,
+  color: [ 'Lawn Green', 'Sky Blue' ],
+  fruit: [ 'Banana', 'Grapes', 'Orance' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '23435', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2001,
+  hiredate: ISODate("1981-06-17T00:00:00.000Z"),
+  sal: 9000,
+  comm: null,
+  deptno: 10
+}
+{
+  _id: ObjectId("6290ca445b76af4f00cf6400"),
+  empid: 2025,
+  ename: 'Emily',
+  address: {
+    building: '7036',
+    coord: [ -78.15299819456999, 40.5568756 ],
+    street: 'Adams Row',
+    zipcode: '15310'
+  },
+  isDocActive: false,
+  gender: 'female',
+  canVote: false,
+  canDrive: false,
+  color: [ 'Yellow' ],
+  fruit: [ 'Grapes' ],
+  cards: [
+    { aadhar: { 'aadhar-No': '75463', isActive: true } },
+    { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+    { voter: { voterID: 'Ind03o3', isActive: true } },
+    {
+      licence: {
+        'licence-No': 'LMV9478',
+        issueDate: '2020-01-01',
+        expireDate: '2040-01-01',
+        isActive: true
+      }
+    }
+  ],
+  job: 'WEB Programmer',
+  mgr: 2004,
+  hiredate: ISODate("1981-04-19T00:00:00.000Z"),
+  sal: 7600,
+  comm: null,
+  deptno: 40
+}
+
+primarydb> // Creating a new collection
+
+primarydb> db.getCollectionNames()
+[ 'emp' ]
+primarydb>
+
+primarydb> db.createCollection("student",{capped:true , size:1000 , max:2})
+{ ok: 1 }
+primarydb> db.getCollectionNames()
+[ 'emp', 'student' ]
+primarydb>
+
+primarydb> // Capped
+
+primarydb> db.emp.iscapped()
+TypeError: db.emp.iscapped is not a function
+primarydb> db.emp.isCapped()
+false
+primarydb> db.student.isCapped()
+true
+primarydb>
+
+primarydb> // capped ===> fixing the number of documents using size and max keyword
+
+primarydb> db.student.insert({_id:1 , Name:"Bhartesh"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{ acknowledged: true, insertedIds: { '0': 1 } }
+primarydb> // Collection.insert() is deprecated. hence use insertOne
+
+primarydb> db.student.find()
+[ { _id: 1, Name: 'Bhartesh' } ]
+primarydb> db.student.insert({_id:2 , Name:"Akshay",isactive:true})
+{ acknowledged: true, insertedIds: { '0': 2 } }
+primarydb>
+
+primarydb> db.student.insert({_id:2 , Name:"Pankaj",isactive:false,Salary:3000})
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: primarydb.student index: _id_ dup key: { _id: 2 }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: primarydb.student index: _id_ dup key: { _id: 2 }',
+          errInfo: undefined,
+          op: { _id: 2, Name: 'Pankaj', isactive: false, Salary: 3000 }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [ { index: 0, _id: 2 } ],
+    nInserted: 0,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+primarydb> db.student.insert({_id:3 , Name:"Pankaj",isactive:false,Salary:3000})
+{ acknowledged: true, insertedIds: { '0': 3 } }
+primarydb>
+
+primarydb> db.student.find()
+[
+  { _id: 2, Name: 'Akshay', isactive: true },
+  { _id: 3, Name: 'Pankaj', isactive: false, Salary: 3000 }
+]
+primarydb> // capped will take the last ineserted values only with maximun  limit
+
+primarydb> db.student.insert({_id:4 , Name:"Aniket",isactive:false,Salary:3500})
+{ acknowledged: true, insertedIds: { '0': 4 } }
+primarydb>
+
+primarydb> db.student.find()
+[
+  { _id: 3, Name: 'Pankaj', isactive: false, Salary: 3000 },
+  { _id: 4, Name: 'Aniket', isactive: false, Salary: 3500 }
+]
+primarydb>
+
+primarydb> //creating  a new collection of a Person
+
+primarydb> db.createCollection("person")
+{ ok: 1 }
+primarydb>
+
+primarydb> db.getCollectionNames()
+[ 'emp', 'student', 'person' ]
+primarydb>
+
+primarydb> show tables
+emp
+person
+student
+primarydb>
+
+primarydb> // show tables ==> alternative for db.database.getCollectionNames()
+
+primarydb> edit db.insertOne({_id:"Bhartesh",name:"Bhartesh Girmal",city:"Kolhapur" , state:"Maharashtra"})
+Opening an editor...
+
+primarydb> db.insertOne({ _id: "Bhartesh", name: "Bhartesh Girmal", city: "Kolhapur", state: "Maharashtra" PassportDetails : { passportNo:"1356269", validity:"25 Years" } })
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:96)
+
+> 1 | db.insertOne({ _id: "Bhartesh", name: "Bhartesh Girmal", city: "Kolhapur", state: "Maharashtra" PassportDetails : { passportNo:"1356269", validity:"25 Years" } })
+    |                                                                                                 ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.insertOne({ _id: "Bhartesh", name: "Bhartesh Girmal", city: "Kolhapur", state: "Maharashtra", PassportDetails: { passportNo: "1356269", validity: "25 Years" } })
+TypeError: db.insertOne is not a function
+primarydb> db.student.insertOne({ _id: "Bhartesh", name: "Bhartesh Girmal", city: "Kolhapur", state: "Maharashtra", PassportDetails: { passportNo: "1356269", validity: "25 Years" } })
+{ acknowledged: true, insertedId: 'Bhartesh' }
+primarydb>
+
+primarydb> db.student.find()
+[
+  { _id: 4, Name: 'Aniket', isactive: false, Salary: 3500 },
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra',
+    PassportDetails: { passportNo: '1356269', validity: '25 Years' }
+  }
+]
+primarydb> db.person.insertOne({ _id: "Bhartesh", name: "Bhartesh Girmal", city: "Kolhapur", state: "Maharashtra", PassportDetails: { passportNo: "1356269", validity: "25 Years" } })
+{ acknowledged: true, insertedId: 'Bhartesh' }
+primarydb>
+
+primarydb> db.person.find()
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra',
+    PassportDetails: { passportNo: '1356269', validity: '25 Years' }
+  }
+]
+primarydb> db.person.find({},{name:1,city:1,state:1,"PassportDetails.passportNo":1})
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra',
+    PassportDetails: { passportNo: '1356269' }
+  }
+]
+primarydb> // id column is having primary key we can not insert duplicate values in same id
+
+primarydb> // Sub set pattern ..........................
+
+primarydb> //................................................................
+
+primarydb>
+
+primarydb> db.createCollection("person1")
+{ ok: 1 }
+primarydb> db.createCollection("passport")
+{ ok: 1 }
+primarydb>
+
+primarydb> show tables;
+emp
+passport
+person
+person1
+student
+primarydb>
+
+primarydb> db.person1.insertOne({ _id: "Bhartesh", name: "Bhartesh Girmal", city: "Kolhapur", state: "Maharashtra" })
+{ acknowledged: true, insertedId: 'Bhartesh' }
+primarydb>
+
+primarydb> db.person1.find()
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra'
+  }
+]
+primarydb> db.passport.insertOne({ _id:"Bhartesh" ,passportNo:"15dd6f6", validity:"23 Years" })
+{ acknowledged: true, insertedId: 'Bhartesh' }
+primarydb>
+
+primarydb> db.person1.find()
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra'
+  }
+]
+primarydb> db.passport.find()
+[ { _id: 'Bhartesh', passportNo: '15dd6f6', validity: '23 Years' } ]
+primarydb> db.person.find()
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra',
+    PassportDetails: { passportNo: '1356269', validity: '25 Years' }
+  }
+]
+primarydb>
+
+primarydb> // connecting person1 and passport
+
+primarydb> // here person is a parent or supper class
+
+primarydb> edit db.person1.aggregate({})
+Opening an editor...
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.person1.aggregate([{ $lookup: { from: "passport", localField: "_id", foreignField: "_id", as: "Details" } }])
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra',
+    Details: [
+      { _id: 'Bhartesh', passportNo: '15dd6f6', validity: '23 Years' }
+    ]
+  }
+]
+primarydb>
+
+primarydb> // aggregate function have 4 keys
+
+primarydb> //lookup{
+
+primarydb> // from ==> subeset name
+
+primarydb> // localField ==> coloumn name
+
+primarydb> // foreginField ==> coloumn name
+
+primarydb> // as "alias or any name "
+
+primarydb> //}
+
+primarydb> // db.person1.aggregate([{ $lookup:{ from:"" , localField:"ColName" , foreignField:"Col name" ,as:"Alias or message name"}}])
+
+primarydb>
+
+primarydb> // many to many subsets ..........................................................
+
+primarydb>
+
+primarydb> db.createCollection("Book")
+{ ok: 1 }
+primarydb> show tables;
+Book
+emp
+passport
+person
+person1
+student
+primarydb>
+
+primarydb> db.Book.find()
+
+primarydb> //insertmany
+
+primarydb> edit db.Book.insertMany([{},{},{}])
+Opening an editor...
+
+primarydb> db.Book.insertMany([ { _id: "B1", title: "CoreJava" }, { _id: "B2", title: "BasicJava" }, { _id: "B4", title: "AdvancedJava" }, { _id: "B4", title: "DataStructures" }])
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B4" }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 3,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B4" }',
+          errInfo: undefined,
+          op: { _id: 'B4', title: 'DataStructures' }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [
+      { index: 0, _id: 'B1' },
+      { index: 1, _id: 'B2' },
+      { index: 2, _id: 'B4' },
+      { index: 3, _id: 'B4' }
+    ],
+    nInserted: 3,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+primarydb> edit
+Opening an editor...
+
+primarydb> db.Book.insertMany([{ _id: "B1", title: "CoreJava" }, { _id: "B2", title: "BasicJava" }, { _id: "B3", title: "AdvancedJava" }, { _id: "B4", title: "DataStructures" }])
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B1" }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B1" }',
+          errInfo: undefined,
+          op: { _id: 'B1', title: 'CoreJava' }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [
+      { index: 0, _id: 'B1' },
+      { index: 1, _id: 'B2' },
+      { index: 2, _id: 'B3' },
+      { index: 3, _id: 'B4' }
+    ],
+    nInserted: 0,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+primarydb> edit
+Opening an editor...
+
+primarydb> db.Book.insertMany([{ _id: "B1", title: "CoreJava" }, { _id: "B2", title: "BasicJava" }, { _id: "B3", title: "AdvancedJava" }, { _id: "B4", title: "DataStructures" }])
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B1" }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B1" }',
+          errInfo: undefined,
+          op: { _id: 'B1', title: 'CoreJava' }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [
+      { index: 0, _id: 'B1' },
+      { index: 1, _id: 'B2' },
+      { index: 2, _id: 'B3' },
+      { index: 3, _id: 'B4' }
+    ],
+    nInserted: 0,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+primarydb> edit
+Opening an editor...
+
+primarydb> db.Book.insertMany([ { _id: "B1", title: "CoreJava" }, { _id: "B2", title: "BasicJava" }, { _id: "B3", title: "AdvancedJava" }, { _id: "B4", title: "DataStructures" }])
+Uncaught:
+MongoBulkWriteError: E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B1" }
+Result: BulkWriteResult {
+  result: {
+    ok: 1,
+    writeErrors: [
+      WriteError {
+        err: {
+          index: 0,
+          code: 11000,
+          errmsg: 'E11000 duplicate key error collection: primarydb.Book index: _id_ dup key: { _id: "B1" }',
+          errInfo: undefined,
+          op: { _id: 'B1', title: 'CoreJava' }
+        }
+      }
+    ],
+    writeConcernErrors: [],
+    insertedIds: [
+      { index: 0, _id: 'B1' },
+      { index: 1, _id: 'B2' },
+      { index: 2, _id: 'B3' },
+      { index: 3, _id: 'B4' }
+    ],
+    nInserted: 0,
+    nUpserted: 0,
+    nMatched: 0,
+    nModified: 0,
+    nRemoved: 0,
+    upserted: []
+  }
+}
+primarydb> db.Book.find()
+[
+  { _id: 'B1', title: 'CoreJava' },
+  { _id: 'B2', title: 'BasicJava' },
+  { _id: 'B4', title: 'AdvancedJava' }
+]
+primarydb> edit db.Book.insertMany([ { _id: "B1", title: "CoreJava" }, { _id: "B2", title: "BasicJava" }, { _id: "B3", title: "AdvancedJava" }, { _id: "B4", title: "DataStructures" }])
+Opening an editor...
+
+primarydb> db.Book.insertMany([{ _id: "B3", title: "MySql" }, { _id: "B5", title: "MongoDB" }, { _id: "B6", title: "Neo4J" }, { _id: "B7", title: "PIG" }])
+{
+  acknowledged: true,
+  insertedIds: { '0': 'B3', '1': 'B5', '2': 'B6', '3': 'B7' }
+}
+primarydb> db.Book.find()
+[
+  { _id: 'B1', title: 'CoreJava' },
+  { _id: 'B2', title: 'BasicJava' },
+  { _id: 'B4', title: 'AdvancedJava' },
+  { _id: 'B3', title: 'MySql' },
+  { _id: 'B5', title: 'MongoDB' },
+  { _id: 'B6', title: 'Neo4J' },
+  { _id: 'B7', title: 'PIG' }
+]
+primarydb>
+
+primarydb> // creating a new collection author
+
+primarydb>
+
+primarydb> db.createCollection("author")
+{ ok: 1 }
+primarydb>
+
+primarydb> edit db.Book.insertMany([{ _id: "B3", title: "MySql" }, { _id: "B5", title: "MongoDB" }, { _id: "B6", title: "Neo4J" }, { _id: "B7", title: "PIG" }])
+Opening an editor...
+
+primarydb> db.Book.remove({})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 7 }
+primarydb>
+
+primarydb> edit db.Book.insertMany([{ _id: "B3", title: "MySql" }, { _id: "B5", title: "MongoDB" }, { _id: "B6", title: "Neo4J" }, { _id: "B7", title: "PIG" }])
+Opening an editor...
+
+primarydb> db.Book.insertMany([{ _id: 1, title: "MySql", ISBN: "B1" }, { _id: 2, title: "MongoDB", ISBN: "B2" }, { _id: 3, title: "Neo4J", ISBN: "B3" }, { _id: 4, title: "PIG", ISBN: "B4" }, { _id: 5, title: "React", ISBN: "B5" }])
+{
+  acknowledged: true,
+  insertedIds: { '0': 1, '1': 2, '2': 3, '3': 4, '4': 5 }
+}
+primarydb> db.Book.find()
+[
+  { _id: 1, title: 'MySql', ISBN: 'B1' },
+  { _id: 2, title: 'MongoDB', ISBN: 'B2' },
+  { _id: 3, title: 'Neo4J', ISBN: 'B3' },
+  { _id: 4, title: 'PIG', ISBN: 'B4' },
+  { _id: 5, title: 'React', ISBN: 'B5' }
+]
+primarydb> // book data
+
+primarydb> edit db.Book.insertMany([{ _id: "B3", title: "MySql" }, { _id: "B5", title: "MongoDB" }, { _id: "B6", title: "Neo4J" }, { _id: "B7", title: "PIG" }])
+Opening an editor...
+
+primarydb> db.author.insertMany([{ _id: "A1", Name: "Bhartesh", bookId:"B1" }, { _id: "A2", Name: "Aniket". bookId:"B1" }, { _id: "A3", Name: "Pankaj", bookId:"B2" }, { _idprimarydb> db.author.insertMany([{ _id: "A1", Name: "Bhartesh", bookId:"B1" }, { _id: "A2", Name: "Aniket". bookId:"B1" }, { _id: "A3", Name: "Pankaj", bookId:"B2" }, { _id: "A4", Name: "Pranav", bookId:"B2" }, { _id: "A5", Name: "Akshay", bookId:"B3" } { _id: "A6", Name: "Omlar", bookId:"B3" }, { _id: "A7", Name: "Sushant", bookId:"B3" }, { _id: "A8", Name: "Ajit", bookId:"B4" } { _id: "A9", Name: "Hardik", bookId:"B2" }, { _id: "A10", Name: "Shubham", bookId:"B3" }, { _id: "A11", Name: "Rushikesh", bookId:"B4" }])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:103)
+
+> 1 | db.author.insertMany([{ _id: "A1", Name: "Bhartesh", bookId:"B1" }, { _id: "A2", Name: "Aniket". bookId:"B1" }, { _id: "A3", Name: "Pankaj", bookId:"B2" }, { _id: "A4", Name: "Pranav", bookId:"B2" }, { _id: "A5", Name: "Akshay", bookId:"B3" } { _id: "A6", Name: "Omlar", bookId:"B3" }, { _id: "A7", Name: "Sushant", bookId:"B3" }, { _id: "A8", Name: "Ajit", bookId:"B4" } { _id: "A9", Name: "Hardik", bookId:"B2" }, { _id: "A10", Name: "Shubham", bookId:"B3" }, { _id: "A11", Name: "Rushikesh", bookId:"B4" }])
+    |                                                                                                        ^
+  2 |
+
+primarydb> edit db.author.insertMany([{ _id: "A1", Name: "Bhartesh", bookId:"B1" }, { _id: "A2", Name: "Aniket". bookId:"B1" }, { _id: "A3", Name: "Pankaj", bookId:"B2" }, { _id: "A4", Name: "Pranav", bookId:"B2" }, { _id: "A5", Name: "Akshay", bookId:"B3" } { _id: "A6", Name: "Omlar", bookId:"B3" }, { _id: "A7", Name: "Sushant", bookId:"B3" }, { _id: "A8", Name: "Ajit", bookId:"B4" } { _id: "A9", Name: "Hardik", bookId:"B2" }, { _id: "A10", Name: "Shubham", bookId:"B3" }, { _id: "A11", Name: "Rushikesh", bookId:"B4" }])
+Opening an editor...
+
+primarydb> db.author.insertMany([ { _id: "A1", Name: "Bhartesh", bookId: "B1" }, { _id: "A2", Name: "Aniket", bookId: "B1" }, { _id: "A3", Name: "Pankaj", bookId: "B2" }, { _id: "A4", Name: "Pranav", bookId: "B2" }, { _id: "A5", Name: "Akshay", bookId: "B3" } { _id: "A6", Name: "Omlar", bookId: "B3" }, { _id: "A7", Name: "Sushant", bookId: "B3" }, { _id: "A8", Name: "Ajit", bookId: "B4" } { _id: "A9", Name: "Hardik", bookId: "B2" }, { _id: "A10", Name: "Shubham", bookId: "B3" }, { _id: "A11", Name: "Rushikesh", bookId: "B4" }])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:249)
+
+> 1 | db.author.insertMany([ { _id: "A1", Name: "Bhartesh", bookId: "B1" }, { _id: "A2", Name: "Aniket", bookId: "B1" }, { _id: "A3", Name: "Pankaj", bookId: "B2" }, { _id: "A4", Name: "Pranav", bookId: "B2" }, { _id: "A5", Name: "Akshay", bookId: "B3" } { _id: "A6", Name: "Omlar", bookId: "B3" }, { _id: "A7", Name: "Sushant", bookId: "B3" }, { _id: "A8", Name: "Ajit", bookId: "B4" } { _id: "A9", Name: "Hardik", bookId: "B2" }, { _id: "A10", Name: "Shubham", bookId: "B3" }, { _id: "A11", Name: "Rushikesh", bookId: "B4" }])
+    |                                                                                                                                                                                                                                                          ^
+  2 |
+
+primarydb> edit db.author.insertMany([{ _id: "A1", Name: "Bhartesh", bookId:"B1" }, { _id: "A2", Name: "Aniket". bookId:"B1" }, { _id: "A3", Name: "Pankaj", bookId:"B2" }, { _id: "A4", Name: "Pranav", bookId:"B2" }, { _id: "A5", Name: "Akshay", bookId:"B3" } { _id: "A6", Name: "Omlar", bookId:"B3" }, { _id: "A7", Name: "Sushant", bookId:"B3" }, { _id: "A8", Name: "Ajit", bookId:"B4" } { _id: "A9", Name: "Hardik", bookId:"B2" }, { _id: "A10", Name: "Shubham", bookId:"B3" }, { _id: "A11", Name: "Rushikesh", bookId:"B4" }])
+Opening an editor...
+
+primarydb> db.author.insertMany([ { _id: "A1", Name: "Bhartesh", bookId: "B1" }, { _id: "A2", Name: "Aniket", bookId: "B1" }, { _id: "A3", Name: "Pankaj", bookId: "B2" }, { _id: "A4", Name: "Pranav", bookId: "B2" }, { _id: "A5", Name: "Akshay", bookId: "B3" }, { _id: "A6", Name: "Omkar", bookId: "B3" }, { _id: "A7", Name: "Sushant", bookId: "B3" }, { _id: "A8", Name: "Ajit", bookId: "B4" }, { _id: "A9", Name: "Hardik", bookId: "B2" }, { _id: "A10", Name: "Shubham", bookId: "B3" }, { _id: "A11", Name: "Rushikesh", bookId: "B4" }])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': 'A1',
+    '1': 'A2',
+    '2': 'A3',
+    '3': 'A4',
+    '4': 'A5',
+    '5': 'A6',
+    '6': 'A7',
+    '7': 'A8',
+    '8': 'A9',
+    '9': 'A10',
+    '10': 'A11'
+  }
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1' },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1' },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2' },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2' },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3' },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3' },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3' },
+  { _id: 'A8', Name: 'Ajit', bookId: 'B4' },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2' },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3' },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4' }
+]
+primarydb> db.Book.find()
+[
+  { _id: 1, title: 'MySql', ISBN: 'B1' },
+  { _id: 2, title: 'MongoDB', ISBN: 'B2' },
+  { _id: 3, title: 'Neo4J', ISBN: 'B3' },
+  { _id: 4, title: 'PIG', ISBN: 'B4' },
+  { _id: 5, title: 'React', ISBN: 'B5' }
+]
+primarydb> // many to many relation
+
+primarydb> // using aggregate here book is a Parent Collection and author is a child collection of book
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.Book.aggregate([{ $lookup: { from: "author", localField: "ISBN", foreignFeild: "bookId", as: "Author Details" } }])
+MongoServerError: unknown argument to $lookup: foreignFeild
+primarydb> edit
+Opening an editor...
+
+primarydb> db.Book.aggregate([{ $lookup: { from: "author", localField: "ISBN", foreignField: "bookId", as: "Author Details" } }])
+[
+  {
+    _id: 1,
+    title: 'MySql',
+    ISBN: 'B1',
+    'Author Details': [
+      { _id: 'A1', Name: 'Bhartesh', bookId: 'B1' },
+      { _id: 'A2', Name: 'Aniket', bookId: 'B1' }
+    ]
+  },
+  {
+    _id: 2,
+    title: 'MongoDB',
+    ISBN: 'B2',
+    'Author Details': [
+      { _id: 'A3', Name: 'Pankaj', bookId: 'B2' },
+      { _id: 'A4', Name: 'Pranav', bookId: 'B2' },
+      { _id: 'A9', Name: 'Hardik', bookId: 'B2' }
+    ]
+  },
+  {
+    _id: 3,
+    title: 'Neo4J',
+    ISBN: 'B3',
+    'Author Details': [
+      { _id: 'A5', Name: 'Akshay', bookId: 'B3' },
+      { _id: 'A6', Name: 'Omkar', bookId: 'B3' },
+      { _id: 'A7', Name: 'Sushant', bookId: 'B3' },
+      { _id: 'A10', Name: 'Shubham', bookId: 'B3' }
+    ]
+  },
+  {
+    _id: 4,
+    title: 'PIG',
+    ISBN: 'B4',
+    'Author Details': [
+      { _id: 'A8', Name: 'Ajit', bookId: 'B4' },
+      { _id: 'A11', Name: 'Rushikesh', bookId: 'B4' }
+    ]
+  },
+  { _id: 5, title: 'React', ISBN: 'B5', 'Author Details': [] }
+]
+primarydb>
+
+primarydb> // Update .................................
+
+primarydb> db.author.updateOne({_id:"A8"},{$set:{Name:"Ajeet"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1' },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1' },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2' },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2' },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3' },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3' },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3' },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4' },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2' },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3' },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4' }
+]
+primarydb>
+
+primarydb> db.author.updateOne({_id:"A8"},{$set:{charges:10000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1' },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1' },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2' },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2' },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3' },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3' },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3' },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4', charges: 10000 },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2' },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3' },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4' }
+]
+primarydb> // it adds one field if not found in the collection
+
+primarydb> //updateMany
+
+primarydb> //db.author.updateMany({},{$set:{charges:10000}})
+
+primarydb> db.author.updateMany({},{$set:{charges:10000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 10,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1', charges: 10000 },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1', charges: 10000 },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2', charges: 10000 },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2', charges: 10000 },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3', charges: 10000 },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3', charges: 10000 },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3', charges: 10000 },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4', charges: 10000 },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2', charges: 10000 },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3', charges: 10000 },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4', charges: 10000 }
+]
+primarydb>
+
+primarydb> // this will add in all the collection if not found
+
+primarydb> // to remove this there are to methods
+
+primarydb> db.author.updateMany({},{$set:{charges:0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1', charges: 0 },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1', charges: 0 },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2', charges: 0 },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2', charges: 0 },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3', charges: 0 },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3', charges: 0 },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3', charges: 0 },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4', charges: 0 },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2', charges: 0 },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3', charges: 0 },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4', charges: 0 }
+]
+primarydb> db.author.updateMany({},{$unset:{charges:0}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1' },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1' },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2' },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2' },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3' },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3' },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3' },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4' },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2' },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3' },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4' }
+]
+primarydb> db.author.updateMany({},{$set:{C1:1000 , C2:3000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1', C1: 1000, C2: 3000 },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1', C1: 1000, C2: 3000 },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2', C1: 1000, C2: 3000 },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2', C1: 1000, C2: 3000 },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4', C1: 1000, C2: 3000 },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2', C1: 1000, C2: 3000 },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4', C1: 1000, C2: 3000 }
+]
+primarydb> db.author.updateMany({},{$unset:{C1:1000 , C2:3000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1' },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1' },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2' },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2' },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3' },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3' },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3' },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4' },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2' },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3' },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4' }
+]
+primarydb>
+
+primarydb> // renaming
+
+primarydb> db.author.updateMany({},{$set:{C1:1000 , C2:3000}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  { _id: 'A1', Name: 'Bhartesh', bookId: 'B1', C1: 1000, C2: 3000 },
+  { _id: 'A2', Name: 'Aniket', bookId: 'B1', C1: 1000, C2: 3000 },
+  { _id: 'A3', Name: 'Pankaj', bookId: 'B2', C1: 1000, C2: 3000 },
+  { _id: 'A4', Name: 'Pranav', bookId: 'B2', C1: 1000, C2: 3000 },
+  { _id: 'A5', Name: 'Akshay', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A6', Name: 'Omkar', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A7', Name: 'Sushant', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A8', Name: 'Ajeet', bookId: 'B4', C1: 1000, C2: 3000 },
+  { _id: 'A9', Name: 'Hardik', bookId: 'B2', C1: 1000, C2: 3000 },
+  { _id: 'A10', Name: 'Shubham', bookId: 'B3', C1: 1000, C2: 3000 },
+  { _id: 'A11', Name: 'Rushikesh', bookId: 'B4', C1: 1000, C2: 3000 }
+]
+primarydb> db.author.updateMany({},{$rename:{C1:"Salary" , C2:"Commission"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  {
+    _id: 'A1',
+    Name: 'Bhartesh',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A2',
+    Name: 'Aniket',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A6',
+    Name: 'Omkar',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A7',
+    Name: 'Sushant',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A8',
+    Name: 'Ajeet',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A9',
+    Name: 'Hardik',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A10',
+    Name: 'Shubham',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A11',
+    Name: 'Rushikesh',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb>
+
+primarydb> // incrementing a value uing upadate
+
+primarydb> db.author.updateMany({},{$inc:{Salary:250}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find()
+[
+  {
+    _id: 'A1',
+    Name: 'Bhartesh',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A2',
+    Name: 'Aniket',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A6',
+    Name: 'Omkar',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A7',
+    Name: 'Sushant',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A8',
+    Name: 'Ajeet',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A9',
+    Name: 'Hardik',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A10',
+    Name: 'Shubham',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A11',
+    Name: 'Rushikesh',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1250
+  }
+]
+primarydb> // decrementing
+
+primarydb> db.author.updateMany({},{$inc:{Salary:-250}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 11,
+  modifiedCount: 11,
+  upsertedCount: 0
+}
+primarydb> db.author.find().limit(2)
+[
+  {
+    _id: 'A1',
+    Name: 'Bhartesh',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A2',
+    Name: 'Aniket',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb> db.author.updateOne({},{$inc:{Salary:250}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+primarydb> db.author.find().limit(5)
+[
+  {
+    _id: 'A1',
+    Name: 'Bhartesh',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1250
+  },
+  {
+    _id: 'A2',
+    Name: 'Aniket',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb> // updateOne increments only the first document record
+
+primarydb>
+
+primarydb> //deleteOne and deletemany
+
+primarydb> db.author.deleteOne({},{_id:"A11"})
+{ acknowledged: true, deletedCount: 1 }
+primarydb> db.author.find()
+[
+  {
+    _id: 'A2',
+    Name: 'Aniket',
+    bookId: 'B1',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A6',
+    Name: 'Omkar',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A7',
+    Name: 'Sushant',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A8',
+    Name: 'Ajeet',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A9',
+    Name: 'Hardik',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A10',
+    Name: 'Shubham',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A11',
+    Name: 'Rushikesh',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb> db.author.deleteOne({},{_id:"A10"})
+{ acknowledged: true, deletedCount: 1 }
+primarydb> db.author.find()
+[
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A6',
+    Name: 'Omkar',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A7',
+    Name: 'Sushant',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A8',
+    Name: 'Ajeet',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A9',
+    Name: 'Hardik',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A10',
+    Name: 'Shubham',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A11',
+    Name: 'Rushikesh',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb> db.author.deleteOne({_id:'A10'})
+{ acknowledged: true, deletedCount: 1 }
+primarydb> db.author.find()
+[
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A6',
+    Name: 'Omkar',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A7',
+    Name: 'Sushant',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A8',
+    Name: 'Ajeet',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A9',
+    Name: 'Hardik',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A11',
+    Name: 'Rushikesh',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb> db.author.deleteMany({Salary:{$gt:1000}})
+{ acknowledged: true, deletedCount: 0 }
+primarydb>
+
+primarydb>
+
+primarydb> db.Book.find()
+[
+  { _id: 1, title: 'MySql', ISBN: 'B1' },
+  { _id: 2, title: 'MongoDB', ISBN: 'B2' },
+  { _id: 3, title: 'Neo4J', ISBN: 'B3' },
+  { _id: 4, title: 'PIG', ISBN: 'B4' },
+  { _id: 5, title: 'React', ISBN: 'B5' }
+]
+primarydb> db.Book.deleteMany({_id:{$in:{1,3,5}}})
+Uncaught:
+SyntaxError: Unexpected token (1:31)
+
+> 1 | db.Book.deleteMany({_id:{$in:{1,3,5}}})
+    |                                ^
+  2 |
+
+primarydb> db.Book.deleteMany({_id:{$in:[1,3,5]}})
+{ acknowledged: true, deletedCount: 3 }
+primarydb> db.Book.find()
+[
+  { _id: 2, title: 'MongoDB', ISBN: 'B2' },
+  { _id: 4, title: 'PIG', ISBN: 'B4' }
+]
+primarydb> // book deleted
+
+primarydb> db.emp.find().limit(1)
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c5"),
+    empid: 1024,
+    ename: 'martin',
+    address: {
+      building: '8825',
+      coord: [ -73.8803827, 40.7643124 ],
+      street: 'Astoria Boulevard',
+      zipcode: '11369'
+    },
+    isDocActive: true,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Banana Yellow' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '72877', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1023,
+    hiredate: ISODate("1981-02-20T00:00:00.000Z"),
+    sal: 2900,
+    comm: 735,
+    deptno: 30
+  }
+]
+primarydb> db.emp.find()[0]
+
+primarydb> db.emp.find()[1]
+
+primarydb> db.emp.find().[1]
+Uncaught:
+SyntaxError: Unexpected token (1:14)
+
+> 1 | db.emp.find().[1]
+    |               ^
+  2 |
+
+primarydb> db.emp.aggregate([]).limit(1)
+TypeError: db.emp.aggregate([]).limit is not a function
+primarydb> //db.emp.aggregate([])
+
+primarydb> //same output as of find()
+
+primarydb> db.emp.aggregate([{$limit:1}])
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c5"),
+    empid: 1024,
+    ename: 'martin',
+    address: {
+      building: '8825',
+      coord: [ -73.8803827, 40.7643124 ],
+      street: 'Astoria Boulevard',
+      zipcode: '11369'
+    },
+    isDocActive: true,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Banana Yellow' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '72877', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1023,
+    hiredate: ISODate("1981-02-20T00:00:00.000Z"),
+    sal: 2900,
+    comm: 735,
+    deptno: 30
+  }
+]
+primarydb> db.emp.aggregate([{$skip:57}])
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63fe"),
+    empid: 2024,
+    ename: 'Mia',
+    address: {
+      building: '032',
+      coord: [ -78.15235919457, 43.5578756 ],
+      street: 'Kidd Cottages',
+      zipcode: '33038'
+    },
+    isDocActive: false,
+    gender: 'female',
+    canVote: false,
+    canDrive: true,
+    color: [ 'Light Pink', 'Light Blue' ],
+    fruit: [ 'Orance' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '64434', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'WEB Programmer',
+    mgr: 2001,
+    hiredate: ISODate("1983-04-17T00:00:00.000Z"),
+    sal: 9500,
+    comm: null,
+    deptno: 10
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63ff"),
+    empid: 2023,
+    ename: 'Olivia',
+    address: {
+      building: '031',
+      coord: [ -78.15231429456999, 42.5560956 ],
+      street: 'Hazel Grove',
+      zipcode: '133038'
+    },
+    isDocActive: true,
+    gender: 'female',
+    canVote: false,
+    canDrive: true,
+    color: [ 'Lawn Green', 'Sky Blue' ],
+    fruit: [ 'Banana', 'Grapes', 'Orance' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '23435', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'WEB Programmer',
+    mgr: 2001,
+    hiredate: ISODate("1981-06-17T00:00:00.000Z"),
+    sal: 9000,
+    comm: null,
+    deptno: 10
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf6400"),
+    empid: 2025,
+    ename: 'Emily',
+    address: {
+      building: '7036',
+      coord: [ -78.15299819456999, 40.5568756 ],
+      street: 'Adams Row',
+      zipcode: '15310'
+    },
+    isDocActive: false,
+    gender: 'female',
+    canVote: false,
+    canDrive: false,
+    color: [ 'Yellow' ],
+    fruit: [ 'Grapes' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '75463', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'WEB Programmer',
+    mgr: 2004,
+    hiredate: ISODate("1981-04-19T00:00:00.000Z"),
+    sal: 7600,
+    comm: null,
+    deptno: 40
+  }
+]
+primarydb> db.emp.aggregate([{$match:{job:"Manager"}}])
+
+primarydb> db.emp.aggregate([{$match:{job:"manager"}}])
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c6"),
+    empid: 1021,
+    ename: 'smith',
+    address: {
+      building: '469',
+      coord: [ -73.961704, 40.662942 ],
+      street: 'Flatbush Avenue',
+      zipcode: '11225'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'red', 'cyan', 'gray' ],
+    fruit: [ 'grapes', 'Orange' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '43564', isActive: true } },
+      { PAN: { 'PAN-No': 'smh838', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'manager',
+    mgr: 1020,
+    hiredate: ISODate("1981-05-01T00:00:00.000Z"),
+    sal: 3400,
+    comm: null,
+    deptno: 10
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c8"),
+    empid: 1029,
+    ename: 'bob',
+    address: {
+      building: '2300',
+      coord: [ -73.8786113, 40.8502883 ],
+      street: 'Southern Boulevard',
+      zipcode: '10460'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Copper' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '73122', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'manager',
+    mgr: 1020,
+    hiredate: ISODate("1980-12-17T00:00:00.000Z"),
+    sal: 4900,
+    comm: null,
+    deptno: 30
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cb"),
+    empid: 1022,
+    ename: 'james',
+    address: {
+      building: '351',
+      coord: [ -73.98513559999999, 40.7676919 ],
+      street: 'West   57 Street',
+      zipcode: '10019'
+    },
+    isDocActive: true,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Red', 'Blue', 'Green', 'Yellow' ],
+    fruit: [ 'Indian Fig' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '73826', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'manager',
+    mgr: 1020,
+    hiredate: ISODate("1981-07-09T00:00:00.000Z"),
+    sal: 4700,
+    comm: null,
+    deptno: 20
+  }
+]
+primarydb> //db.emp.aggregate([{$match:{job:"manager"}}])
+
+primarydb> // job:"manager" or job:"salesman"
+
+primarydb> db.emp.aggregate([{$match:{$or:{job:"salesman"},{job:"manager"}}}])
+Uncaught:
+SyntaxError: Unexpected token (1:48)
+
+> 1 | db.emp.aggregate([{$match:{$or:{job:"salesman"},{job:"manager"}}}])
+    |                                                 ^
+  2 |
+
+primarydb> db.emp.aggregate([{$match:{$or:[{job:"salesman"},{job:"manager"}]}}])
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c5"),
+    empid: 1024,
+    ename: 'martin',
+    address: {
+      building: '8825',
+      coord: [ -73.8803827, 40.7643124 ],
+      street: 'Astoria Boulevard',
+      zipcode: '11369'
+    },
+    isDocActive: true,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Banana Yellow' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '72877', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1023,
+    hiredate: ISODate("1981-02-20T00:00:00.000Z"),
+    sal: 2900,
+    comm: 735,
+    deptno: 30
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c6"),
+    empid: 1021,
+    ename: 'smith',
+    address: {
+      building: '469',
+      coord: [ -73.961704, 40.662942 ],
+      street: 'Flatbush Avenue',
+      zipcode: '11225'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'red', 'cyan', 'gray' ],
+    fruit: [ 'grapes', 'Orange' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '43564', isActive: true } },
+      { PAN: { 'PAN-No': 'smh838', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'manager',
+    mgr: 1020,
+    hiredate: ISODate("1981-05-01T00:00:00.000Z"),
+    sal: 3400,
+    comm: null,
+    deptno: 10
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c8"),
+    empid: 1029,
+    ename: 'bob',
+    address: {
+      building: '2300',
+      coord: [ -73.8786113, 40.8502883 ],
+      street: 'Southern Boulevard',
+      zipcode: '10460'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Copper' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '73122', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'manager',
+    mgr: 1020,
+    hiredate: ISODate("1980-12-17T00:00:00.000Z"),
+    sal: 4900,
+    comm: null,
+    deptno: 30
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cb"),
+    empid: 1022,
+    ename: 'james',
+    address: {
+      building: '351',
+      coord: [ -73.98513559999999, 40.7676919 ],
+      street: 'West   57 Street',
+      zipcode: '10019'
+    },
+    isDocActive: true,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Red', 'Blue', 'Green', 'Yellow' ],
+    fruit: [ 'Indian Fig' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '73826', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'manager',
+    mgr: 1020,
+    hiredate: ISODate("1981-07-09T00:00:00.000Z"),
+    sal: 4700,
+    comm: null,
+    deptno: 20
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cf"),
+    empid: 1033,
+    ename: 'vasant',
+    address: {
+      building: '705',
+      coord: [ -73.9653967, 40.6064339 ],
+      street: 'Kings Highway',
+      zipcode: '11223'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Bright Green' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '93824', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1029,
+    hiredate: ISODate("1982-02-24T00:00:00.000Z"),
+    sal: 2200,
+    comm: 0,
+    deptno: 40
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d0"),
+    empid: 1023,
+    ename: 'scott',
+    address: {
+      building: '97-22',
+      coord: [ -73.8601152, 40.7311739 ],
+      street: '63 Road',
+      zipcode: '11374'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Ash Grey', 'White' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '93872', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1023,
+    hiredate: ISODate("1981-09-28T00:00:00.000Z"),
+    sal: 2500,
+    comm: 350,
+    deptno: 30
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d1"),
+    empid: 1025,
+    ename: 'crow',
+    address: {
+      building: '2206',
+      coord: [ -74.1377286, 40.6119572 ],
+      street: 'Victory Boulevard',
+      zipcode: '10314'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'Apple Green', 'Ash Grey' ],
+    fruit: [],
+    cards: [
+      { aadhar: { 'aadhar-No': '77876', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1023,
+    hiredate: ISODate("1981-09-08T00:00:00.000Z"),
+    sal: 3200,
+    comm: null,
+    deptno: 20
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d3"),
+    empid: 1034,
+    ename: 'vasu',
+    address: {
+      building: '203',
+      coord: [ -73.97822040000001, 40.6435254 ],
+      street: 'Church Avenue',
+      zipcode: '11218'
+    },
+    isDocActive: false,
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    color: [ 'India Green' ],
+    fruit: [ 'Dates' ],
+    cards: [
+      { aadhar: { 'aadhar-No': '19826', isActive: true } },
+      { PAN: { 'PAN-No': 'Kinj093', isActive: false } },
+      { voter: { voterID: 'Ind03o3', isActive: true } },
+      {
+        licence: {
+          'licence-No': 'LMV9478',
+          issueDate: '2020-01-01',
+          expireDate: '2040-01-01',
+          isActive: true
+        }
+      }
+    ],
+    job: 'salesman',
+    mgr: 1029,
+    hiredate: ISODate("1980-02-14T00:00:00.000Z"),
+    sal: 2200,
+    comm: 250,
+    deptno: 40
+  }
+]
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [ { job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, gender: 1, canVote: 1, canDrive: 1, sal: 1 } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 2900
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 3400
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 4900
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 4700
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 2200
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 2500
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 3200
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    sal: 2200
+  }
+]
+primarydb>
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, salsal: 1 } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    sal: 2900
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    sal: 3400
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    sal: 4900
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    sal: 4700
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    sal: 2200
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    sal: 2500
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    sal: 3200
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    sal: 2200
+  }
+]
+primarydb> edit
+Opening an editor...
+
+primarydb>
+
+primarydb> db.Book.find()
+[
+  { _id: 2, title: 'MongoDB', ISBN: 'B2' },
+  { _id: 4, title: 'PIG', ISBN: 'B4' }
+]
+primarydb> db.author.find()
+[
+  {
+    _id: 'A3',
+    Name: 'Pankaj',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A4',
+    Name: 'Pranav',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A5',
+    Name: 'Akshay',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A6',
+    Name: 'Omkar',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A7',
+    Name: 'Sushant',
+    bookId: 'B3',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A8',
+    Name: 'Ajeet',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A9',
+    Name: 'Hardik',
+    bookId: 'B2',
+    Commission: 3000,
+    Salary: 1000
+  },
+  {
+    _id: 'A11',
+    Name: 'Rushikesh',
+    bookId: 'B4',
+    Commission: 3000,
+    Salary: 1000
+  }
+]
+primarydb> db.person.find()
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra',
+    PassportDetails: { passportNo: '1356269', validity: '25 Years' }
+  }
+]
+primarydb> db.person1.find()
+[
+  {
+    _id: 'Bhartesh',
+    name: 'Bhartesh Girmal',
+    city: 'Kolhapur',
+    state: 'Maharashtra'
+  }
+]
+primarydb> db.passport.find()
+[ { _id: 'Bhartesh', passportNo: '15dd6f6', validity: '23 Years' } ]
+primarydb> edit db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, sal: 1 } }])
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal" } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2900
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 3400
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4900
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4700
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2500
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 3200
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200
+  }
+]
+primarydb> // arithmatic oprators
+
+primarydb> // $add[], $multiply[], $subtract[], $divide[], $mod[], $ifNull[]
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal", "Gross Salary": { $add: [$sal, $comm] } } }])
+ReferenceError: $sal is not defined
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] } } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2900,
+    'Gross Salary': 3635
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 3400,
+    'Gross Salary': null
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4900,
+    'Gross Salary': null
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4700,
+    'Gross Salary': null
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2200
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2500,
+    'Gross Salary': 2850
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 3200,
+    'Gross Salary': null
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2450
+  }
+]
+primarydb> //Multiplication
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }. "New Salary":{ $multiply:['$sal',2]} } }])
+Uncaught:
+SyntaxError: Unexpected token (1:219)
+
+> 1 | db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, Salary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }. "New Salary":{ $multiply:['$sal',2]} } }])
+    |                                                                                                                                                                                                                            ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] } } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2900,
+    'Gross Salary': 3635,
+    'New Salary': 5800
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 3400,
+    'Gross Salary': null,
+    'New Salary': 6800
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4900,
+    'Gross Salary': null,
+    'New Salary': 9800
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4700,
+    'Gross Salary': null,
+    'New Salary': 9400
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2200,
+    'New Salary': 4400
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2500,
+    'Gross Salary': 2850,
+    'New Salary': 5000
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 3200,
+    'Gross Salary': null,
+    'New Salary': 6400
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2450,
+    'New Salary': 4400
+  }
+]
+primarydb>
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] }, num:{$add[10,100]} } }])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:270)
+
+> 1 | db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, Salary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] }, num:{$add[10,100]} } }])
+    |                                                                                                                                                                                                                                                                               ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, SalSalary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] }, num: { $add: [10, 100] } } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2900,
+    'Gross Salary': 3635,
+    'New Salary': 5800,
+    num: 110
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 3400,
+    'Gross Salary': null,
+    'New Salary': 6800,
+    num: 110
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4900,
+    'Gross Salary': null,
+    'New Salary': 9800,
+    num: 110
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4700,
+    'Gross Salary': null,
+    'New Salary': 9400,
+    num: 110
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2200,
+    'New Salary': 4400,
+    num: 110
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2500,
+    'Gross Salary': 2850,
+    'New Salary': 5000,
+    num: 110
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 3200,
+    'Gross Salary': null,
+    'New Salary': 6400,
+    num: 110
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2450,
+    'New Salary': 4400,
+    num: 110
+  }
+]
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, Salprimarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, gender: 1, canVote: 1, canDrive: 1, Salary: "$sal", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] }, num: { $add: [10, 100] }, x: { $multiply: [{ $add: [10, 10] }, 7] } } }])
+[
+  {
+    ename: 'martin',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2900,
+    'Gross Salary': 3635,
+    'New Salary': 5800,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'smith',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 3400,
+    'Gross Salary': null,
+    'New Salary': 6800,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'bob',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4900,
+    'Gross Salary': null,
+    'New Salary': 9800,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'james',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'manager',
+    Salary: 4700,
+    'Gross Salary': null,
+    'New Salary': 9400,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'vasant',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2200,
+    'New Salary': 4400,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'scott',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2500,
+    'Gross Salary': 2850,
+    'New Salary': 5000,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'crow',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 3200,
+    'Gross Salary': null,
+    'New Salary': 6400,
+    num: 110,
+    x: 140
+  },
+  {
+    ename: 'vasu',
+    gender: 'male',
+    canVote: true,
+    canDrive: true,
+    job: 'salesman',
+    Salary: 2200,
+    'Gross Salary': 2450,
+    'New Salary': 4400,
+    num: 110,
+    x: 140
+  }
+]
+primarydb>
+
+primarydb> // using createFields
+
+primarydb>
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, Salary: "$sal", Commission: "$comm", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] } } }, { $addFields: { X: { $add: ['$sal', '$comm'] } } }])
+[
+  {
+    ename: 'martin',
+    job: 'salesman',
+    Salary: 2900,
+    Commission: 735,
+    'Gross Salary': 3635,
+    'New Salary': 5800,
+    X: null
+  },
+  {
+    ename: 'smith',
+    job: 'manager',
+    Salary: 3400,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6800,
+    X: null
+  },
+  {
+    ename: 'bob',
+    job: 'manager',
+    Salary: 4900,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9800,
+    X: null
+  },
+  {
+    ename: 'james',
+    job: 'manager',
+    Salary: 4700,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9400,
+    X: null
+  },
+  {
+    ename: 'vasant',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 0,
+    'Gross Salary': 2200,
+    'New Salary': 4400,
+    X: null
+  },
+  {
+    ename: 'scott',
+    job: 'salesman',
+    Salary: 2500,
+    Commission: 350,
+    'Gross Salary': 2850,
+    'New Salary': 5000,
+    X: null
+  },
+  {
+    ename: 'crow',
+    job: 'salesman',
+    Salary: 3200,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6400,
+    X: null
+  },
+  {
+    ename: 'vasu',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 250,
+    'Gross Salary': 2450,
+    'New Salary': 4400,
+    X: null
+  }
+]
+primarydb> // here it is showing X= null if we are giving a alias name to a field and use it in anather fields
+
+primarydb> //then
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, Salary: "$sal", Commission: "$comm", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] } } }, { $addFields: { X: { $add: ['$Salary', '$Commission'] } } }])
+[
+  {
+    ename: 'martin',
+    job: 'salesman',
+    Salary: 2900,
+    Commission: 735,
+    'Gross Salary': 3635,
+    'New Salary': 5800,
+    X: 3635
+  },
+  {
+    ename: 'smith',
+    job: 'manager',
+    Salary: 3400,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6800,
+    X: null
+  },
+  {
+    ename: 'bob',
+    job: 'manager',
+    Salary: 4900,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9800,
+    X: null
+  },
+  {
+    ename: 'james',
+    job: 'manager',
+    Salary: 4700,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9400,
+    X: null
+  },
+  {
+    ename: 'vasant',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 0,
+    'Gross Salary': 2200,
+    'New Salary': 4400,
+    X: 2200
+  },
+  {
+    ename: 'scott',
+    job: 'salesman',
+    Salary: 2500,
+    Commission: 350,
+    'Gross Salary': 2850,
+    'New Salary': 5000,
+    X: 2850
+  },
+  {
+    ename: 'crow',
+    job: 'salesman',
+    Salary: 3200,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6400,
+    X: null
+  },
+  {
+    ename: 'vasu',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 250,
+    'Gross Salary': 2450,
+    'New Salary': 4400,
+    X: 2450
+  }
+]
+primarydb> // giving the same name as alias given to the addfields
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, Salary: "$sal", Commission: "$comm", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] } } }, { $addFields: { X: { $add: ['$Salary', '$Commission'] }, y: { $add: ['$X', 1000] } } }])
+[
+  {
+    ename: 'martin',
+    job: 'salesman',
+    Salary: 2900,
+    Commission: 735,
+    'Gross Salary': 3635,
+    'New Salary': 5800,
+    X: 3635,
+    y: null
+  },
+  {
+    ename: 'smith',
+    job: 'manager',
+    Salary: 3400,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6800,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'bob',
+    job: 'manager',
+    Salary: 4900,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9800,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'james',
+    job: 'manager',
+    Salary: 4700,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9400,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'vasant',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 0,
+    'Gross Salary': 2200,
+    'New Salary': 4400,
+    X: 2200,
+    y: null
+  },
+  {
+    ename: 'scott',
+    job: 'salesman',
+    Salary: 2500,
+    Commission: 350,
+    'Gross Salary': 2850,
+    'New Salary': 5000,
+    X: 2850,
+    y: null
+  },
+  {
+    ename: 'crow',
+    job: 'salesman',
+    Salary: 3200,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6400,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'vasu',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 250,
+    'Gross Salary': 2450,
+    'New Salary': 4400,
+    X: 2450,
+    y: null
+  }
+]
+primarydb> // creating anather field using $addFields
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, Salary: "$sal", Commission: "$comm", "Gross Salary": { $add: ['$sal', '$comm'] }, "New Salary": { $multiply: ['$sal', 2] } } }, { $addFields: { X: { $add: ['$Salary', '$Commission'] } } }, { $addFields: { y: { $$add: ['$X', 1000] } } }])
+[
+  {
+    ename: 'martin',
+    job: 'salesman',
+    Salary: 2900,
+    Commission: 735,
+    'Gross Salary': 3635,
+    'New Salary': 5800,
+    X: 3635,
+    y: 4635
+  },
+  {
+    ename: 'smith',
+    job: 'manager',
+    Salary: 3400,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6800,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'bob',
+    job: 'manager',
+    Salary: 4900,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9800,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'james',
+    job: 'manager',
+    Salary: 4700,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 9400,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'vasant',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 0,
+    'Gross Salary': 2200,
+    'New Salary': 4400,
+    X: 2200,
+    y: 3200
+  },
+  {
+    ename: 'scott',
+    job: 'salesman',
+    Salary: 2500,
+    Commission: 350,
+    'Gross Salary': 2850,
+    'New Salary': 5000,
+    X: 2850,
+    y: 3850
+  },
+  {
+    ename: 'crow',
+    job: 'salesman',
+    Salary: 3200,
+    Commission: null,
+    'Gross Salary': null,
+    'New Salary': 6400,
+    X: null,
+    y: null
+  },
+  {
+    ename: 'vasu',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 250,
+    'Gross Salary': 2450,
+    'New Salary': 4400,
+    X: 2450,
+    y: 3450
+  }
+]
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $match: { $or: [{ job: "salesman" }, { job: "manager" }] } }, { $project: { _id: 0, ename: 1, job: 1, Salary: "$sal", Commission: "$comm", "Gross Salary": { $add: ['$sal', '$comm'] } } }, { $addFields: { X: { $add: ['$Gross Salary', '$Commission'] } } }])
+[
+  {
+    ename: 'martin',
+    job: 'salesman',
+    Salary: 2900,
+    Commission: 735,
+    'Gross Salary': 3635,
+    X: 4370
+  },
+  {
+    ename: 'smith',
+    job: 'manager',
+    Salary: 3400,
+    Commission: null,
+    'Gross Salary': null,
+    X: null
+  },
+  {
+    ename: 'bob',
+    job: 'manager',
+    Salary: 4900,
+    Commission: null,
+    'Gross Salary': null,
+    X: null
+  },
+  {
+    ename: 'james',
+    job: 'manager',
+    Salary: 4700,
+    Commission: null,
+    'Gross Salary': null,
+    X: null
+  },
+  {
+    ename: 'vasant',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 0,
+    'Gross Salary': 2200,
+    X: 2200
+  },
+  {
+    ename: 'scott',
+    job: 'salesman',
+    Salary: 2500,
+    Commission: 350,
+    'Gross Salary': 2850,
+    X: 3200
+  },
+  {
+    ename: 'crow',
+    job: 'salesman',
+    Salary: 3200,
+    Commission: null,
+    'Gross Salary': null,
+    X: null
+  },
+  {
+    ename: 'vasu',
+    job: 'salesman',
+    Salary: 2200,
+    Commission: 250,
+    'Gross Salary': 2450,
+    X: 2700
+  }
+]
+primarydb>
+
+primarydb> //  $ifNull:[]
+
+primarydb> db.emp.aggregate([{$project:{ _id:1,ename:1,sal:1,comm:1}}])
+[
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c5"),
+    ename: 'martin',
+    sal: 2900,
+    comm: 735
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c6"),
+    ename: 'smith',
+    sal: 3400,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c7"),
+    ename: 'jack',
+    sal: 2700,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c8"),
+    ename: 'bob',
+    sal: 4900,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63c9"),
+    ename: 'richards',
+    sal: 1500,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63ca"),
+    ename: 'peter',
+    sal: 3500,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cb"),
+    ename: 'james',
+    sal: 4700,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cc"),
+    ename: 'blake',
+    sal: 1200,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cd"),
+    ename: 'vrushali',
+    sal: 4999,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63ce"),
+    ename: 'sharmin',
+    sal: 4999,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63cf"),
+    ename: 'vasant',
+    sal: 2200,
+    comm: 0
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d0"),
+    ename: 'scott',
+    sal: 2500,
+    comm: 350
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d1"),
+    ename: 'crow',
+    sal: 3200,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d2"),
+    ename: 'neel',
+    sal: 4200,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d3"),
+    ename: 'vasu',
+    sal: 2200,
+    comm: 250
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d4"),
+    ename: 'ramu',
+    sal: 1400,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d5"),
+    ename: 'king',
+    sal: 5000,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d6"),
+    ename: 'raju',
+    sal: 3400,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d7"),
+    ename: 'rahul',
+    sal: 1200,
+    comm: null
+  },
+  {
+    _id: ObjectId("6290ca445b76af4f00cf63d8"),
+    ename: 'saleel',
+    sal: 2900,
+    comm: null
+  }
+]
+Type "it" for more
+primarydb> db.emp.aggregate([{$project:{ _id:0,ename:1,sal:1,comm:1}}])
+[
+  { ename: 'martin', sal: 2900, comm: 735 },
+  { ename: 'smith', sal: 3400, comm: null },
+  { ename: 'jack', sal: 2700, comm: null },
+  { ename: 'bob', sal: 4900, comm: null },
+  { ename: 'richards', sal: 1500, comm: null },
+  { ename: 'peter', sal: 3500, comm: null },
+  { ename: 'james', sal: 4700, comm: null },
+  { ename: 'blake', sal: 1200, comm: null },
+  { ename: 'vrushali', sal: 4999, comm: null },
+  { ename: 'sharmin', sal: 4999, comm: null },
+  { ename: 'vasant', sal: 2200, comm: 0 },
+  { ename: 'scott', sal: 2500, comm: 350 },
+  { ename: 'crow', sal: 3200, comm: null },
+  { ename: 'neel', sal: 4200, comm: null },
+  { ename: 'vasu', sal: 2200, comm: 250 },
+  { ename: 'ramu', sal: 1400, comm: null },
+  { ename: 'king', sal: 5000, comm: null },
+  { ename: 'raju', sal: 3400, comm: null },
+  { ename: 'rahul', sal: 1200, comm: null },
+  { ename: 'saleel', sal: 2900, comm: null }
+]
+Type "it" for more
+primarydb> edit db.emp.aggregate([{$project:{ _id:0,ename:1,sal:1,comm:1}}])
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, comm: 1 } }, { $addFields: { x: { $ifNull: ['$comm', 0] } } }])
+[
+  { ename: 'martin', sal: 2900, comm: 735, x: 735 },
+  { ename: 'smith', sal: 3400, comm: null, x: 0 },
+  { ename: 'jack', sal: 2700, comm: null, x: 0 },
+  { ename: 'bob', sal: 4900, comm: null, x: 0 },
+  { ename: 'richards', sal: 1500, comm: null, x: 0 },
+  { ename: 'peter', sal: 3500, comm: null, x: 0 },
+  { ename: 'james', sal: 4700, comm: null, x: 0 },
+  { ename: 'blake', sal: 1200, comm: null, x: 0 },
+  { ename: 'vrushali', sal: 4999, comm: null, x: 0 },
+  { ename: 'sharmin', sal: 4999, comm: null, x: 0 },
+  { ename: 'vasant', sal: 2200, comm: 0, x: 0 },
+  { ename: 'scott', sal: 2500, comm: 350, x: 350 },
+  { ename: 'crow', sal: 3200, comm: null, x: 0 },
+  { ename: 'neel', sal: 4200, comm: null, x: 0 },
+  { ename: 'vasu', sal: 2200, comm: 250, x: 250 },
+  { ename: 'ramu', sal: 1400, comm: null, x: 0 },
+  { ename: 'king', sal: 5000, comm: null, x: 0 },
+  { ename: 'raju', sal: 3400, comm: null, x: 0 },
+  { ename: 'rahul', sal: 1200, comm: null, x: 0 },
+  { ename: 'saleel', sal: 2900, comm: null, x: 0 }
+]
+Type "it" for more
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission:$ifnull:[comm,-1] 1 } }, { $match:{ Commission:[$gt:0] } } ])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:76)
+
+> 1 | db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission:$ifnull:[comm,-1] 1 } }, { $match:{ Commission:[$gt:0] } } ])
+    |                                                                             ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission:{ $ifnull: [comm, -1] }1 } }, { $match: { Commission: [$gt: 0] } } ])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:92)
+
+> 1 | db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission:{ $ifnull: [comm, -1] }1 } }, { $match: { Commission: [$gt: 0] } } ])
+    |                                                                                             ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission: { $ifnull: [comm, -1] }  } }, { $match: { Commission: [$gt: 0] } } ])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:128)
+
+> 1 | db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission: { $ifnull: [comm, -1] }  } }, { $match: { Commission: [$gt: 0] } } ])
+    |                                                                                                                                 ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission: { $ifnull: [comm, -1] } } }, { $match: { Commission: { $gt: 0 } } }])
+ReferenceError: comm is not defined
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, Commission: { $ifnull: ['$comm', -1] } } }, { $match: { Commission: { $gt: 0 } } }])
+MongoServerError: Invalid $project :: caused by :: Unknown expression $ifnull
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, sal: 1, sal: { $ifnull: ['$comm', -1] } } }, { $match: { Commission: { $gt: 0 } } }])
+MongoServerError: Invalid $project :: caused by :: Unknown expression $ifnull
+primarydb>
+
+primarydb>
+
+primarydb>
+
+primarydb> // To Upper Case and To Lower Case
+
+primarydb> //........................................................
+
+primarydb> edit db.emp.aggregate([{$project:{ _id:0,ename:1,sal:1,comm:1}}])
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toUpper: "$ename" }, sal: 1, comm: 1 } }])
+[
+  { ename: 'martin', sal: 2900, comm: 735, UppCaseNames: 'MARTIN' },
+  { ename: 'smith', sal: 3400, comm: null, UppCaseNames: 'SMITH' },
+  { ename: 'jack', sal: 2700, comm: null, UppCaseNames: 'JACK' },
+  { ename: 'bob', sal: 4900, comm: null, UppCaseNames: 'BOB' },
+  {
+    ename: 'richards',
+    sal: 1500,
+    comm: null,
+    UppCaseNames: 'RICHARDS'
+  },
+  { ename: 'peter', sal: 3500, comm: null, UppCaseNames: 'PETER' },
+  { ename: 'james', sal: 4700, comm: null, UppCaseNames: 'JAMES' },
+  { ename: 'blake', sal: 1200, comm: null, UppCaseNames: 'BLAKE' },
+  {
+    ename: 'vrushali',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'VRUSHALI'
+  },
+  { ename: 'sharmin', sal: 4999, comm: null, UppCaseNames: 'SHARMIN' },
+  { ename: 'vasant', sal: 2200, comm: 0, UppCaseNames: 'VASANT' },
+  { ename: 'scott', sal: 2500, comm: 350, UppCaseNames: 'SCOTT' },
+  { ename: 'crow', sal: 3200, comm: null, UppCaseNames: 'CROW' },
+  { ename: 'neel', sal: 4200, comm: null, UppCaseNames: 'NEEL' },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'VASU' },
+  { ename: 'ramu', sal: 1400, comm: null, UppCaseNames: 'RAMU' },
+  { ename: 'king', sal: 5000, comm: null, UppCaseNames: 'KING' },
+  { ename: 'raju', sal: 3400, comm: null, UppCaseNames: 'RAJU' },
+  { ename: 'rahul', sal: 1200, comm: null, UppCaseNames: 'RAHUL' },
+  { ename: 'saleel', sal: 2900, comm: null, UppCaseNames: 'SALEEL' }
+]
+Type "it" for more
+primarydb>
+
+primarydb> // Lowercase
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1 } }])
+[
+  { ename: 'martin', sal: 2900, comm: 735, UppCaseNames: 'martin' },
+  { ename: 'smith', sal: 3400, comm: null, UppCaseNames: 'smith' },
+  { ename: 'jack', sal: 2700, comm: null, UppCaseNames: 'jack' },
+  { ename: 'bob', sal: 4900, comm: null, UppCaseNames: 'bob' },
+  {
+    ename: 'richards',
+    sal: 1500,
+    comm: null,
+    UppCaseNames: 'richards'
+  },
+  { ename: 'peter', sal: 3500, comm: null, UppCaseNames: 'peter' },
+  { ename: 'james', sal: 4700, comm: null, UppCaseNames: 'james' },
+  { ename: 'blake', sal: 1200, comm: null, UppCaseNames: 'blake' },
+  {
+    ename: 'vrushali',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'vrushali'
+  },
+  { ename: 'sharmin', sal: 4999, comm: null, UppCaseNames: 'sharmin' },
+  { ename: 'vasant', sal: 2200, comm: 0, UppCaseNames: 'vasant' },
+  { ename: 'scott', sal: 2500, comm: 350, UppCaseNames: 'scott' },
+  { ename: 'crow', sal: 3200, comm: null, UppCaseNames: 'crow' },
+  { ename: 'neel', sal: 4200, comm: null, UppCaseNames: 'neel' },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'vasu' },
+  { ename: 'ramu', sal: 1400, comm: null, UppCaseNames: 'ramu' },
+  { ename: 'king', sal: 5000, comm: null, UppCaseNames: 'king' },
+  { ename: 'raju', sal: 3400, comm: null, UppCaseNames: 'raju' },
+  { ename: 'rahul', sal: 1200, comm: null, UppCaseNames: 'rahul' },
+  { ename: 'saleel', sal: 2900, comm: null, UppCaseNames: 'saleel' }
+]
+Type "it" for more
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1 } }, { $addFields: { x: { $ifNull: ['$comm', -1] } } }, { $match: { x: { $gt: -1 } } }])
+[
+  {
+    ename: 'martin',
+    sal: 2900,
+    comm: 735,
+    UppCaseNames: 'martin',
+    x: 735
+  },
+  { ename: 'vasant', sal: 2200, comm: 0, UppCaseNames: 'vasant', x: 0 },
+  {
+    ename: 'scott',
+    sal: 2500,
+    comm: 350,
+    UppCaseNames: 'scott',
+    x: 350
+  },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'vasu', x: 250 },
+  {
+    ename: 'anoop',
+    sal: 2300,
+    comm: 1200,
+    UppCaseNames: 'anoop',
+    x: 1200
+  },
+  {
+    ename: 'nitish',
+    sal: 1300,
+    comm: 1200,
+    UppCaseNames: 'nitish',
+    x: 1200
+  },
+  {
+    ename: 'neel',
+    sal: 1800,
+    comm: 1400,
+    UppCaseNames: 'neel',
+    x: 1400
+  },
+  { ename: 'gita', sal: 2150, comm: 750, UppCaseNames: 'gita', x: 750 },
+  { ename: 'sita', sal: 3755, comm: 750, UppCaseNames: 'sita', x: 750 }
+]
+primarydb> // doucment having commission equals to null is not printed here
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1 } } { $match: { comm:1 } } ])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:110)
+
+> 1 | db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1 } } { $match: { comm:1 } } ])
+    |                                                                                                               ^
+  2 |
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1 } }, { $match: { comm: 1 } }])
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1 } }, { $match: { comm: null } }])
+[
+  { ename: 'smith', sal: 3400, comm: null, UppCaseNames: 'smith' },
+  { ename: 'jack', sal: 2700, comm: null, UppCaseNames: 'jack' },
+  { ename: 'bob', sal: 4900, comm: null, UppCaseNames: 'bob' },
+  {
+    ename: 'richards',
+    sal: 1500,
+    comm: null,
+    UppCaseNames: 'richards'
+  },
+  { ename: 'peter', sal: 3500, comm: null, UppCaseNames: 'peter' },
+  { ename: 'james', sal: 4700, comm: null, UppCaseNames: 'james' },
+  { ename: 'blake', sal: 1200, comm: null, UppCaseNames: 'blake' },
+  {
+    ename: 'vrushali',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'vrushali'
+  },
+  { ename: 'sharmin', sal: 4999, comm: null, UppCaseNames: 'sharmin' },
+  { ename: 'crow', sal: 3200, comm: null, UppCaseNames: 'crow' },
+  { ename: 'neel', sal: 4200, comm: null, UppCaseNames: 'neel' },
+  { ename: 'ramu', sal: 1400, comm: null, UppCaseNames: 'ramu' },
+  { ename: 'king', sal: 5000, comm: null, UppCaseNames: 'king' },
+  { ename: 'raju', sal: 3400, comm: null, UppCaseNames: 'raju' },
+  { ename: 'rahul', sal: 1200, comm: null, UppCaseNames: 'rahul' },
+  { ename: 'saleel', sal: 2900, comm: null, UppCaseNames: 'saleel' },
+  { ename: 'saleel', sal: 3700, comm: null, UppCaseNames: 'saleel' },
+  { ename: 'amit', sal: 3500, comm: null, UppCaseNames: 'amit' },
+  { ename: 'dinesh', sal: 3500, comm: null, UppCaseNames: 'dinesh' },
+  { ename: 'amit', sal: 3500, comm: null, UppCaseNames: 'amit' }
+]
+Type "it" for more
+primarydb> // doucuments having null commission values
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1, x: { $ifNull: ['$comm', -1] } } }])
+[
+  {
+    ename: 'martin',
+    sal: 2900,
+    comm: 735,
+    UppCaseNames: 'martin',
+    x: 735
+  },
+  {
+    ename: 'smith',
+    sal: 3400,
+    comm: null,
+    UppCaseNames: 'smith',
+    x: -1
+  },
+  { ename: 'jack', sal: 2700, comm: null, UppCaseNames: 'jack', x: -1 },
+  { ename: 'bob', sal: 4900, comm: null, UppCaseNames: 'bob', x: -1 },
+  {
+    ename: 'richards',
+    sal: 1500,
+    comm: null,
+    UppCaseNames: 'richards',
+    x: -1
+  },
+  {
+    ename: 'peter',
+    sal: 3500,
+    comm: null,
+    UppCaseNames: 'peter',
+    x: -1
+  },
+  {
+    ename: 'james',
+    sal: 4700,
+    comm: null,
+    UppCaseNames: 'james',
+    x: -1
+  },
+  {
+    ename: 'blake',
+    sal: 1200,
+    comm: null,
+    UppCaseNames: 'blake',
+    x: -1
+  },
+  {
+    ename: 'vrushali',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'vrushali',
+    x: -1
+  },
+  {
+    ename: 'sharmin',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'sharmin',
+    x: -1
+  },
+  { ename: 'vasant', sal: 2200, comm: 0, UppCaseNames: 'vasant', x: 0 },
+  {
+    ename: 'scott',
+    sal: 2500,
+    comm: 350,
+    UppCaseNames: 'scott',
+    x: 350
+  },
+  { ename: 'crow', sal: 3200, comm: null, UppCaseNames: 'crow', x: -1 },
+  { ename: 'neel', sal: 4200, comm: null, UppCaseNames: 'neel', x: -1 },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'vasu', x: 250 },
+  { ename: 'ramu', sal: 1400, comm: null, UppCaseNames: 'ramu', x: -1 },
+  { ename: 'king', sal: 5000, comm: null, UppCaseNames: 'king', x: -1 },
+  { ename: 'raju', sal: 3400, comm: null, UppCaseNames: 'raju', x: -1 },
+  {
+    ename: 'rahul',
+    sal: 1200,
+    comm: null,
+    UppCaseNames: 'rahul',
+    x: -1
+  },
+  {
+    ename: 'saleel',
+    sal: 2900,
+    comm: null,
+    UppCaseNames: 'saleel',
+    x: -1
+  }
+]
+Type "it" for more
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1, x: { $ifNull: ['$comm', 0] } } }])
+[
+  {
+    ename: 'martin',
+    sal: 2900,
+    comm: 735,
+    UppCaseNames: 'martin',
+    x: 735
+  },
+  {
+    ename: 'smith',
+    sal: 3400,
+    comm: null,
+    UppCaseNames: 'smith',
+    x: 0
+  },
+  { ename: 'jack', sal: 2700, comm: null, UppCaseNames: 'jack', x: 0 },
+  { ename: 'bob', sal: 4900, comm: null, UppCaseNames: 'bob', x: 0 },
+  {
+    ename: 'richards',
+    sal: 1500,
+    comm: null,
+    UppCaseNames: 'richards',
+    x: 0
+  },
+  {
+    ename: 'peter',
+    sal: 3500,
+    comm: null,
+    UppCaseNames: 'peter',
+    x: 0
+  },
+  {
+    ename: 'james',
+    sal: 4700,
+    comm: null,
+    UppCaseNames: 'james',
+    x: 0
+  },
+  {
+    ename: 'blake',
+    sal: 1200,
+    comm: null,
+    UppCaseNames: 'blake',
+    x: 0
+  },
+  {
+    ename: 'vrushali',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'vrushali',
+    x: 0
+  },
+  {
+    ename: 'sharmin',
+    sal: 4999,
+    comm: null,
+    UppCaseNames: 'sharmin',
+    x: 0
+  },
+  { ename: 'vasant', sal: 2200, comm: 0, UppCaseNames: 'vasant', x: 0 },
+  {
+    ename: 'scott',
+    sal: 2500,
+    comm: 350,
+    UppCaseNames: 'scott',
+    x: 350
+  },
+  { ename: 'crow', sal: 3200, comm: null, UppCaseNames: 'crow', x: 0 },
+  { ename: 'neel', sal: 4200, comm: null, UppCaseNames: 'neel', x: 0 },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'vasu', x: 250 },
+  { ename: 'ramu', sal: 1400, comm: null, UppCaseNames: 'ramu', x: 0 },
+  { ename: 'king', sal: 5000, comm: null, UppCaseNames: 'king', x: 0 },
+  { ename: 'raju', sal: 3400, comm: null, UppCaseNames: 'raju', x: 0 },
+  {
+    ename: 'rahul',
+    sal: 1200,
+    comm: null,
+    UppCaseNames: 'rahul',
+    x: 0
+  },
+  {
+    ename: 'saleel',
+    sal: 2900,
+    comm: null,
+    UppCaseNames: 'saleel',
+    x: 0
+  }
+]
+Type "it" for more
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1, x: { $ifNull: ['$comm', 0] } } }, { $match: { x: { $gt$gt: 0 } } }])
+[
+  {
+    ename: 'martin',
+    sal: 2900,
+    comm: 735,
+    UppCaseNames: 'martin',
+    x: 735
+  },
+  {
+    ename: 'scott',
+    sal: 2500,
+    comm: 350,
+    UppCaseNames: 'scott',
+    x: 350
+  },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'vasu', x: 250 },
+  {
+    ename: 'anoop',
+    sal: 2300,
+    comm: 1200,
+    UppCaseNames: 'anoop',
+    x: 1200
+  },
+  {
+    ename: 'nitish',
+    sal: 1300,
+    comm: 1200,
+    UppCaseNames: 'nitish',
+    x: 1200
+  },
+  {
+    ename: 'neel',
+    sal: 1800,
+    comm: 1400,
+    UppCaseNames: 'neel',
+    x: 1400
+  },
+  { ename: 'gita', sal: 2150, comm: 750, UppCaseNames: 'gita', x: 750 },
+  { ename: 'sita', sal: 3755, comm: 750, UppCaseNames: 'sita', x: 750 }
+]
+primarydb> // comm=null not printed
+
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1, x: { $ifNull: ['$comm', 0] } } }, { $match: { xx: { $g$gt: 0 } } }])
+
+primarydb> edir
+ReferenceError: edir is not defined
+primarydb> edit
+Opening an editor...
+
+primarydb> db.emp.aggregate([{ $project: { _id: 0, ename: 1, "UppCaseNames": { $toLower: "$ename" }, sal: 1, comm: 1, x: { $ifNull: ['$comm', 0] } } }, { $match: { x: { $gt$gt: 0 } } }])
+[
+  {
+    ename: 'martin',
+    sal: 2900,
+    comm: 735,
+    UppCaseNames: 'martin',
+    x: 735
+  },
+  {
+    ename: 'scott',
+    sal: 2500,
+    comm: 350,
+    UppCaseNames: 'scott',
+    x: 350
+  },
+  { ename: 'vasu', sal: 2200, comm: 250, UppCaseNames: 'vasu', x: 250 },
+  {
+    ename: 'anoop',
+    sal: 2300,
+    comm: 1200,
+    UppCaseNames: 'anoop',
+    x: 1200
+  },
+  {
+    ename: 'nitish',
+    sal: 1300,
+    comm: 1200,
+    UppCaseNames: 'nitish',
+    x: 1200
+  },
+  {
+    ename: 'neel',
+    sal: 1800,
+    comm: 1400,
+    UppCaseNames: 'neel',
+    x: 1400
+  },
+  { ename: 'gita', sal: 2150, comm: 750, UppCaseNames: 'gita', x: 750 },
+  { ename: 'sita', sal: 3755, comm: 750, UppCaseNames: 'sita', x: 750 }
+]
+primarydb>

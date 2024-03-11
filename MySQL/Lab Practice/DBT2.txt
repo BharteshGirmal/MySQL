@@ -1,0 +1,2467 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                |
+| db2                |
+| db3                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use information_schema;
+Database changed
+mysql> show tables;
++---------------------------------------+
+| Tables_in_information_schema          |
++---------------------------------------+
+| ADMINISTRABLE_ROLE_AUTHORIZATIONS     |
+| APPLICABLE_ROLES                      |
+| CHARACTER_SETS                        |
+| CHECK_CONSTRAINTS                     |
+| COLLATION_CHARACTER_SET_APPLICABILITY |
+| COLLATIONS                            |
+| COLUMN_PRIVILEGES                     |
+| COLUMN_STATISTICS                     |
+| COLUMNS                               |
+| COLUMNS_EXTENSIONS                    |
+| ENABLED_ROLES                         |
+| ENGINES                               |
+| EVENTS                                |
+| FILES                                 |
+| INNODB_BUFFER_PAGE                    |
+| INNODB_BUFFER_PAGE_LRU                |
+| INNODB_BUFFER_POOL_STATS              |
+| INNODB_CACHED_INDEXES                 |
+| INNODB_CMP                            |
+| INNODB_CMP_PER_INDEX                  |
+| INNODB_CMP_PER_INDEX_RESET            |
+| INNODB_CMP_RESET                      |
+| INNODB_CMPMEM                         |
+| INNODB_CMPMEM_RESET                   |
+| INNODB_COLUMNS                        |
+| INNODB_DATAFILES                      |
+| INNODB_FIELDS                         |
+| INNODB_FOREIGN                        |
+| INNODB_FOREIGN_COLS                   |
+| INNODB_FT_BEING_DELETED               |
+| INNODB_FT_CONFIG                      |
+| INNODB_FT_DEFAULT_STOPWORD            |
+| INNODB_FT_DELETED                     |
+| INNODB_FT_INDEX_CACHE                 |
+| INNODB_FT_INDEX_TABLE                 |
+| INNODB_INDEXES                        |
+| INNODB_METRICS                        |
+| INNODB_SESSION_TEMP_TABLESPACES       |
+| INNODB_TABLES                         |
+| INNODB_TABLESPACES                    |
+| INNODB_TABLESPACES_BRIEF              |
+| INNODB_TABLESTATS                     |
+| INNODB_TEMP_TABLE_INFO                |
+| INNODB_TRX                            |
+| INNODB_VIRTUAL                        |
+| KEY_COLUMN_USAGE                      |
+| KEYWORDS                              |
+| OPTIMIZER_TRACE                       |
+| PARAMETERS                            |
+| PARTITIONS                            |
+| PLUGINS                               |
+| PROCESSLIST                           |
+| PROFILING                             |
+| REFERENTIAL_CONSTRAINTS               |
+| RESOURCE_GROUPS                       |
+| ROLE_COLUMN_GRANTS                    |
+| ROLE_ROUTINE_GRANTS                   |
+| ROLE_TABLE_GRANTS                     |
+| ROUTINES                              |
+| SCHEMA_PRIVILEGES                     |
+| SCHEMATA                              |
+| SCHEMATA_EXTENSIONS                   |
+| ST_GEOMETRY_COLUMNS                   |
+| ST_SPATIAL_REFERENCE_SYSTEMS          |
+| ST_UNITS_OF_MEASURE                   |
+| STATISTICS                            |
+| TABLE_CONSTRAINTS                     |
+| TABLE_CONSTRAINTS_EXTENSIONS          |
+| TABLE_PRIVILEGES                      |
+| TABLES                                |
+| TABLES_EXTENSIONS                     |
+| TABLESPACES                           |
+| TABLESPACES_EXTENSIONS                |
+| TRIGGERS                              |
+| USER_ATTRIBUTES                       |
+| USER_PRIVILEGES                       |
+| VIEW_ROUTINE_USAGE                    |
+| VIEW_TABLE_USAGE                      |
+| VIEWS                                 |
++---------------------------------------+
+79 rows in set (0.01 sec)
+
+mysql> select database();
++--------------------+
+| database()         |
++--------------------+
+| information_schema |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                |
+| db2                |
+| db3                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+8 rows in set (0.00 sec)
+
+mysql> use db1;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_db1       |
++---------------------+
+| a                   |
+| agent               |
+| andor               |
+| b                   |
+| blanktablea         |
+| blanktableb         |
+| blog                |
+| bonus               |
+| books               |
+| candidate           |
+| client              |
+| coalesce            |
+| comments            |
+| company             |
+| customer            |
+| customers           |
+| demodept1           |
+| demodept2           |
+| dept                |
+| dept1               |
+| docs                |
+| dummy               |
+| duplicate           |
+| emp                 |
+| emp1                |
+| emp2                |
+| emp_attendance      |
+| emp_cards           |
+| emp_phone           |
+| empj                |
+| envelope            |
+| food                |
+| hobby               |
+| item                |
+| key_parts           |
+| licence             |
+| location            |
+| mass_table          |
+| menucard            |
+| nearest             |
+| new                 |
+| newbooks            |
+| nullif              |
+| numberstring        |
+| ord                 |
+| orders              |
+| plumber             |
+| plumber_service_map |
+| points              |
+| price               |
+| product             |
+| products            |
+| quarter_revenue     |
+| r                   |
+| r1                  |
+| r2                  |
+| races               |
+| regexpr             |
+| replacedept         |
+| revenue             |
+| runners             |
+| sales               |
+| sales_channel       |
+| salespeople         |
+| salesperson         |
+| salgrade            |
+| service             |
+| seta                |
+| setb                |
+| softdrink           |
+| sort                |
+| stadium             |
+| states              |
+| station             |
+| status              |
+| stringnumber        |
+| tablea              |
+| tableaa             |
+| tableb              |
+| tablebb             |
+| tasks               |
+| temp1               |
+| transactions        |
+| vote_response       |
+| votes               |
+| warehouse           |
+| z                   |
++---------------------+
+87 rows in set (0.00 sec)
+
+mysql> select * from emp;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |
+|  7788 | SCOTT    | M      | ANALYST             | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7902 | FORD     | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+28 rows in set (0.01 sec)
+
+mysql> select 1+1;
++-----+
+| 1+1 |
++-----+
+|   2 |
++-----+
+1 row in set (0.00 sec)
+
+mysql> select name, job hiredate, sal from emp;
+ERROR 1054 (42S22): Unknown column 'name' in 'field list'
+mysql> select ename, job hiredate, sal from emp
+    -> select ename, job hiredate, sal from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select ename, job hiredate, sal from emp' at line 2
+mysql> select ename, job, hiredate, sal from emp;
++----------+---------------------+------------+------+
+| ename    | job                 | hiredate   | sal  |
++----------+---------------------+------------+------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 |
+| SMITH    | CLERK               | 1980-12-17 |  800 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 |
+| JAMES    | CLERK               | 1981-12-03 |  950 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 |
++----------+---------------------+------------+------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,sal+1000 UpdatedSalary from emp;
++----------+---------------------+------------+------+---------------+
+| ename    | job                 | hiredate   | sal  | UpdatedSalary |
++----------+---------------------+------------+------+---------------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 |          2750 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 |          2750 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 |          2750 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 |          2750 |
+| SMITH    | CLERK               | 1980-12-17 |  800 |          1800 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 |          4350 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 |          2750 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |          2600 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |          2250 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 |          3975 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 |          2250 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 |          3850 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 |          3450 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 |          4000 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 |          6000 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 |          6000 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |          2500 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 |          2100 |
+| JAMES    | CLERK               | 1981-12-03 |  950 |          1950 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 |          4000 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 |          5150 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 |          3575 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 |          2300 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 |          2350 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |          2250 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 |          2750 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 |          2750 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 |          2750 |
++----------+---------------------+------------+------+---------------+
+28 rows in set (0.00 sec)
+
+mysql> select 1+'1';
++-------+
+| 1+'1' |
++-------+
+|     2 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> select 1+'B2';
++--------+
+| 1+'B2' |
++--------+
+|      1 |
++--------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select 1+'2B';
++--------+
+| 1+'2B' |
++--------+
+|      3 |
++--------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select 1+'2B2';
++---------+
+| 1+'2B2' |
++---------+
+|       3 |
++---------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select '2425bhartesh'/1;
++------------------+
+| '2425bhartesh'/1 |
++------------------+
+|             2425 |
++------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select * from Numberstring;
++---------------+
+| c1            |
++---------------+
+| 1saleel       |
+| 34sharmin     |
+| 56731vrushali |
+| 6001GITA      |
+| 6129VRUSHALI  |
+| 6473SHARMIN   |
+| 6781BANDISH   |
+| 7369SMITH     |
+| 7415AARAV     |
+| 7421THOMAS    |
+| 743ruhan      |
+| 7499ALLEN     |
+| 7521WARD      |
+| 7566JONES     |
+| 7654MARTIN    |
+| 7657822ajay   |
+| 7698BLAKE     |
+| 7782CLARK     |
+| 7788SCOTT     |
+| 7839KING      |
+| 7840FRED      |
+| 7844TURNER    |
+| 7876ADAMS     |
+| 7900JAMES     |
+| 7902FORD      |
+| 7919HOFFMAN   |
+| 7920GRASS     |
+| 7934MILLER    |
+| 7945AARUSH    |
+| 7949ALEX      |
+| 836379bandish |
+| 8433NATASHA   |
+| 9400SANGITA   |
+| 9473SUPRIYA   |
++---------------+
+34 rows in set (0.02 sec)
+
+mysql> desc Numberstring;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| c1    | varchar(45) | NO   | PRI | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal+1000 UpdatedSalary from emp;
++----------+---------------------+------------+------+------+---------------+
+| ename    | job                 | hiredate   | sal  | comm | UpdatedSalary |
++----------+---------------------+------------+------+------+---------------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |          2750 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |          2750 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |          2750 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |          2750 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |          1800 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |          4350 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |          2750 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |          2600 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |          2250 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |          3975 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |          2250 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |          3850 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |          3450 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |          4000 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |          6000 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |          6000 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |          2500 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |          2100 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |          1950 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |          4000 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |          5150 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |          3575 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |          2300 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |          2350 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |          2250 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |          2750 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |          2750 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |          2750 |
++----------+---------------------+------------+------+------+---------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal+comm taotal from emp;
++----------+---------------------+------------+------+------+--------+
+| ename    | job                 | hiredate   | sal  | comm | taotal |
++----------+---------------------+------------+------+------+--------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |   NULL |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |   NULL |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |   NULL |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |   NULL |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |   NULL |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |   NULL |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |   NULL |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |   1900 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |   1750 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |   NULL |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |   2650 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |   NULL |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |   NULL |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |   NULL |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |   NULL |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |   NULL |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |   1500 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |   NULL |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |   NULL |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |   NULL |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |   NULL |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |   5275 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |   NULL |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |   4050 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |   1750 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |   NULL |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |   NULL |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |   NULL |
++----------+---------------------+------------+------+------+--------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,ifnull(null,0) from emp;
++----------+---------------------+------------+------+------+----------------+
+| ename    | job                 | hiredate   | sal  | comm | ifnull(null,0) |
++----------+---------------------+------------+------+------+----------------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |              0 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |              0 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |              0 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |              0 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |              0 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |              0 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |              0 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |              0 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |              0 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |              0 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |              0 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |              0 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |              0 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |              0 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |              0 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |              0 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |              0 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |              0 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |              0 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |              0 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |              0 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |              0 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |              0 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |              0 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |              0 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |              0 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |              0 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |              0 |
++----------+---------------------+------------+------+------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,ifnull(comm,NA),sal+comm Total from emp;
+ERROR 1054 (42S22): Unknown column 'NA' in 'field list'
+mysql> select ename, job, hiredate, sal,comm,sal+comm Total,ifnull(comm,0) from emp;
++----------+---------------------+------------+------+------+-------+----------------+
+| ename    | job                 | hiredate   | sal  | comm | Total | ifnull(comm,0) |
++----------+---------------------+------------+------+------+-------+----------------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |  NULL |              0 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |  NULL |              0 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |  1900 |            300 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |  1750 |            500 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |  NULL |              0 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |  2650 |           1400 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |  NULL |              0 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |  NULL |              0 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |  NULL |              0 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |  NULL |              0 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |  NULL |              0 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |  1500 |              0 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |  NULL |              0 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |  NULL |              0 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |  NULL |              0 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |  NULL |              0 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |  5275 |           2700 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |  NULL |              0 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |  4050 |           2700 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |  1750 |            500 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |  NULL |              0 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |  NULL |              0 |
++----------+---------------------+------------+------+------+-------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal+comm,ifnull(comm,0) from emp;
++----------+---------------------+------------+------+------+----------+----------------+
+| ename    | job                 | hiredate   | sal  | comm | sal+comm | ifnull(comm,0) |
++----------+---------------------+------------+------+------+----------+----------------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |     NULL |              0 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |     NULL |              0 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |     1900 |            300 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |     1750 |            500 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |     NULL |              0 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |     2650 |           1400 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |     NULL |              0 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |     NULL |              0 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |     NULL |              0 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |     NULL |              0 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |     NULL |              0 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |     1500 |              0 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |     NULL |              0 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |     NULL |              0 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |     NULL |              0 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |     NULL |              0 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |     5275 |           2700 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |     NULL |              0 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |     4050 |           2700 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |     1750 |            500 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |     NULL |              0 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |     NULL |              0 |
++----------+---------------------+------------+------+------+----------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal+ifnull(comm,0) from emp;
++----------+---------------------+------------+------+------+--------------------+
+| ename    | job                 | hiredate   | sal  | comm | sal+ifnull(comm,0) |
++----------+---------------------+------------+------+------+--------------------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |               1750 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |               1750 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |               1750 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |               1750 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |                800 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |               3350 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |               1750 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |               1900 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |               1750 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |               2975 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |               2650 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |               2850 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |               2450 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |               3000 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |               5000 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |               5000 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |               1500 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |               1100 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |                950 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |               3000 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |               4150 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |               5275 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |               1300 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |               4050 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |               1750 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |               1750 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |               1750 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |               1750 |
++----------+---------------------+------------+------+------+--------------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal+ifnull(comm,0) Total  from emp;
++----------+---------------------+------------+------+------+-------+
+| ename    | job                 | hiredate   | sal  | comm | Total |
++----------+---------------------+------------+------+------+-------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |  1750 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |  1750 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |  1750 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |  1750 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |   800 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |  3350 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |  1750 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |  1900 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |  1750 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |  2975 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |  2650 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |  2850 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |  2450 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |  3000 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |  5000 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |  5000 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |  1500 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |  1100 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |   950 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |  3000 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |  4150 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |  5275 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |  1300 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |  4050 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |  1750 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |  1750 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |  1750 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |  1750 |
++----------+---------------------+------------+------+------+-------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal*.2 Percenthike , sal=sal*.2 Total  from emp;
++----------+---------------------+------------+------+------+-------------+-------+
+| ename    | job                 | hiredate   | sal  | comm | Percenthike | Total |
++----------+---------------------+------------+------+------+-------------+-------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |       160.0 |     0 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |       670.0 |     0 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |       320.0 |     0 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |       250.0 |     0 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |       595.0 |     0 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |       250.0 |     0 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |       570.0 |     0 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |       490.0 |     0 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |       600.0 |     0 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |      1000.0 |     0 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |      1000.0 |     0 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |       300.0 |     0 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |       220.0 |     0 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |       190.0 |     0 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |       600.0 |     0 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |       830.0 |     0 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |       515.0 |     0 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |       260.0 |     0 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |       270.0 |     0 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |       250.0 |     0 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |       350.0 |     0 |
++----------+---------------------+------------+------+------+-------------+-------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate, sal,comm,sal*.2 Percenthike , sal+sal*.2 Total  from emp;
++----------+---------------------+------------+------+------+-------------+--------+
+| ename    | job                 | hiredate   | sal  | comm | Percenthike | Total  |
++----------+---------------------+------------+------+------+-------------+--------+
+| GITA     | Compliance officers | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| BANDISH  | Public Relation     | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| SMITH    | CLERK               | 1980-12-17 |  800 | NULL |       160.0 |  960.0 |
+| AARAV    | CLERK               | 1981-12-31 | 3350 | NULL |       670.0 | 4020.0 |
+| THOMAS   | CLERK               | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| ALLEN    | SALESMAN            | 1981-02-20 | 1600 |  300 |       320.0 | 1920.0 |
+| WARD     | SALESMAN            | 1981-02-22 | 1250 |  500 |       250.0 | 1500.0 |
+| JONES    | MANAGER             | 1981-04-02 | 2975 | NULL |       595.0 | 3570.0 |
+| MARTIN   | SALESMAN            | 1981-09-28 | 1250 | 1400 |       250.0 | 1500.0 |
+| BLAKE    | MANAGER             | 1981-05-01 | 2850 | NULL |       570.0 | 3420.0 |
+| CLARK    | MANAGER             | 1981-06-09 | 2450 | NULL |       490.0 | 2940.0 |
+| SCOTT    | ANALYST             | 1982-12-09 | 3000 | NULL |       600.0 | 3600.0 |
+| KING     | PRESIDENT           | 1981-11-17 | 5000 | NULL |      1000.0 | 6000.0 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 5000 | NULL |      1000.0 | 6000.0 |
+| TURNER   | SALESMAN            | 1981-09-08 | 1500 |    0 |       300.0 | 1800.0 |
+| ADAMS    | CLERK               | 1983-01-12 | 1100 | NULL |       220.0 | 1320.0 |
+| JAMES    | CLERK               | 1981-12-03 |  950 | NULL |       190.0 | 1140.0 |
+| FORD     | ANALYST             | 1981-12-03 | 3000 | NULL |       600.0 | 3600.0 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 4150 | NULL |       830.0 | 4980.0 |
+| GRASS    | SALESMAN            | 1980-02-14 | 2575 | 2700 |       515.0 | 3090.0 |
+| MILLER   | CLERK               | 1982-01-23 | 1300 | NULL |       260.0 | 1560.0 |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1350 | 2700 |       270.0 | 1620.0 |
+| ALEX     | MANAGER             | 1982-01-24 | 1250 |  500 |       250.0 | 1500.0 |
+| NATASHA  | CLERK               | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| SANGITA  | Compliance officers | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1750 | NULL |       350.0 | 2100.0 |
++----------+---------------------+------------+------+------+-------------+--------+
+28 rows in set (0.00 sec)
+
+mysql> use db2;
+Database changed
+mysql> select * from db1.emp;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |
+|  7788 | SCOTT    | M      | ANALYST             | 7566 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |
+|  7902 | FORD     | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+
+28 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| car           |
+| demo          |
+| dept          |
+| employee      |
+| employee2     |
+| logindetails  |
+| logindetails2 |
++---------------+
+7 rows in set (0.00 sec)
+
+mysql> use db1;
+Database changed
+mysql> show database();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database()' at line 1
+mysql> selectdatabase();
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selectdatabase()' at line 1
+mysql> select database();
++------------+
+| database() |
++------------+
+| db1        |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select ename, job, hiredate from emp;
++----------+---------------------+------------+
+| ename    | job                 | hiredate   |
++----------+---------------------+------------+
+| GITA     | Compliance officers | 1981-07-19 |
+| VRUSHALI | Compliance officers | 1981-07-19 |
+| SHARMIN  | Public Relation     | 1981-07-19 |
+| BANDISH  | Public Relation     | 1981-07-19 |
+| SMITH    | CLERK               | 1980-12-17 |
+| AARAV    | CLERK               | 1981-12-31 |
+| THOMAS   | CLERK               | 1981-07-19 |
+| ALLEN    | SALESMAN            | 1981-02-20 |
+| WARD     | SALESMAN            | 1981-02-22 |
+| JONES    | MANAGER             | 1981-04-02 |
+| MARTIN   | SALESMAN            | 1981-09-28 |
+| BLAKE    | MANAGER             | 1981-05-01 |
+| CLARK    | MANAGER             | 1981-06-09 |
+| SCOTT    | ANALYST             | 1982-12-09 |
+| KING     | PRESIDENT           | 1981-11-17 |
+| FRED     | vice PRESIDENT      | 1983-08-09 |
+| TURNER   | SALESMAN            | 1981-09-08 |
+| ADAMS    | CLERK               | 1983-01-12 |
+| JAMES    | CLERK               | 1981-12-03 |
+| FORD     | ANALYST             | 1981-12-03 |
+| HOFFMAN  | MANAGER             | 1982-03-24 |
+| GRASS    | SALESMAN            | 1980-02-14 |
+| MILLER   | CLERK               | 1982-01-23 |
+| AARUSH   | SALESMAN            | 1980-02-14 |
+| ALEX     | MANAGER             | 1982-01-24 |
+| NATASHA  | CLERK               | 1981-07-19 |
+| SANGITA  | Compliance officers | 1981-07-19 |
+| SUPRIYA  | ANALYST             | 1981-07-19 |
++----------+---------------------+------------+
+28 rows in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2022-05-17 08:44:14 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2022-05-17 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select curtime();
++-----------+
+| curtime() |
++-----------+
+| 08:44:49  |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select now(),curdate(),curtime();
++---------------------+------------+-----------+
+| now()               | curdate()  | curtime() |
++---------------------+------------+-----------+
+| 2022-05-17 08:45:09 | 2022-05-17 | 08:45:09  |
++---------------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select now()+5;
++----------------+
+| now()+5        |
++----------------+
+| 20220517084632 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select now()+ interval+ 5 day;
++------------------------+
+| now()+ interval+ 5 day |
++------------------------+
+| 2022-05-22 08:50:19    |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select now()+ interval+ 5,5.20 day_minute;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',5.20 day_minute' at line 1
+mysql> select now()+ interval+ '5,5.20' day_minute;
++--------------------------------------+
+| now()+ interval+ '5,5.20' day_minute |
++--------------------------------------+
+| 2022-05-22 14:13:46                  |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now()+ interval+ 5 year;
++-------------------------+
+| now()+ interval+ 5 year |
++-------------------------+
+| 2027-05-17 08:54:21     |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now()+ interval+ 5 month;
++--------------------------+
+| now()+ interval+ 5 month |
++--------------------------+
+| 2022-10-17 08:54:29      |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() "Isuue date",now()+ interval 7 days "Recieved Date";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'days "Recieved Date"' at line 1
+mysql> select now() 'Isuue date',now()+ interval 7 days 'Recieved Date';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'days 'Recieved Date'' at line 1
+mysql> select now() 'Isuuedate',now()+ interval 7 days 'RecievedDate';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'days 'RecievedDate'' at line 1
+mysql> select now() 'Isuuedate',now()+ interval +7 days 'RecievedDate';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'days 'RecievedDate'' at line 1
+mysql> select now() Isuuedate ,now()+interval +7 days RecievedDate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'days RecievedDate' at line 1
+mysql> select now() "Isuue date" ,now()+interval +7 day "Recieved Date";
++---------------------+---------------------+
+| Isuue date          | Recieved Date       |
++---------------------+---------------------+
+| 2022-05-17 09:00:44 | 2022-05-24 09:00:44 |
++---------------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> select now() ,adddate(now()+inteval 1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 day)' at line 1
+mysql> select now() ,adddate(now(),inteval 1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 day)' at line 1
+mysql> select now() ,add_date(now(),inteval 1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 day)' at line 1
+mysql> select now() ,add_date(now()+inteval 1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 day)' at line 1
+mysql> select now() ,date_add(now()+inteval 1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1 day)' at line 1
+mysql> select now() ,date_add(now(),inteval 1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inteval 1 day)' at line 1
+mysql> select now() ,date_add(now(),inteval+1 day);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'inteval+1 day)' at line 1
+mysql> select now(), date_add(now(),interval+1 day);
++---------------------+--------------------------------+
+| now()               | date_add(now(),interval+1 day) |
++---------------------+--------------------------------+
+| 2022-05-17 09:05:16 | 2022-05-18 09:05:16            |
++---------------------+--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now(), date_add(now(),interval+1 week);
++---------------------+---------------------------------+
+| now()               | date_add(now(),interval+1 week) |
++---------------------+---------------------------------+
+| 2022-05-17 09:05:27 | 2022-05-24 09:05:27             |
++---------------------+---------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now(), date_add(now(),interval+1 month);
++---------------------+----------------------------------+
+| now()               | date_add(now(),interval+1 month) |
++---------------------+----------------------------------+
+| 2022-05-17 09:05:36 | 2022-06-17 09:05:36              |
++---------------------+----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now(), date_sub(now(),interval+1 month);
++---------------------+----------------------------------+
+| now()               | date_sub(now(),interval+1 month) |
++---------------------+----------------------------------+
+| 2022-05-17 09:05:55 | 2022-04-17 09:05:55              |
++---------------------+----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select now();
++---------------------+
+| now()               |
++---------------------+
+| 2022-05-17 09:06:18 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,Extract(day month year from date) 'Date' from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'month year from date) 'Date' from emp' at line 1
+mysql> select ename, job, hiredate ,Extract(day from date) 'Date' from emp;
+ERROR 1054 (42S22): Unknown column 'date' in 'field list'
+mysql> select ename, job, hiredate ,Extract(day month year from hiredate) 'Date' from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'month year from hiredate) 'Date' from emp' at line 1
+mysql> select ename, job, hiredate ,Extract(day from hiredate) 'Date' from emp;
++----------+---------------------+------------+------+
+| ename    | job                 | hiredate   | Date |
++----------+---------------------+------------+------+
+| GITA     | Compliance officers | 1981-07-19 |   19 |
+| VRUSHALI | Compliance officers | 1981-07-19 |   19 |
+| SHARMIN  | Public Relation     | 1981-07-19 |   19 |
+| BANDISH  | Public Relation     | 1981-07-19 |   19 |
+| SMITH    | CLERK               | 1980-12-17 |   17 |
+| AARAV    | CLERK               | 1981-12-31 |   31 |
+| THOMAS   | CLERK               | 1981-07-19 |   19 |
+| ALLEN    | SALESMAN            | 1981-02-20 |   20 |
+| WARD     | SALESMAN            | 1981-02-22 |   22 |
+| JONES    | MANAGER             | 1981-04-02 |    2 |
+| MARTIN   | SALESMAN            | 1981-09-28 |   28 |
+| BLAKE    | MANAGER             | 1981-05-01 |    1 |
+| CLARK    | MANAGER             | 1981-06-09 |    9 |
+| SCOTT    | ANALYST             | 1982-12-09 |    9 |
+| KING     | PRESIDENT           | 1981-11-17 |   17 |
+| FRED     | vice PRESIDENT      | 1983-08-09 |    9 |
+| TURNER   | SALESMAN            | 1981-09-08 |    8 |
+| ADAMS    | CLERK               | 1983-01-12 |   12 |
+| JAMES    | CLERK               | 1981-12-03 |    3 |
+| FORD     | ANALYST             | 1981-12-03 |    3 |
+| HOFFMAN  | MANAGER             | 1982-03-24 |   24 |
+| GRASS    | SALESMAN            | 1980-02-14 |   14 |
+| MILLER   | CLERK               | 1982-01-23 |   23 |
+| AARUSH   | SALESMAN            | 1980-02-14 |   14 |
+| ALEX     | MANAGER             | 1982-01-24 |   24 |
+| NATASHA  | CLERK               | 1981-07-19 |   19 |
+| SANGITA  | Compliance officers | 1981-07-19 |   19 |
+| SUPRIYA  | ANALYST             | 1981-07-19 |   19 |
++----------+---------------------+------------+------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,Extract(day ,month, year from hiredate) 'Date' from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',month, year from hiredate) 'Date' from emp' at line 1
+mysql> select ename, job, hiredate ,Extract(day from hiredate, month from hiredate, year from hiredate) 'Date' from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', month from hiredate, year from hiredate) 'Date' from emp' at line 1
+mysql> select ename, job, hiredate ,Extract(day from hiredate) 'Day',Extract(month from hiredate) 'Month',Extract(year from hiredate) 'year' from emp;
++----------+---------------------+------------+------+-------+------+
+| ename    | job                 | hiredate   | Day  | Month | year |
++----------+---------------------+------------+------+-------+------+
+| GITA     | Compliance officers | 1981-07-19 |   19 |     7 | 1981 |
+| VRUSHALI | Compliance officers | 1981-07-19 |   19 |     7 | 1981 |
+| SHARMIN  | Public Relation     | 1981-07-19 |   19 |     7 | 1981 |
+| BANDISH  | Public Relation     | 1981-07-19 |   19 |     7 | 1981 |
+| SMITH    | CLERK               | 1980-12-17 |   17 |    12 | 1980 |
+| AARAV    | CLERK               | 1981-12-31 |   31 |    12 | 1981 |
+| THOMAS   | CLERK               | 1981-07-19 |   19 |     7 | 1981 |
+| ALLEN    | SALESMAN            | 1981-02-20 |   20 |     2 | 1981 |
+| WARD     | SALESMAN            | 1981-02-22 |   22 |     2 | 1981 |
+| JONES    | MANAGER             | 1981-04-02 |    2 |     4 | 1981 |
+| MARTIN   | SALESMAN            | 1981-09-28 |   28 |     9 | 1981 |
+| BLAKE    | MANAGER             | 1981-05-01 |    1 |     5 | 1981 |
+| CLARK    | MANAGER             | 1981-06-09 |    9 |     6 | 1981 |
+| SCOTT    | ANALYST             | 1982-12-09 |    9 |    12 | 1982 |
+| KING     | PRESIDENT           | 1981-11-17 |   17 |    11 | 1981 |
+| FRED     | vice PRESIDENT      | 1983-08-09 |    9 |     8 | 1983 |
+| TURNER   | SALESMAN            | 1981-09-08 |    8 |     9 | 1981 |
+| ADAMS    | CLERK               | 1983-01-12 |   12 |     1 | 1983 |
+| JAMES    | CLERK               | 1981-12-03 |    3 |    12 | 1981 |
+| FORD     | ANALYST             | 1981-12-03 |    3 |    12 | 1981 |
+| HOFFMAN  | MANAGER             | 1982-03-24 |   24 |     3 | 1982 |
+| GRASS    | SALESMAN            | 1980-02-14 |   14 |     2 | 1980 |
+| MILLER   | CLERK               | 1982-01-23 |   23 |     1 | 1982 |
+| AARUSH   | SALESMAN            | 1980-02-14 |   14 |     2 | 1980 |
+| ALEX     | MANAGER             | 1982-01-24 |   24 |     1 | 1982 |
+| NATASHA  | CLERK               | 1981-07-19 |   19 |     7 | 1981 |
+| SANGITA  | Compliance officers | 1981-07-19 |   19 |     7 | 1981 |
+| SUPRIYA  | ANALYST             | 1981-07-19 |   19 |     7 | 1981 |
++----------+---------------------+------------+------+-------+------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,concat(Extract(day from hiredate),Extract(month from hiredate),Extract(year from hiredate)) 'year' from emp;
++----------+---------------------+------------+----------+
+| ename    | job                 | hiredate   | year     |
++----------+---------------------+------------+----------+
+| GITA     | Compliance officers | 1981-07-19 | 1971981  |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1971981  |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1971981  |
+| BANDISH  | Public Relation     | 1981-07-19 | 1971981  |
+| SMITH    | CLERK               | 1980-12-17 | 17121980 |
+| AARAV    | CLERK               | 1981-12-31 | 31121981 |
+| THOMAS   | CLERK               | 1981-07-19 | 1971981  |
+| ALLEN    | SALESMAN            | 1981-02-20 | 2021981  |
+| WARD     | SALESMAN            | 1981-02-22 | 2221981  |
+| JONES    | MANAGER             | 1981-04-02 | 241981   |
+| MARTIN   | SALESMAN            | 1981-09-28 | 2891981  |
+| BLAKE    | MANAGER             | 1981-05-01 | 151981   |
+| CLARK    | MANAGER             | 1981-06-09 | 961981   |
+| SCOTT    | ANALYST             | 1982-12-09 | 9121982  |
+| KING     | PRESIDENT           | 1981-11-17 | 17111981 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 981983   |
+| TURNER   | SALESMAN            | 1981-09-08 | 891981   |
+| ADAMS    | CLERK               | 1983-01-12 | 1211983  |
+| JAMES    | CLERK               | 1981-12-03 | 3121981  |
+| FORD     | ANALYST             | 1981-12-03 | 3121981  |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 2431982  |
+| GRASS    | SALESMAN            | 1980-02-14 | 1421980  |
+| MILLER   | CLERK               | 1982-01-23 | 2311982  |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1421980  |
+| ALEX     | MANAGER             | 1982-01-24 | 2411982  |
+| NATASHA  | CLERK               | 1981-07-19 | 1971981  |
+| SANGITA  | Compliance officers | 1981-07-19 | 1971981  |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1971981  |
++----------+---------------------+------------+----------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,concat(Extract(day from hiredate),Extract(month from hiredate),Extract(year from hiredate)) 'Day-Month-Year' from emp;
++----------+---------------------+------------+----------------+
+| ename    | job                 | hiredate   | Day-Month-Year |
++----------+---------------------+------------+----------------+
+| GITA     | Compliance officers | 1981-07-19 | 1971981        |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1971981        |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1971981        |
+| BANDISH  | Public Relation     | 1981-07-19 | 1971981        |
+| SMITH    | CLERK               | 1980-12-17 | 17121980       |
+| AARAV    | CLERK               | 1981-12-31 | 31121981       |
+| THOMAS   | CLERK               | 1981-07-19 | 1971981        |
+| ALLEN    | SALESMAN            | 1981-02-20 | 2021981        |
+| WARD     | SALESMAN            | 1981-02-22 | 2221981        |
+| JONES    | MANAGER             | 1981-04-02 | 241981         |
+| MARTIN   | SALESMAN            | 1981-09-28 | 2891981        |
+| BLAKE    | MANAGER             | 1981-05-01 | 151981         |
+| CLARK    | MANAGER             | 1981-06-09 | 961981         |
+| SCOTT    | ANALYST             | 1982-12-09 | 9121982        |
+| KING     | PRESIDENT           | 1981-11-17 | 17111981       |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 981983         |
+| TURNER   | SALESMAN            | 1981-09-08 | 891981         |
+| ADAMS    | CLERK               | 1983-01-12 | 1211983        |
+| JAMES    | CLERK               | 1981-12-03 | 3121981        |
+| FORD     | ANALYST             | 1981-12-03 | 3121981        |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 2431982        |
+| GRASS    | SALESMAN            | 1980-02-14 | 1421980        |
+| MILLER   | CLERK               | 1982-01-23 | 2311982        |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1421980        |
+| ALEX     | MANAGER             | 1982-01-24 | 2411982        |
+| NATASHA  | CLERK               | 1981-07-19 | 1971981        |
+| SANGITA  | Compliance officers | 1981-07-19 | 1971981        |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1971981        |
++----------+---------------------+------------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,concat(Extract(day from hiredate) , Extract(month from hiredate) , Extract(year from hiredate)) 'Day-Month-Year' from emp;
++----------+---------------------+------------+----------------+
+| ename    | job                 | hiredate   | Day-Month-Year |
++----------+---------------------+------------+----------------+
+| GITA     | Compliance officers | 1981-07-19 | 1971981        |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1971981        |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1971981        |
+| BANDISH  | Public Relation     | 1981-07-19 | 1971981        |
+| SMITH    | CLERK               | 1980-12-17 | 17121980       |
+| AARAV    | CLERK               | 1981-12-31 | 31121981       |
+| THOMAS   | CLERK               | 1981-07-19 | 1971981        |
+| ALLEN    | SALESMAN            | 1981-02-20 | 2021981        |
+| WARD     | SALESMAN            | 1981-02-22 | 2221981        |
+| JONES    | MANAGER             | 1981-04-02 | 241981         |
+| MARTIN   | SALESMAN            | 1981-09-28 | 2891981        |
+| BLAKE    | MANAGER             | 1981-05-01 | 151981         |
+| CLARK    | MANAGER             | 1981-06-09 | 961981         |
+| SCOTT    | ANALYST             | 1982-12-09 | 9121982        |
+| KING     | PRESIDENT           | 1981-11-17 | 17111981       |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 981983         |
+| TURNER   | SALESMAN            | 1981-09-08 | 891981         |
+| ADAMS    | CLERK               | 1983-01-12 | 1211983        |
+| JAMES    | CLERK               | 1981-12-03 | 3121981        |
+| FORD     | ANALYST             | 1981-12-03 | 3121981        |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 2431982        |
+| GRASS    | SALESMAN            | 1980-02-14 | 1421980        |
+| MILLER   | CLERK               | 1982-01-23 | 2311982        |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1421980        |
+| ALEX     | MANAGER             | 1982-01-24 | 2411982        |
+| NATASHA  | CLERK               | 1981-07-19 | 1971981        |
+| SANGITA  | Compliance officers | 1981-07-19 | 1971981        |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1971981        |
++----------+---------------------+------------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,concat( Extract(day from hiredate) , Extract( month from hiredate) , Extract( year from hiredate)) 'Day-Month-Year' from emp;
++----------+---------------------+------------+----------------+
+| ename    | job                 | hiredate   | Day-Month-Year |
++----------+---------------------+------------+----------------+
+| GITA     | Compliance officers | 1981-07-19 | 1971981        |
+| VRUSHALI | Compliance officers | 1981-07-19 | 1971981        |
+| SHARMIN  | Public Relation     | 1981-07-19 | 1971981        |
+| BANDISH  | Public Relation     | 1981-07-19 | 1971981        |
+| SMITH    | CLERK               | 1980-12-17 | 17121980       |
+| AARAV    | CLERK               | 1981-12-31 | 31121981       |
+| THOMAS   | CLERK               | 1981-07-19 | 1971981        |
+| ALLEN    | SALESMAN            | 1981-02-20 | 2021981        |
+| WARD     | SALESMAN            | 1981-02-22 | 2221981        |
+| JONES    | MANAGER             | 1981-04-02 | 241981         |
+| MARTIN   | SALESMAN            | 1981-09-28 | 2891981        |
+| BLAKE    | MANAGER             | 1981-05-01 | 151981         |
+| CLARK    | MANAGER             | 1981-06-09 | 961981         |
+| SCOTT    | ANALYST             | 1982-12-09 | 9121982        |
+| KING     | PRESIDENT           | 1981-11-17 | 17111981       |
+| FRED     | vice PRESIDENT      | 1983-08-09 | 981983         |
+| TURNER   | SALESMAN            | 1981-09-08 | 891981         |
+| ADAMS    | CLERK               | 1983-01-12 | 1211983        |
+| JAMES    | CLERK               | 1981-12-03 | 3121981        |
+| FORD     | ANALYST             | 1981-12-03 | 3121981        |
+| HOFFMAN  | MANAGER             | 1982-03-24 | 2431982        |
+| GRASS    | SALESMAN            | 1980-02-14 | 1421980        |
+| MILLER   | CLERK               | 1982-01-23 | 2311982        |
+| AARUSH   | SALESMAN            | 1980-02-14 | 1421980        |
+| ALEX     | MANAGER             | 1982-01-24 | 2411982        |
+| NATASHA  | CLERK               | 1981-07-19 | 1971981        |
+| SANGITA  | Compliance officers | 1981-07-19 | 1971981        |
+| SUPRIYA  | ANALYST             | 1981-07-19 | 1971981        |
++----------+---------------------+------------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,monthname(hiredate);
+ERROR 1054 (42S22): Unknown column 'ename' in 'field list'
+mysql> select ename, job, hiredate ,monthname(hiredate) from emp;
++----------+---------------------+------------+---------------------+
+| ename    | job                 | hiredate   | monthname(hiredate) |
++----------+---------------------+------------+---------------------+
+| GITA     | Compliance officers | 1981-07-19 | July                |
+| VRUSHALI | Compliance officers | 1981-07-19 | July                |
+| SHARMIN  | Public Relation     | 1981-07-19 | July                |
+| BANDISH  | Public Relation     | 1981-07-19 | July                |
+| SMITH    | CLERK               | 1980-12-17 | December            |
+| AARAV    | CLERK               | 1981-12-31 | December            |
+| THOMAS   | CLERK               | 1981-07-19 | July                |
+| ALLEN    | SALESMAN            | 1981-02-20 | February            |
+| WARD     | SALESMAN            | 1981-02-22 | February            |
+| JONES    | MANAGER             | 1981-04-02 | April               |
+| MARTIN   | SALESMAN            | 1981-09-28 | September           |
+| BLAKE    | MANAGER             | 1981-05-01 | May                 |
+| CLARK    | MANAGER             | 1981-06-09 | June                |
+| SCOTT    | ANALYST             | 1982-12-09 | December            |
+| KING     | PRESIDENT           | 1981-11-17 | November            |
+| FRED     | vice PRESIDENT      | 1983-08-09 | August              |
+| TURNER   | SALESMAN            | 1981-09-08 | September           |
+| ADAMS    | CLERK               | 1983-01-12 | January             |
+| JAMES    | CLERK               | 1981-12-03 | December            |
+| FORD     | ANALYST             | 1981-12-03 | December            |
+| HOFFMAN  | MANAGER             | 1982-03-24 | March               |
+| GRASS    | SALESMAN            | 1980-02-14 | February            |
+| MILLER   | CLERK               | 1982-01-23 | January             |
+| AARUSH   | SALESMAN            | 1980-02-14 | February            |
+| ALEX     | MANAGER             | 1982-01-24 | January             |
+| NATASHA  | CLERK               | 1981-07-19 | July                |
+| SANGITA  | Compliance officers | 1981-07-19 | July                |
+| SUPRIYA  | ANALYST             | 1981-07-19 | July                |
++----------+---------------------+------------+---------------------+
+28 rows in set (0.01 sec)
+
+mysql> select ename, job, hiredate ,monthname(hiredate),month(hiredate) from emp;
++----------+---------------------+------------+---------------------+-----------------+
+| ename    | job                 | hiredate   | monthname(hiredate) | month(hiredate) |
++----------+---------------------+------------+---------------------+-----------------+
+| GITA     | Compliance officers | 1981-07-19 | July                |               7 |
+| VRUSHALI | Compliance officers | 1981-07-19 | July                |               7 |
+| SHARMIN  | Public Relation     | 1981-07-19 | July                |               7 |
+| BANDISH  | Public Relation     | 1981-07-19 | July                |               7 |
+| SMITH    | CLERK               | 1980-12-17 | December            |              12 |
+| AARAV    | CLERK               | 1981-12-31 | December            |              12 |
+| THOMAS   | CLERK               | 1981-07-19 | July                |               7 |
+| ALLEN    | SALESMAN            | 1981-02-20 | February            |               2 |
+| WARD     | SALESMAN            | 1981-02-22 | February            |               2 |
+| JONES    | MANAGER             | 1981-04-02 | April               |               4 |
+| MARTIN   | SALESMAN            | 1981-09-28 | September           |               9 |
+| BLAKE    | MANAGER             | 1981-05-01 | May                 |               5 |
+| CLARK    | MANAGER             | 1981-06-09 | June                |               6 |
+| SCOTT    | ANALYST             | 1982-12-09 | December            |              12 |
+| KING     | PRESIDENT           | 1981-11-17 | November            |              11 |
+| FRED     | vice PRESIDENT      | 1983-08-09 | August              |               8 |
+| TURNER   | SALESMAN            | 1981-09-08 | September           |               9 |
+| ADAMS    | CLERK               | 1983-01-12 | January             |               1 |
+| JAMES    | CLERK               | 1981-12-03 | December            |              12 |
+| FORD     | ANALYST             | 1981-12-03 | December            |              12 |
+| HOFFMAN  | MANAGER             | 1982-03-24 | March               |               3 |
+| GRASS    | SALESMAN            | 1980-02-14 | February            |               2 |
+| MILLER   | CLERK               | 1982-01-23 | January             |               1 |
+| AARUSH   | SALESMAN            | 1980-02-14 | February            |               2 |
+| ALEX     | MANAGER             | 1982-01-24 | January             |               1 |
+| NATASHA  | CLERK               | 1981-07-19 | July                |               7 |
+| SANGITA  | Compliance officers | 1981-07-19 | July                |               7 |
+| SUPRIYA  | ANALYST             | 1981-07-19 | July                |               7 |
++----------+---------------------+------------+---------------------+-----------------+
+28 rows in set (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.02 sec)
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   | PRI | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select STARTEDON , str_to_date(%d/%m/%Y) from dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%d/%m/%Y) from dept' at line 1
+mysql> select STARTEDON , str_to_date(STARTEDON, %d/%m/%Y) from dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%d/%m/%Y) from dept' at line 1
+mysql> select STARTEDON  str_to_date(STARTEDON, %d/%m/%Y) from dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(STARTEDON, %d/%m/%Y) from dept' at line 1
+mysql> select STARTEDON , str_to_date(STARTEDON, %d/%c/%Y) from dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%d/%c/%Y) from dept' at line 1
+mysql> select STARTEDON , str_to_date(STARTEDON,( %d/%M/%Y ) ) from dept;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%d/%M/%Y ) ) from dept' at line 1
+mysql> select STARTEDON , str_to_date(STARTEDON, '%d/%c/%Y') from dept;
++------------+------------------------------------+
+| STARTEDON  | str_to_date(STARTEDON, '%d/%c/%Y') |
++------------+------------------------------------+
+| 24/03/1989 | 1989-03-24                         |
+| 12/04/1989 | 1989-04-12                         |
+| 13/04/1989 | 1989-04-13                         |
+| 12/07/1989 | 1989-07-12                         |
+| 22/12/1989 | 1989-12-22                         |
++------------+------------------------------------+
+5 rows in set (0.01 sec)
+
+mysql> select STARTEDON , str_to_date(STARTEDON, '%d/%M/%Y') from dept;
++------------+------------------------------------+
+| STARTEDON  | str_to_date(STARTEDON, '%d/%M/%Y') |
++------------+------------------------------------+
+| 24/03/1989 | NULL                               |
+| 12/04/1989 | NULL                               |
+| 13/04/1989 | NULL                               |
+| 12/07/1989 | NULL                               |
+| 22/12/1989 | NULL                               |
++------------+------------------------------------+
+5 rows in set, 5 warnings (0.01 sec)
+
+mysql> select ename, job, hiredate ,date_format(hiredate , '%a %c') from emp;
++----------+---------------------+------------+---------------------------------+
+| ename    | job                 | hiredate   | date_format(hiredate , '%a %c') |
++----------+---------------------+------------+---------------------------------+
+| GITA     | Compliance officers | 1981-07-19 | Sun 7                           |
+| VRUSHALI | Compliance officers | 1981-07-19 | Sun 7                           |
+| SHARMIN  | Public Relation     | 1981-07-19 | Sun 7                           |
+| BANDISH  | Public Relation     | 1981-07-19 | Sun 7                           |
+| SMITH    | CLERK               | 1980-12-17 | Wed 12                          |
+| AARAV    | CLERK               | 1981-12-31 | Thu 12                          |
+| THOMAS   | CLERK               | 1981-07-19 | Sun 7                           |
+| ALLEN    | SALESMAN            | 1981-02-20 | Fri 2                           |
+| WARD     | SALESMAN            | 1981-02-22 | Sun 2                           |
+| JONES    | MANAGER             | 1981-04-02 | Thu 4                           |
+| MARTIN   | SALESMAN            | 1981-09-28 | Mon 9                           |
+| BLAKE    | MANAGER             | 1981-05-01 | Fri 5                           |
+| CLARK    | MANAGER             | 1981-06-09 | Tue 6                           |
+| SCOTT    | ANALYST             | 1982-12-09 | Thu 12                          |
+| KING     | PRESIDENT           | 1981-11-17 | Tue 11                          |
+| FRED     | vice PRESIDENT      | 1983-08-09 | Tue 8                           |
+| TURNER   | SALESMAN            | 1981-09-08 | Tue 9                           |
+| ADAMS    | CLERK               | 1983-01-12 | Wed 1                           |
+| JAMES    | CLERK               | 1981-12-03 | Thu 12                          |
+| FORD     | ANALYST             | 1981-12-03 | Thu 12                          |
+| HOFFMAN  | MANAGER             | 1982-03-24 | Wed 3                           |
+| GRASS    | SALESMAN            | 1980-02-14 | Thu 2                           |
+| MILLER   | CLERK               | 1982-01-23 | Sat 1                           |
+| AARUSH   | SALESMAN            | 1980-02-14 | Thu 2                           |
+| ALEX     | MANAGER             | 1982-01-24 | Sun 1                           |
+| NATASHA  | CLERK               | 1981-07-19 | Sun 7                           |
+| SANGITA  | Compliance officers | 1981-07-19 | Sun 7                           |
+| SUPRIYA  | ANALYST             | 1981-07-19 | Sun 7                           |
++----------+---------------------+------------+---------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select conact("Mr. ",ename," Was hired in month of ",monthname(hiredate)) details from emp;
+ERROR 1305 (42000): FUNCTION db1.conact does not exist
+mysql> select conact("Mr. ",ename," Was hired in month of ",monthname(hiredate)) 'details' from emp;
+ERROR 1305 (42000): FUNCTION db1.conact does not exist
+mysql> select concat("Mr. ",ename," Was hired in month of ",monthname(hiredate)) 'details' from emp;
++--------------------------------------------+
+| details                                    |
++--------------------------------------------+
+| Mr. GITA Was hired in month of July        |
+| Mr. VRUSHALI Was hired in month of July    |
+| Mr. SHARMIN Was hired in month of July     |
+| Mr. BANDISH Was hired in month of July     |
+| Mr. SMITH Was hired in month of December   |
+| Mr. AARAV Was hired in month of December   |
+| Mr. THOMAS Was hired in month of July      |
+| Mr. ALLEN Was hired in month of February   |
+| Mr. WARD Was hired in month of February    |
+| Mr. JONES Was hired in month of April      |
+| Mr. MARTIN Was hired in month of September |
+| Mr. BLAKE Was hired in month of May        |
+| Mr. CLARK Was hired in month of June       |
+| Mr. SCOTT Was hired in month of December   |
+| Mr. KING Was hired in month of November    |
+| Mr. FRED Was hired in month of August      |
+| Mr. TURNER Was hired in month of September |
+| Mr. ADAMS Was hired in month of January    |
+| Mr. JAMES Was hired in month of December   |
+| Mr. FORD Was hired in month of December    |
+| Mr. HOFFMAN Was hired in month of March    |
+| Mr. GRASS Was hired in month of February   |
+| Mr. MILLER Was hired in month of January   |
+| Mr. AARUSH Was hired in month of February  |
+| Mr. ALEX Was hired in month of January     |
+| Mr. NATASHA Was hired in month of July     |
+| Mr. SANGITA Was hired in month of July     |
+| Mr. SUPRIYA Was hired in month of July     |
++--------------------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate ,date_format(hiredate , '%b') R1 ,date_format(hiredate , '%M') R2 from emp;
++----------+---------------------+------------+------+-----------+
+| ename    | job                 | hiredate   | R1   | R2        |
++----------+---------------------+------------+------+-----------+
+| GITA     | Compliance officers | 1981-07-19 | Jul  | July      |
+| VRUSHALI | Compliance officers | 1981-07-19 | Jul  | July      |
+| SHARMIN  | Public Relation     | 1981-07-19 | Jul  | July      |
+| BANDISH  | Public Relation     | 1981-07-19 | Jul  | July      |
+| SMITH    | CLERK               | 1980-12-17 | Dec  | December  |
+| AARAV    | CLERK               | 1981-12-31 | Dec  | December  |
+| THOMAS   | CLERK               | 1981-07-19 | Jul  | July      |
+| ALLEN    | SALESMAN            | 1981-02-20 | Feb  | February  |
+| WARD     | SALESMAN            | 1981-02-22 | Feb  | February  |
+| JONES    | MANAGER             | 1981-04-02 | Apr  | April     |
+| MARTIN   | SALESMAN            | 1981-09-28 | Sep  | September |
+| BLAKE    | MANAGER             | 1981-05-01 | May  | May       |
+| CLARK    | MANAGER             | 1981-06-09 | Jun  | June      |
+| SCOTT    | ANALYST             | 1982-12-09 | Dec  | December  |
+| KING     | PRESIDENT           | 1981-11-17 | Nov  | November  |
+| FRED     | vice PRESIDENT      | 1983-08-09 | Aug  | August    |
+| TURNER   | SALESMAN            | 1981-09-08 | Sep  | September |
+| ADAMS    | CLERK               | 1983-01-12 | Jan  | January   |
+| JAMES    | CLERK               | 1981-12-03 | Dec  | December  |
+| FORD     | ANALYST             | 1981-12-03 | Dec  | December  |
+| HOFFMAN  | MANAGER             | 1982-03-24 | Mar  | March     |
+| GRASS    | SALESMAN            | 1980-02-14 | Feb  | February  |
+| MILLER   | CLERK               | 1982-01-23 | Jan  | January   |
+| AARUSH   | SALESMAN            | 1980-02-14 | Feb  | February  |
+| ALEX     | MANAGER             | 1982-01-24 | Jan  | January   |
+| NATASHA  | CLERK               | 1981-07-19 | Jul  | July      |
+| SANGITA  | Compliance officers | 1981-07-19 | Jul  | July      |
+| SUPRIYA  | ANALYST             | 1981-07-19 | Jul  | July      |
++----------+---------------------+------------+------+-----------+
+28 rows in set (0.00 sec)
+
+mysql> select ascii('a');
++------------+
+| ascii('a') |
++------------+
+|         97 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select ascii('A');
++------------+
+| ascii('A') |
++------------+
+|         65 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select ascii('A')+ascii('a');
++-----------------------+
+| ascii('A')+ascii('a') |
++-----------------------+
+|                   162 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select ascii('A') A +ascii('a') a;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+ascii('a') a' at line 1
+mysql> select ascii('A') 'A' +ascii('a') 'a';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+ascii('a') 'a'' at line 1
+mysql> select char(65);
++--------------------+
+| char(65)           |
++--------------------+
+| 0x41               |
++--------------------+
+1 row in set (0.01 sec)
+
+mysql> select cast(char(65),varchar(10));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',varchar(10))' at line 1
+mysql> select cast(char(65) AS CHAR);
++------------------------+
+| cast(char(65) AS CHAR) |
++------------------------+
+| A                      |
++------------------------+
+1 row in set (0.00 sec)
+
+mysql> select elt(1,'bhartesh','akshay','pankaj','aniket');
++----------------------------------------------+
+| elt(1,'bhartesh','akshay','pankaj','aniket') |
++----------------------------------------------+
+| bhartesh                                     |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select elt(2,'bhartesh','akshay','pankaj','aniket');
++----------------------------------------------+
+| elt(2,'bhartesh','akshay','pankaj','aniket') |
++----------------------------------------------+
+| akshay                                       |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select elt(3,'bhartesh','akshay','pankaj','aniket');
++----------------------------------------------+
+| elt(3,'bhartesh','akshay','pankaj','aniket') |
++----------------------------------------------+
+| pankaj                                       |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select elt(4,'bhartesh','akshay','pankaj','aniket');
++----------------------------------------------+
+| elt(4,'bhartesh','akshay','pankaj','aniket') |
++----------------------------------------------+
+| aniket                                       |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select elt(44,'bhartesh','akshay','pankaj','aniket');
++-----------------------------------------------+
+| elt(44,'bhartesh','akshay','pankaj','aniket') |
++-----------------------------------------------+
+| NULL                                          |
++-----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> slect * from demo;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * from demo' at line 1
+mysql> select * from demo;
+ERROR 1146 (42S02): Table 'db1.demo' doesn't exist
+mysql> select elt(4,'ename','job','hiredate','sal') from emp;
++---------------------------------------+
+| elt(4,'ename','job','hiredate','sal') |
++---------------------------------------+
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
+| sal                                   |
++---------------------------------------+
+28 rows in set (0.01 sec)
+
+mysql> select elt(2,'ename','job','hiredate','sal') from emp;
++---------------------------------------+
+| elt(2,'ename','job','hiredate','sal') |
++---------------------------------------+
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
+| job                                   |
++---------------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select elt(1,'ename','job','hiredate','sal') from emp;
++---------------------------------------+
+| elt(1,'ename','job','hiredate','sal') |
++---------------------------------------+
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
++---------------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename, job, hiredate from emp;
++----------+---------------------+------------+
+| ename    | job                 | hiredate   |
++----------+---------------------+------------+
+| GITA     | Compliance officers | 1981-07-19 |
+| VRUSHALI | Compliance officers | 1981-07-19 |
+| SHARMIN  | Public Relation     | 1981-07-19 |
+| BANDISH  | Public Relation     | 1981-07-19 |
+| SMITH    | CLERK               | 1980-12-17 |
+| AARAV    | CLERK               | 1981-12-31 |
+| THOMAS   | CLERK               | 1981-07-19 |
+| ALLEN    | SALESMAN            | 1981-02-20 |
+| WARD     | SALESMAN            | 1981-02-22 |
+| JONES    | MANAGER             | 1981-04-02 |
+| MARTIN   | SALESMAN            | 1981-09-28 |
+| BLAKE    | MANAGER             | 1981-05-01 |
+| CLARK    | MANAGER             | 1981-06-09 |
+| SCOTT    | ANALYST             | 1982-12-09 |
+| KING     | PRESIDENT           | 1981-11-17 |
+| FRED     | vice PRESIDENT      | 1983-08-09 |
+| TURNER   | SALESMAN            | 1981-09-08 |
+| ADAMS    | CLERK               | 1983-01-12 |
+| JAMES    | CLERK               | 1981-12-03 |
+| FORD     | ANALYST             | 1981-12-03 |
+| HOFFMAN  | MANAGER             | 1982-03-24 |
+| GRASS    | SALESMAN            | 1980-02-14 |
+| MILLER   | CLERK               | 1982-01-23 |
+| AARUSH   | SALESMAN            | 1980-02-14 |
+| ALEX     | MANAGER             | 1982-01-24 |
+| NATASHA  | CLERK               | 1981-07-19 |
+| SANGITA  | Compliance officers | 1981-07-19 |
+| SUPRIYA  | ANALYST             | 1981-07-19 |
++----------+---------------------+------------+
+28 rows in set (0.00 sec)
+
+mysql> select elt(1,'ename','job','hiredate','sal') from emp;
++---------------------------------------+
+| elt(1,'ename','job','hiredate','sal') |
++---------------------------------------+
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
+| ename                                 |
++---------------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select elt(1,ename,job,hiredate,sal) from emp;
++-------------------------------+
+| elt(1,ename,job,hiredate,sal) |
++-------------------------------+
+| GITA                          |
+| VRUSHALI                      |
+| SHARMIN                       |
+| BANDISH                       |
+| SMITH                         |
+| AARAV                         |
+| THOMAS                        |
+| ALLEN                         |
+| WARD                          |
+| JONES                         |
+| MARTIN                        |
+| BLAKE                         |
+| CLARK                         |
+| SCOTT                         |
+| KING                          |
+| FRED                          |
+| TURNER                        |
+| ADAMS                         |
+| JAMES                         |
+| FORD                          |
+| HOFFMAN                       |
+| GRASS                         |
+| MILLER                        |
+| AARUSH                        |
+| ALEX                          |
+| NATASHA                       |
+| SANGITA                       |
+| SUPRIYA                       |
++-------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select elt(3,ename,job,hiredate,sal) from emp;
++-------------------------------+
+| elt(3,ename,job,hiredate,sal) |
++-------------------------------+
+| 1981-07-19                    |
+| 1981-07-19                    |
+| 1981-07-19                    |
+| 1981-07-19                    |
+| 1980-12-17                    |
+| 1981-12-31                    |
+| 1981-07-19                    |
+| 1981-02-20                    |
+| 1981-02-22                    |
+| 1981-04-02                    |
+| 1981-09-28                    |
+| 1981-05-01                    |
+| 1981-06-09                    |
+| 1982-12-09                    |
+| 1981-11-17                    |
+| 1983-08-09                    |
+| 1981-09-08                    |
+| 1983-01-12                    |
+| 1981-12-03                    |
+| 1981-12-03                    |
+| 1982-03-24                    |
+| 1980-02-14                    |
+| 1982-01-23                    |
+| 1980-02-14                    |
+| 1982-01-24                    |
+| 1981-07-19                    |
+| 1981-07-19                    |
+| 1981-07-19                    |
++-------------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename,lcase(ename) ,length(ename) ,job, hiredate from emp;
++----------+--------------+---------------+---------------------+------------+
+| ename    | lcase(ename) | length(ename) | job                 | hiredate   |
++----------+--------------+---------------+---------------------+------------+
+| GITA     | gita         |             4 | Compliance officers | 1981-07-19 |
+| VRUSHALI | vrushali     |             8 | Compliance officers | 1981-07-19 |
+| SHARMIN  | sharmin      |             7 | Public Relation     | 1981-07-19 |
+| BANDISH  | bandish      |             7 | Public Relation     | 1981-07-19 |
+| SMITH    | smith        |             5 | CLERK               | 1980-12-17 |
+| AARAV    | aarav        |             5 | CLERK               | 1981-12-31 |
+| THOMAS   | thomas       |             6 | CLERK               | 1981-07-19 |
+| ALLEN    | allen        |             5 | SALESMAN            | 1981-02-20 |
+| WARD     | ward         |             4 | SALESMAN            | 1981-02-22 |
+| JONES    | jones        |             5 | MANAGER             | 1981-04-02 |
+| MARTIN   | martin       |             6 | SALESMAN            | 1981-09-28 |
+| BLAKE    | blake        |             5 | MANAGER             | 1981-05-01 |
+| CLARK    | clark        |             5 | MANAGER             | 1981-06-09 |
+| SCOTT    | scott        |             5 | ANALYST             | 1982-12-09 |
+| KING     | king         |             4 | PRESIDENT           | 1981-11-17 |
+| FRED     | fred         |             4 | vice PRESIDENT      | 1983-08-09 |
+| TURNER   | turner       |             6 | SALESMAN            | 1981-09-08 |
+| ADAMS    | adams        |             5 | CLERK               | 1983-01-12 |
+| JAMES    | james        |             5 | CLERK               | 1981-12-03 |
+| FORD     | ford         |             4 | ANALYST             | 1981-12-03 |
+| HOFFMAN  | hoffman      |             7 | MANAGER             | 1982-03-24 |
+| GRASS    | grass        |             5 | SALESMAN            | 1980-02-14 |
+| MILLER   | miller       |             6 | CLERK               | 1982-01-23 |
+| AARUSH   | aarush       |             6 | SALESMAN            | 1980-02-14 |
+| ALEX     | alex         |             4 | MANAGER             | 1982-01-24 |
+| NATASHA  | natasha      |             7 | CLERK               | 1981-07-19 |
+| SANGITA  | sangita      |             7 | Compliance officers | 1981-07-19 |
+| SUPRIYA  | supriya      |             7 | ANALYST             | 1981-07-19 |
++----------+--------------+---------------+---------------------+------------+
+28 rows in set (0.00 sec)
+
+mysql> select 'bharteshgirmal@gmail.com',instr(bharteshgirmal@gmail.com',@);
+    '> select 'bharteshgirmal@gmail.com',instr(bharteshgirmal@gmail.com','@');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '@gmail.com',@);
+select 'bharteshgirmal@gmail.com',instr(bharteshgirmal@gmail.com' at line 1
+mysql> select 'bharteshgirmal@gmail.com',instr('bharteshgirmal@gmail.com','@');
++--------------------------+---------------------------------------+
+| bharteshgirmal@gmail.com | instr('bharteshgirmal@gmail.com','@') |
++--------------------------+---------------------------------------+
+| bharteshgirmal@gmail.com |                                    15 |
++--------------------------+---------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> select 'bharteshgirmal@gmail.com',replace('bharteshgirmal@gmail.com','##');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> select 'bharteshgirmal@gmail.com',replace('bharteshgirmal@gmail.com','@','##');
++--------------------------+----------------------------------------------+
+| bharteshgirmal@gmail.com | replace('bharteshgirmal@gmail.com','@','##') |
++--------------------------+----------------------------------------------+
+| bharteshgirmal@gmail.com | bharteshgirmal##gmail.com                    |
++--------------------------+----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select 'bharteshgirmal@gmail.com',replace('bharteshgirmal@gmail.com','@','##') " Replaced String ";
++--------------------------+---------------------------+
+| bharteshgirmal@gmail.com | Replaced String           |
++--------------------------+---------------------------+
+| bharteshgirmal@gmail.com | bharteshgirmal##gmail.com |
++--------------------------+---------------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> select ename from emp;
++----------+
+| ename    |
++----------+
+| GITA     |
+| VRUSHALI |
+| SHARMIN  |
+| BANDISH  |
+| SMITH    |
+| AARAV    |
+| THOMAS   |
+| ALLEN    |
+| WARD     |
+| JONES    |
+| MARTIN   |
+| BLAKE    |
+| CLARK    |
+| SCOTT    |
+| KING     |
+| FRED     |
+| TURNER   |
+| ADAMS    |
+| JAMES    |
+| FORD     |
+| HOFFMAN  |
+| GRASS    |
+| MILLER   |
+| AARUSH   |
+| ALEX     |
+| NATASHA  |
+| SANGITA  |
+| SUPRIYA  |
++----------+
+28 rows in set (0.00 sec)
+
+mysql> select ename  repalce(ename ,'i','@') from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(ename ,'i','@') from emp' at line 1
+mysql> select ename  replace(ename ,'i','@') from emp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'replace(ename ,'i','@') from emp' at line 1
+mysql> select ename , replace(ename ,'i','@') from emp;
++----------+-------------------------+
+| ename    | replace(ename ,'i','@') |
++----------+-------------------------+
+| GITA     | GITA                    |
+| VRUSHALI | VRUSHALI                |
+| SHARMIN  | SHARMIN                 |
+| BANDISH  | BANDISH                 |
+| SMITH    | SMITH                   |
+| AARAV    | AARAV                   |
+| THOMAS   | THOMAS                  |
+| ALLEN    | ALLEN                   |
+| WARD     | WARD                    |
+| JONES    | JONES                   |
+| MARTIN   | MARTIN                  |
+| BLAKE    | BLAKE                   |
+| CLARK    | CLARK                   |
+| SCOTT    | SCOTT                   |
+| KING     | KING                    |
+| FRED     | FRED                    |
+| TURNER   | TURNER                  |
+| ADAMS    | ADAMS                   |
+| JAMES    | JAMES                   |
+| FORD     | FORD                    |
+| HOFFMAN  | HOFFMAN                 |
+| GRASS    | GRASS                   |
+| MILLER   | MILLER                  |
+| AARUSH   | AARUSH                  |
+| ALEX     | ALEX                    |
+| NATASHA  | NATASHA                 |
+| SANGITA  | SANGITA                 |
+| SUPRIYA  | SUPRIYA                 |
++----------+-------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename , replace(ename ,'I','@') from emp;
++----------+-------------------------+
+| ename    | replace(ename ,'I','@') |
++----------+-------------------------+
+| GITA     | G@TA                    |
+| VRUSHALI | VRUSHAL@                |
+| SHARMIN  | SHARM@N                 |
+| BANDISH  | BAND@SH                 |
+| SMITH    | SM@TH                   |
+| AARAV    | AARAV                   |
+| THOMAS   | THOMAS                  |
+| ALLEN    | ALLEN                   |
+| WARD     | WARD                    |
+| JONES    | JONES                   |
+| MARTIN   | MART@N                  |
+| BLAKE    | BLAKE                   |
+| CLARK    | CLARK                   |
+| SCOTT    | SCOTT                   |
+| KING     | K@NG                    |
+| FRED     | FRED                    |
+| TURNER   | TURNER                  |
+| ADAMS    | ADAMS                   |
+| JAMES    | JAMES                   |
+| FORD     | FORD                    |
+| HOFFMAN  | HOFFMAN                 |
+| GRASS    | GRASS                   |
+| MILLER   | M@LLER                  |
+| AARUSH   | AARUSH                  |
+| ALEX     | ALEX                    |
+| NATASHA  | NATASHA                 |
+| SANGITA  | SANG@TA                 |
+| SUPRIYA  | SUPR@YA                 |
++----------+-------------------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename , left(ename ,2),right(ename ,2) from emp;
++----------+----------------+-----------------+
+| ename    | left(ename ,2) | right(ename ,2) |
++----------+----------------+-----------------+
+| GITA     | GI             | TA              |
+| VRUSHALI | VR             | LI              |
+| SHARMIN  | SH             | IN              |
+| BANDISH  | BA             | SH              |
+| SMITH    | SM             | TH              |
+| AARAV    | AA             | AV              |
+| THOMAS   | TH             | AS              |
+| ALLEN    | AL             | EN              |
+| WARD     | WA             | RD              |
+| JONES    | JO             | ES              |
+| MARTIN   | MA             | IN              |
+| BLAKE    | BL             | KE              |
+| CLARK    | CL             | RK              |
+| SCOTT    | SC             | TT              |
+| KING     | KI             | NG              |
+| FRED     | FR             | ED              |
+| TURNER   | TU             | ER              |
+| ADAMS    | AD             | MS              |
+| JAMES    | JA             | ES              |
+| FORD     | FO             | RD              |
+| HOFFMAN  | HO             | AN              |
+| GRASS    | GR             | SS              |
+| MILLER   | MI             | ER              |
+| AARUSH   | AA             | SH              |
+| ALEX     | AL             | EX              |
+| NATASHA  | NA             | HA              |
+| SANGITA  | SA             | TA              |
+| SUPRIYA  | SU             | YA              |
++----------+----------------+-----------------+
+28 rows in set (0.01 sec)
+
+mysql> select ename , left(ename ,2),substr(ename,3),right(ename ,2) from emp;
++----------+----------------+-----------------+-----------------+
+| ename    | left(ename ,2) | substr(ename,3) | right(ename ,2) |
++----------+----------------+-----------------+-----------------+
+| GITA     | GI             | TA              | TA              |
+| VRUSHALI | VR             | USHALI          | LI              |
+| SHARMIN  | SH             | ARMIN           | IN              |
+| BANDISH  | BA             | NDISH           | SH              |
+| SMITH    | SM             | ITH             | TH              |
+| AARAV    | AA             | RAV             | AV              |
+| THOMAS   | TH             | OMAS            | AS              |
+| ALLEN    | AL             | LEN             | EN              |
+| WARD     | WA             | RD              | RD              |
+| JONES    | JO             | NES             | ES              |
+| MARTIN   | MA             | RTIN            | IN              |
+| BLAKE    | BL             | AKE             | KE              |
+| CLARK    | CL             | ARK             | RK              |
+| SCOTT    | SC             | OTT             | TT              |
+| KING     | KI             | NG              | NG              |
+| FRED     | FR             | ED              | ED              |
+| TURNER   | TU             | RNER            | ER              |
+| ADAMS    | AD             | AMS             | MS              |
+| JAMES    | JA             | MES             | ES              |
+| FORD     | FO             | RD              | RD              |
+| HOFFMAN  | HO             | FFMAN           | AN              |
+| GRASS    | GR             | ASS             | SS              |
+| MILLER   | MI             | LLER            | ER              |
+| AARUSH   | AA             | RUSH            | SH              |
+| ALEX     | AL             | EX              | EX              |
+| NATASHA  | NA             | TASHA           | HA              |
+| SANGITA  | SA             | NGITA           | TA              |
+| SUPRIYA  | SU             | PRIYA           | YA              |
++----------+----------------+-----------------+-----------------+
+28 rows in set (0.00 sec)
+
+mysql> select ename , left(ename ,2),substr(ename,4),right(ename ,2) from emp;
++----------+----------------+-----------------+-----------------+
+| ename    | left(ename ,2) | substr(ename,4) | right(ename ,2) |
++----------+----------------+-----------------+-----------------+
+| GITA     | GI             | A               | TA              |
+| VRUSHALI | VR             | SHALI           | LI              |
+| SHARMIN  | SH             | RMIN            | IN              |
+| BANDISH  | BA             | DISH            | SH              |
+| SMITH    | SM             | TH              | TH              |
+| AARAV    | AA             | AV              | AV              |
+| THOMAS   | TH             | MAS             | AS              |
+| ALLEN    | AL             | EN              | EN              |
+| WARD     | WA             | D               | RD              |
+| JONES    | JO             | ES              | ES              |
+| MARTIN   | MA             | TIN             | IN              |
+| BLAKE    | BL             | KE              | KE              |
+| CLARK    | CL             | RK              | RK              |
+| SCOTT    | SC             | TT              | TT              |
+| KING     | KI             | G               | NG              |
+| FRED     | FR             | D               | ED              |
+| TURNER   | TU             | NER             | ER              |
+| ADAMS    | AD             | MS              | MS              |
+| JAMES    | JA             | ES              | ES              |
+| FORD     | FO             | D               | RD              |
+| HOFFMAN  | HO             | FMAN            | AN              |
+| GRASS    | GR             | SS              | SS              |
+| MILLER   | MI             | LER             | ER              |
+| AARUSH   | AA             | USH             | SH              |
+| ALEX     | AL             | X               | EX              |
+| NATASHA  | NA             | ASHA            | HA              |
+| SANGITA  | SA             | GITA            | TA              |
+| SUPRIYA  | SU             | RIYA            | YA              |
++----------+----------------+-----------------+-----------------+
+28 rows in set (0.00 sec)
+
+mysql> select c1,c2 from numbertring;
+ERROR 1146 (42S02): Table 'db1.numbertring' doesn't exist
+mysql> select c1,c2 from numberstring;
+ERROR 1054 (42S22): Unknown column 'c2' in 'field list'
+mysql> select c1 from numberstring;
++---------------+
+| c1            |
++---------------+
+| 1saleel       |
+| 34sharmin     |
+| 56731vrushali |
+| 6001GITA      |
+| 6129VRUSHALI  |
+| 6473SHARMIN   |
+| 6781BANDISH   |
+| 7369SMITH     |
+| 7415AARAV     |
+| 7421THOMAS    |
+| 743ruhan      |
+| 7499ALLEN     |
+| 7521WARD      |
+| 7566JONES     |
+| 7654MARTIN    |
+| 7657822ajay   |
+| 7698BLAKE     |
+| 7782CLARK     |
+| 7788SCOTT     |
+| 7839KING      |
+| 7840FRED      |
+| 7844TURNER    |
+| 7876ADAMS     |
+| 7900JAMES     |
+| 7902FORD      |
+| 7919HOFFMAN   |
+| 7920GRASS     |
+| 7934MILLER    |
+| 7945AARUSH    |
+| 7949ALEX      |
+| 836379bandish |
+| 8433NATASHA   |
+| 9400SANGITA   |
+| 9473SUPRIYA   |
++---------------+
+34 rows in set (0.00 sec)
+
+mysql> select c1 ,c1/1 r1,from numberstring;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from numberstring' at line 1
+mysql> select c1 ,c1/1 r1 from numberstring;
++---------------+---------+
+| c1            | r1      |
++---------------+---------+
+| 1saleel       |       1 |
+| 34sharmin     |      34 |
+| 56731vrushali |   56731 |
+| 6001GITA      |    6001 |
+| 6129VRUSHALI  |    6129 |
+| 6473SHARMIN   |    6473 |
+| 6781BANDISH   |    6781 |
+| 7369SMITH     |    7369 |
+| 7415AARAV     |    7415 |
+| 7421THOMAS    |    7421 |
+| 743ruhan      |     743 |
+| 7499ALLEN     |    7499 |
+| 7521WARD      |    7521 |
+| 7566JONES     |    7566 |
+| 7654MARTIN    |    7654 |
+| 7657822ajay   | 7657822 |
+| 7698BLAKE     |    7698 |
+| 7782CLARK     |    7782 |
+| 7788SCOTT     |    7788 |
+| 7839KING      |    7839 |
+| 7840FRED      |    7840 |
+| 7844TURNER    |    7844 |
+| 7876ADAMS     |    7876 |
+| 7900JAMES     |    7900 |
+| 7902FORD      |    7902 |
+| 7919HOFFMAN   |    7919 |
+| 7920GRASS     |    7920 |
+| 7934MILLER    |    7934 |
+| 7945AARUSH    |    7945 |
+| 7949ALEX      |    7949 |
+| 836379bandish |  836379 |
+| 8433NATASHA   |    8433 |
+| 9400SANGITA   |    9400 |
+| 9473SUPRIYA   |    9473 |
++---------------+---------+
+34 rows in set, 34 warnings (0.00 sec)
+
+mysql> select c1 ,c1/1 r1 ,substr(c1,(c1/1)) from numberstring;
++---------------+---------+-------------------+
+| c1            | r1      | substr(c1,(c1/1)) |
++---------------+---------+-------------------+
+| 1saleel       |       1 | 1saleel           |
+| 34sharmin     |      34 |                   |
+| 56731vrushali |   56731 |                   |
+| 6001GITA      |    6001 |                   |
+| 6129VRUSHALI  |    6129 |                   |
+| 6473SHARMIN   |    6473 |                   |
+| 6781BANDISH   |    6781 |                   |
+| 7369SMITH     |    7369 |                   |
+| 7415AARAV     |    7415 |                   |
+| 7421THOMAS    |    7421 |                   |
+| 743ruhan      |     743 |                   |
+| 7499ALLEN     |    7499 |                   |
+| 7521WARD      |    7521 |                   |
+| 7566JONES     |    7566 |                   |
+| 7654MARTIN    |    7654 |                   |
+| 7657822ajay   | 7657822 |                   |
+| 7698BLAKE     |    7698 |                   |
+| 7782CLARK     |    7782 |                   |
+| 7788SCOTT     |    7788 |                   |
+| 7839KING      |    7839 |                   |
+| 7840FRED      |    7840 |                   |
+| 7844TURNER    |    7844 |                   |
+| 7876ADAMS     |    7876 |                   |
+| 7900JAMES     |    7900 |                   |
+| 7902FORD      |    7902 |                   |
+| 7919HOFFMAN   |    7919 |                   |
+| 7920GRASS     |    7920 |                   |
+| 7934MILLER    |    7934 |                   |
+| 7945AARUSH    |    7945 |                   |
+| 7949ALEX      |    7949 |                   |
+| 836379bandish |  836379 |                   |
+| 8433NATASHA   |    8433 |                   |
+| 9400SANGITA   |    9400 |                   |
+| 9473SUPRIYA   |    9473 |                   |
++---------------+---------+-------------------+
+34 rows in set, 68 warnings (0.00 sec)
+
+mysql> select c1 ,c1/1 r1 ,substr(c1,(c1/1),10) from numberstring;
++---------------+---------+----------------------+
+| c1            | r1      | substr(c1,(c1/1),10) |
++---------------+---------+----------------------+
+| 1saleel       |       1 | 1saleel              |
+| 34sharmin     |      34 |                      |
+| 56731vrushali |   56731 |                      |
+| 6001GITA      |    6001 |                      |
+| 6129VRUSHALI  |    6129 |                      |
+| 6473SHARMIN   |    6473 |                      |
+| 6781BANDISH   |    6781 |                      |
+| 7369SMITH     |    7369 |                      |
+| 7415AARAV     |    7415 |                      |
+| 7421THOMAS    |    7421 |                      |
+| 743ruhan      |     743 |                      |
+| 7499ALLEN     |    7499 |                      |
+| 7521WARD      |    7521 |                      |
+| 7566JONES     |    7566 |                      |
+| 7654MARTIN    |    7654 |                      |
+| 7657822ajay   | 7657822 |                      |
+| 7698BLAKE     |    7698 |                      |
+| 7782CLARK     |    7782 |                      |
+| 7788SCOTT     |    7788 |                      |
+| 7839KING      |    7839 |                      |
+| 7840FRED      |    7840 |                      |
+| 7844TURNER    |    7844 |                      |
+| 7876ADAMS     |    7876 |                      |
+| 7900JAMES     |    7900 |                      |
+| 7902FORD      |    7902 |                      |
+| 7919HOFFMAN   |    7919 |                      |
+| 7920GRASS     |    7920 |                      |
+| 7934MILLER    |    7934 |                      |
+| 7945AARUSH    |    7945 |                      |
+| 7949ALEX      |    7949 |                      |
+| 836379bandish |  836379 |                      |
+| 8433NATASHA   |    8433 |                      |
+| 9400SANGITA   |    9400 |                      |
+| 9473SUPRIYA   |    9473 |                      |
++---------------+---------+----------------------+
+34 rows in set, 68 warnings (0.00 sec)
+
+mysql> select c1 ,c1/1 r1 ,substr(c1,(c1/1),c1) from numberstring;
++---------------+---------+----------------------+
+| c1            | r1      | substr(c1,(c1/1),c1) |
++---------------+---------+----------------------+
+| 1saleel       |       1 | 1                    |
+| 34sharmin     |      34 |                      |
+| 56731vrushali |   56731 |                      |
+| 6001GITA      |    6001 |                      |
+| 6129VRUSHALI  |    6129 |                      |
+| 6473SHARMIN   |    6473 |                      |
+| 6781BANDISH   |    6781 |                      |
+| 7369SMITH     |    7369 |                      |
+| 7415AARAV     |    7415 |                      |
+| 7421THOMAS    |    7421 |                      |
+| 743ruhan      |     743 |                      |
+| 7499ALLEN     |    7499 |                      |
+| 7521WARD      |    7521 |                      |
+| 7566JONES     |    7566 |                      |
+| 7654MARTIN    |    7654 |                      |
+| 7657822ajay   | 7657822 |                      |
+| 7698BLAKE     |    7698 |                      |
+| 7782CLARK     |    7782 |                      |
+| 7788SCOTT     |    7788 |                      |
+| 7839KING      |    7839 |                      |
+| 7840FRED      |    7840 |                      |
+| 7844TURNER    |    7844 |                      |
+| 7876ADAMS     |    7876 |                      |
+| 7900JAMES     |    7900 |                      |
+| 7902FORD      |    7902 |                      |
+| 7919HOFFMAN   |    7919 |                      |
+| 7920GRASS     |    7920 |                      |
+| 7934MILLER    |    7934 |                      |
+| 7945AARUSH    |    7945 |                      |
+| 7949ALEX      |    7949 |                      |
+| 836379bandish |  836379 |                      |
+| 8433NATASHA   |    8433 |                      |
+| 9400SANGITA   |    9400 |                      |
+| 9473SUPRIYA   |    9473 |                      |
++---------------+---------+----------------------+
+34 rows in set, 102 warnings (0.00 sec)
+
+mysql> select c1 ,c1/1 r1 ,substr(c1,(c1/1)c1) from numberstring;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'c1) from numberstring' at line 1
+mysql> select c1 ,c1/1 r1 ,substr(c1,(c1/1)) from numberstring;
++---------------+---------+-------------------+
+| c1            | r1      | substr(c1,(c1/1)) |
++---------------+---------+-------------------+
+| 1saleel       |       1 | 1saleel           |
+| 34sharmin     |      34 |                   |
+| 56731vrushali |   56731 |                   |
+| 6001GITA      |    6001 |                   |
+| 6129VRUSHALI  |    6129 |                   |
+| 6473SHARMIN   |    6473 |                   |
+| 6781BANDISH   |    6781 |                   |
+| 7369SMITH     |    7369 |                   |
+| 7415AARAV     |    7415 |                   |
+| 7421THOMAS    |    7421 |                   |
+| 743ruhan      |     743 |                   |
+| 7499ALLEN     |    7499 |                   |
+| 7521WARD      |    7521 |                   |
+| 7566JONES     |    7566 |                   |
+| 7654MARTIN    |    7654 |                   |
+| 7657822ajay   | 7657822 |                   |
+| 7698BLAKE     |    7698 |                   |
+| 7782CLARK     |    7782 |                   |
+| 7788SCOTT     |    7788 |                   |
+| 7839KING      |    7839 |                   |
+| 7840FRED      |    7840 |                   |
+| 7844TURNER    |    7844 |                   |
+| 7876ADAMS     |    7876 |                   |
+| 7900JAMES     |    7900 |                   |
+| 7902FORD      |    7902 |                   |
+| 7919HOFFMAN   |    7919 |                   |
+| 7920GRASS     |    7920 |                   |
+| 7934MILLER    |    7934 |                   |
+| 7945AARUSH    |    7945 |                   |
+| 7949ALEX      |    7949 |                   |
+| 836379bandish |  836379 |                   |
+| 8433NATASHA   |    8433 |                   |
+| 9400SANGITA   |    9400 |                   |
+| 9473SUPRIYA   |    9473 |                   |
++---------------+---------+-------------------+
+34 rows in set, 68 warnings (0.00 sec)
+
+mysql> select c1 ,c1/1 r1 ,substr(c1,3,(c1/1)) from numberstring;
++---------------+---------+---------------------+
+| c1            | r1      | substr(c1,3,(c1/1)) |
++---------------+---------+---------------------+
+| 1saleel       |       1 | a                   |
+| 34sharmin     |      34 | sharmin             |
+| 56731vrushali |   56731 | 731vrushali         |
+| 6001GITA      |    6001 | 01GITA              |
+| 6129VRUSHALI  |    6129 | 29VRUSHALI          |
+| 6473SHARMIN   |    6473 | 73SHARMIN           |
+| 6781BANDISH   |    6781 | 81BANDISH           |
+| 7369SMITH     |    7369 | 69SMITH             |
+| 7415AARAV     |    7415 | 15AARAV             |
+| 7421THOMAS    |    7421 | 21THOMAS            |
+| 743ruhan      |     743 | 3ruhan              |
+| 7499ALLEN     |    7499 | 99ALLEN             |
+| 7521WARD      |    7521 | 21WARD              |
+| 7566JONES     |    7566 | 66JONES             |
+| 7654MARTIN    |    7654 | 54MARTIN            |
+| 7657822ajay   | 7657822 | 57822ajay           |
+| 7698BLAKE     |    7698 | 98BLAKE             |
+| 7782CLARK     |    7782 | 82CLARK             |
+| 7788SCOTT     |    7788 | 88SCOTT             |
+| 7839KING      |    7839 | 39KING              |
+| 7840FRED      |    7840 | 40FRED              |
+| 7844TURNER    |    7844 | 44TURNER            |
+| 7876ADAMS     |    7876 | 76ADAMS             |
+| 7900JAMES     |    7900 | 00JAMES             |
+| 7902FORD      |    7902 | 02FORD              |
+| 7919HOFFMAN   |    7919 | 19HOFFMAN           |
+| 7920GRASS     |    7920 | 20GRASS             |
+| 7934MILLER    |    7934 | 34MILLER            |
+| 7945AARUSH    |    7945 | 45AARUSH            |
+| 7949ALEX      |    7949 | 49ALEX              |
+| 836379bandish |  836379 | 6379bandish         |
+| 8433NATASHA   |    8433 | 33NATASHA           |
+| 9400SANGITA   |    9400 | 00SANGITA           |
+| 9473SUPRIYA   |    9473 | 73SUPRIYA           |
++---------------+---------+---------------------+
+34 rows in set, 68 warnings (0.00 sec)
+
+mysql> select 1234.56789 ,round(1234.56789),round(1234.56789,2);
++------------+-------------------+---------------------+
+| 1234.56789 | round(1234.56789) | round(1234.56789,2) |
++------------+-------------------+---------------------+
+| 1234.56789 |              1235 |             1234.57 |
++------------+-------------------+---------------------+
+1 row in set (0.01 sec)
+
+mysql> select 1234.56789 ,round(1234.56789),round(1234.56789,2), ceil(10.56) R1;,ceil(10.06) R2;
++------------+-------------------+---------------------+----+
+| 1234.56789 | round(1234.56789) | round(1234.56789,2) | R1 |
++------------+-------------------+---------------------+----+
+| 1234.56789 |              1235 |             1234.57 | 11 |
++------------+-------------------+---------------------+----+
+1 row in set (0.01 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',ceil(10.06) R2' at line 1
+mysql> select 1234.56789 ,round(1234.56789),round(1234.56789,2), ceil(10.56) R1 ,ceil(10.06) R2;
++------------+-------------------+---------------------+----+----+
+| 1234.56789 | round(1234.56789) | round(1234.56789,2) | R1 | R2 |
++------------+-------------------+---------------------+----+----+
+| 1234.56789 |              1235 |             1234.57 | 11 | 11 |
++------------+-------------------+---------------------+----+----+
+1 row in set (0.00 sec)
+
+mysql> select 1234.56789 ,round(1234.56789),round(1234.56789,2), ceil(10.56) R1 ,ceil(10.06) R2,floor(10.56) R3,floor(10.06) R4;
++------------+-------------------+---------------------+----+----+----+----+
+| 1234.56789 | round(1234.56789) | round(1234.56789,2) | R1 | R2 | R3 | R4 |
++------------+-------------------+---------------------+----+----+----+----+
+| 1234.56789 |              1235 |             1234.57 | 11 | 11 | 10 | 10 |
++------------+-------------------+---------------------+----+----+----+----+
+1 row in set (0.00 sec)
+
+mysql> select rand();
++---------------------+
+| rand()              |
++---------------------+
+| 0.33918444937019093 |
++---------------------+
+1 row in set (0.01 sec)
+
+mysql> select rand();
++--------------------+
+| rand()             |
++--------------------+
+| 0.5746667772295575 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select rand(),round(rand() * 10);
++------------------+--------------------+
+| rand()           | round(rand() * 10) |
++------------------+--------------------+
+| 0.85578056877086 |                  6 |
++------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> select rand(),round(rand() * 10);
++---------------------+--------------------+
+| rand()              | round(rand() * 10) |
++---------------------+--------------------+
+| 0.20717103891742514 |                  4 |
++---------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> select rand(),round(rand() * 10);
++-------------------+--------------------+
+| rand()            | round(rand() * 10) |
++-------------------+--------------------+
+| 0.234224897096143 |                  1 |
++-------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql> select rand(),round(rand() * 10);
++-------------------+--------------------+
+| rand()            | round(rand() * 10) |
++-------------------+--------------------+
+| 0.585733971172696 |                  8 |
++-------------------+--------------------+
+1 row in set (0.00 sec)
+
+mysql>

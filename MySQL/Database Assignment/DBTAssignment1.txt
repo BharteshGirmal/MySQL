@@ -1,0 +1,366 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| db1                |
+| db2                |
+| db3                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use assignment1;
+Database changed
+mysql> table emp;
++-----+-----------+----------+--------+------------+
+| id  | firstname | lastname | gender | hiredate   |
++-----+-----------+----------+--------+------------+
+| 100 | Hardik    | PARAB    | m      | 2022-05-20 |
++-----+-----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> desc emp;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| id        | int           | NO   | PRI | NULL    |       |
+| firstname | varchar(10)   | YES  |     | NULL    |       |
+| lastname  | varchar(10)   | YES  |     | NULL    |       |
+| gender    | enum('m','f') | YES  |     | NULL    |       |
+| hiredate  | date          | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table Department(id int primary key, Name varchar(20) , Location set('PUNE','KOLHAPUR' ,'NASHIK', 'SANGLI','MUMBAI'));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc department;
++----------+---------------------------------------------------+------+-----+---------+-------+
+| Field    | Type                                              | Null | Key | Default | Extra |
++----------+---------------------------------------------------+------+-----+---------+-------+
+| id       | int                                               | NO   | PRI | NULL    |       |
+| Name     | varchar(20)                                       | YES  |     | NULL    |       |
+| Location | set('PUNE','KOLHAPUR','NASHIK','SANGLI','MUMBAI') | YES  |     | NULL    |       |
++----------+---------------------------------------------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into department values(10,'bhartesh',6);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> table department;
++----+----------+-----------------+
+| id | Name     | Location        |
++----+----------+-----------------+
+| 10 | bhartesh | KOLHAPUR,NASHIK |
++----+----------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> #binary of 6 ---> 0110
+mysql> insert into department values(10,'bhartesh',8);
+ERROR 1062 (23000): Duplicate entry '10' for key 'department.PRIMARY'
+mysql> insert into department values(11,'bhartesh',8);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> table department;
++----+----------+-----------------+
+| id | Name     | Location        |
++----+----------+-----------------+
+| 10 | bhartesh | KOLHAPUR,NASHIK |
+| 11 | bhartesh | SANGLI          |
++----+----------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> # #binary of 8 ---> 1000
+mysql> insert into department values(125,'bhartesh',10);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> # #binary of 10 ---> 1010 ----> 0101
+mysql> table department;
++-----+----------+-----------------+
+| id  | Name     | Location        |
++-----+----------+-----------------+
+|  10 | bhartesh | KOLHAPUR,NASHIK |
+|  11 | bhartesh | SANGLI          |
+| 125 | bhartesh | KOLHAPUR,SANGLI |
++-----+----------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql> create table EmployeeDepartment( id int primary key , Deptid int foreign key(deptid) references department(id) ,empid int foreign key(empid) references emp(id), Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(deptid) references department(id) ,empid int foreign key(empid) refe' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int (foreign key(deptid) references department(id)) ,empid int (foreign key(empid) references emp(id)), Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key(deptid) references department(id)) ,empid int (foreign key(empid) re' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int [foreign key(deptid) references department(id)] ,empid int [foreign key(empid) references emp(id)], Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[foreign key(deptid) references department(id)] ,empid int [foreign key(empid) r' at line 1
+mysql> desc emp;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| id        | int           | NO   | PRI | NULL    |       |
+| firstname | varchar(10)   | YES  |     | NULL    |       |
+| lastname  | varchar(10)   | YES  |     | NULL    |       |
+| gender    | enum('m','f') | YES  |     | NULL    |       |
+| hiredate  | date          | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc department;
++----------+---------------------------------------------------+------+-----+---------+-------+
+| Field    | Type                                              | Null | Key | Default | Extra |
++----------+---------------------------------------------------+------+-----+---------+-------+
+| id       | int                                               | NO   | PRI | NULL    |       |
+| Name     | varchar(20)                                       | YES  |     | NULL    |       |
+| Location | set('PUNE','KOLHAPUR','NASHIK','SANGLI','MUMBAI') | YES  |     | NULL    |       |
++----------+---------------------------------------------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table EmployeeDepartment( id int primary key , Deptid int [foreign key deptid references department(id)] ,empid int [foreign key empid references emp(id)], Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[foreign key deptid references department(id)] ,empid int [foreign key empid ref' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int [foreign key(id) references department(id)] ,empid int [foreign key(id) references emp(id)], Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[foreign key(id) references department(id)] ,empid int [foreign key(id) referenc' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int foreign key references department(id) ,empid int foreign key references emp(id), Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references department(id) ,empid int foreign key references emp(id),' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int foreign key id  references department(id) ,empid int foreign key id2 references emp(id), Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key id  references department(id) ,empid int foreign key id2 references ' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int ,foreign key id  references department(id) ,empid int ,foreign key id2 references emp(id), Formdate date,Todate date);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references department(id) ,empid int ,foreign key id2 references emp(id), Formda' at line 1
+mysql> create table EmployeeDepartment( id int primary key , Deptid int ,foreign key (deptid)  references department(id) ,empid int ,foreign key (empid) references emp(id), Formdate date,Todate date);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc employeedepartment;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| id       | int  | NO   | PRI | NULL    |       |
+| Deptid   | int  | YES  | MUL | NULL    |       |
+| empid    | int  | YES  | MUL | NULL    |       |
+| Formdate | date | YES  |     | NULL    |       |
+| Todate   | date | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc emp;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| id        | int           | NO   | PRI | NULL    |       |
+| firstname | varchar(10)   | YES  |     | NULL    |       |
+| lastname  | varchar(10)   | YES  |     | NULL    |       |
+| gender    | enum('m','f') | YES  |     | NULL    |       |
+| hiredate  | date          | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc department;
++----------+---------------------------------------------------+------+-----+---------+-------+
+| Field    | Type                                              | Null | Key | Default | Extra |
++----------+---------------------------------------------------+------+-----+---------+-------+
+| id       | int                                               | NO   | PRI | NULL    |       |
+| Name     | varchar(20)                                       | YES  |     | NULL    |       |
+| Location | set('PUNE','KOLHAPUR','NASHIK','SANGLI','MUMBAI') | YES  |     | NULL    |       |
++----------+---------------------------------------------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create Salarytable( id int primary key , Empid foreign key references emp(id) , Formdate date , Todate date,Commission int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Salarytable( id int primary key , Empid foreign key references emp(id) , Formdat' at line 1
+mysql> create Salarytable( id int primary key , Empid int foreign key references emp(id) , Formdate date , Todate date,Commission int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Salarytable( id int primary key , Empid int foreign key references emp(id) , For' at line 1
+mysql> create Salarytable( id int primary key , Empid int ,foreign key(Empid) references emp(id) , Formdate date , Todate date,Commission int);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Salarytable( id int primary key , Empid int ,foreign key(Empid) references emp(i' at line 1
+mysql> create table Salarytable( id int primary key , Empid int ,foreign key(Empid) references emp(id) , Formdate date , Todate date,Commission int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc salarytable;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| id         | int  | NO   | PRI | NULL    |       |
+| Empid      | int  | YES  | MUL | NULL    |       |
+| Formdate   | date | YES  |     | NULL    |       |
+| Todate     | date | YES  |     | NULL    |       |
+| Commission | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table CommissionTable( id int primary key ,Empid int foreign key references emp(id) , Formdate date , Todate date, Commission int );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'foreign key references emp(id) , Formdate date , Todate date, Commission int )' at line 1
+mysql> create table CommissionTable( id int primary key ,Empid int ,foreign key(empid) references emp(id) , Formdate date , Todate date, Commission int );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc commissiontable;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| id         | int  | NO   | PRI | NULL    |       |
+| Empid      | int  | YES  | MUL | NULL    |       |
+| Formdate   | date | YES  |     | NULL    |       |
+| Todate     | date | YES  |     | NULL    |       |
+| Commission | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> table salarytable;
+Empty set (0.00 sec)
+
+mysql> desc salarytable;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| id         | int  | NO   | PRI | NULL    |       |
+| Empid      | int  | YES  | MUL | NULL    |       |
+| Formdate   | date | YES  |     | NULL    |       |
+| Todate     | date | YES  |     | NULL    |       |
+| Commission | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table add salary int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add salary int' at line 1
+mysql> alter table salarytable add salary int;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc salarytable;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| id         | int  | NO   | PRI | NULL    |       |
+| Empid      | int  | YES  | MUL | NULL    |       |
+| Formdate   | date | YES  |     | NULL    |       |
+| Todate     | date | YES  |     | NULL    |       |
+| Commission | int  | YES  |     | NULL    |       |
+| salary     | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table drop commission;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'drop commission' at line 1
+mysql> alter table salarytable drop commission;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc salarytable;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| id       | int  | NO   | PRI | NULL    |       |
+| Empid    | int  | YES  | MUL | NULL    |       |
+| Formdate | date | YES  |     | NULL    |       |
+| Todate   | date | YES  |     | NULL    |       |
+| salary   | int  | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc commission;
+ERROR 1146 (42S02): Table 'assignment1.commission' doesn't exist
+mysql> desc commissiontable;
++------------+------+------+-----+---------+-------+
+| Field      | Type | Null | Key | Default | Extra |
++------------+------+------+-----+---------+-------+
+| id         | int  | NO   | PRI | NULL    |       |
+| Empid      | int  | YES  | MUL | NULL    |       |
+| Formdate   | date | YES  |     | NULL    |       |
+| Todate     | date | YES  |     | NULL    |       |
+| Commission | int  | YES  |     | NULL    |       |
++------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table Contact (id int primary key , empid int , foreign key(empid) references emp(id) , PhoneNumber bigint(12) , Email varchar(40);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table Contact (id int primary key , empid int , foreign key(empid) references emp(id) , PhoneNumber bigint(12) , Email varchar(40));
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+
+mysql> desc contact;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int         | NO   | PRI | NULL    |       |
+| empid       | int         | YES  | MUL | NULL    |       |
+| PhoneNumber | bigint      | YES  |     | NULL    |       |
+| Email       | varchar(40) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table address( id int primary key ,Empid int ,foreign key(empid) references emp(id) , line1 varchar(20), line2 varchar(20) , City varchar(20) , pin int );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc address;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| Empid | int         | YES  | MUL | NULL    |       |
+| line1 | varchar(20) | YES  |     | NULL    |       |
+| line2 | varchar(20) | YES  |     | NULL    |       |
+| City  | varchar(20) | YES  |     | NULL    |       |
+| pin   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table Qualification( id int primary key ,Empid int ,foreign key(empid) references emp(id) , Name varchar(20), Stream varchar(20) , Addmissionyear date , Institute varchar(20) ,University varchar(20), YearOfPassing int ,Percentage float(7,2), Grade enum('A+','A-','B+','B','C+','C-' ));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> desc Qualification;
++----------------+------------------------------------+------+-----+---------+-------+
+| Field          | Type                               | Null | Key | Default | Extra |
++----------------+------------------------------------+------+-----+---------+-------+
+| id             | int                                | NO   | PRI | NULL    |       |
+| Empid          | int                                | YES  | MUL | NULL    |       |
+| Name           | varchar(20)                        | YES  |     | NULL    |       |
+| Stream         | varchar(20)                        | YES  |     | NULL    |       |
+| Addmissionyear | date                               | YES  |     | NULL    |       |
+| Institute      | varchar(20)                        | YES  |     | NULL    |       |
+| University     | varchar(20)                        | YES  |     | NULL    |       |
+| YearOfPassing  | int                                | YES  |     | NULL    |       |
+| Percentage     | float(7,2)                         | YES  |     | NULL    |       |
+| Grade          | enum('A+','A-','B+','B','C+','C-') | YES  |     | NULL    |       |
++----------------+------------------------------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> create table Hobbie(id int primary key , empid int , foreign key(empid) references emp(id) , Name varchar(20));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc hobbie;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| empid | int         | YES  | MUL | NULL    |       |
+| Name  | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> create table JobHistory(id int primary key , empid int , foreign key(empid) references emp(id) , Employeer varchar(20),Formdate date , todate date , NatureOfJob varchar(40));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc jobhistory;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| id          | int         | NO   | PRI | NULL    |       |
+| empid       | int         | YES  | MUL | NULL    |       |
+| Employeer   | varchar(20) | YES  |     | NULL    |       |
+| Formdate    | date        | YES  |     | NULL    |       |
+| todate      | date        | YES  |     | NULL    |       |
+| NatureOfJob | varchar(40) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql>

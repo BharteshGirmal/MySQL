@@ -1,0 +1,1819 @@
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> # Pl-Sql
+mysql> # prgramming .....................
+mysql> select curdate();
++------------+
+| curdate()  |
++------------+
+| 2022-05-24 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| NULL       |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| db1                |
+| db2                |
+| db3                |
+| db4                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+10 rows in set (0.02 sec)
+
+mysql> use db2;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| db1                |
+| db2                |
+| db3                |
+| db4                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+10 rows in set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| db2        |
++------------+
+1 row in set (0.00 sec)
+
+mysql> call pro1();
++---------------+
+| Message Box   |
++---------------+
+|  Hello World  |
++---------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> 
+mysql>
+mysql> use db1;
+Database changed
+mysql> call db2.pro1();
++---------------+
+| Message Box   |
++---------------+
+|  Hello World  |
++---------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> 
+mysql> select ROUTINE_NAME,ROUTINE_TYPE,ROUTINE_DEFINITION from information_schema.routines where ROUTINE_SCHEMA='db2';
++-----------------------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ROUTINE_NAME          | ROUTINE_TYPE | ROUTINE_DEFINITION                                                                                                                                                               |
++-----------------------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| fun1                  | FUNCTION     | begin
+        DECLARE x varchar(50);
+        select "Hello World " as "message" into x;
+        return(x);
+end                                                                                       |
+| fun3                  | FUNCTION     | begin
+        DECLARE res int;
+        DECLARE cmt int;
+        select count(*) into cmt from A;
+        if cmt = 0 then
+                return(1);
+        else
+        select max(id)+1 into res from A;
+        return(res);
+         end if ;
+end |
+| Display               | PROCEDURE    | begin
+        select message as "message Box " ;
+end                                                                                                                                   |
+| Display_login_details | PROCEDURE    | begin
+        select * from  Login_details ;
+end                                                                                                                                       |
+| login_details         | PROCEDURE    | begin
+        insert into Login_details (username , password) values (para_username , para_pasword);
+end                                                                               |
+| pro1                  | PROCEDURE    | begin
+select " Hello World " as " Message Box ";
+end                                                                                                                            |
+| pro2                  | PROCEDURE    | begin
+select  q1 + q2 as " Message Box ";
+end                                                                                                                                   |
+| pro3                  | PROCEDURE    | begin
+        set x:=q1+q2;
+        set y:=q1*q2;
+        SELECT x as "Addition";
+        SELECT y as "multiplication";
+end                                                                                 |
+| pro4                  | PROCEDURE    | begin
+        set q1:=q1*q1;
+        SELECT q1 as "Square" ;
+end                                                                                                                              |
++-----------------------+--------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+9 rows in set (0.00 sec)
+
+mysql> use db2;
+Database changed
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| a             |
+| car           |
+| demo          |
+| department    |
+| dept          |
+| employee      |
+| employee2     |
+| login         |
+| logindetails  |
+| logindetails2 |
+| v1            |
++---------------+
+11 rows in set (0.01 sec)
+
+mysql> create database Project;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Project;
+Database changed
+mysql> create table Login(id int primary key auto_increment , Name varchar(30));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc login;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| Name  | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> delete from login;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc login;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int         | NO   | PRI | NULL    | auto_increment |
+| Name  | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> drop table login;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> select database();
++------------+
+| database() |
++------------+
+| project    |
++------------+
+1 row in set (0.00 sec)
+
+mysql> create table Login(username varchar(20) , password varchar(30));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc login;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| username | varchar(20) | YES  |     | NULL    |       |
+| password | varchar(30) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> # compiling the the plsql satatements.....................................................
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> call Display("Hello World");
++--------------+
+| message Box  |
++--------------+
+| Hello World  |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call Display("Hello World");
++--------------+
+| message Box  |
++--------------+
+| Hello World  |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> select * from login;
+Empty set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> call insert_login("Bhartesh","123456");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from login;
++----------+----------+
+| username | password |
++----------+----------+
+| Bhartesh | 123456   |
++----------+----------+
+1 row in set (0.00 sec)
+
+mysql> call insert_login("Girmal","Girmal");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> call insert_login("shubham","shubham");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> call insert_login("Hardik","Hardik");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from login;
++----------+----------+
+| username | password |
++----------+----------+
+| Bhartesh | 123456   |
+| Girmal   | Girmal   |
+| shubham  | shubham  |
+| Hardik   | Hardik   |
++----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> alter table login modify password varbinary(20);
+Query OK, 4 rows affected (0.05 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from login;
++----------+--------------------+
+| username | password           |
++----------+--------------------+
+| Bhartesh | 0x313233343536     |
+| Girmal   | 0x4769726D616C     |
+| shubham  | 0x7368756268616D   |
+| Hardik   | 0x48617264696B     |
++----------+--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from login where password=123456;
++----------+--------------------+
+| username | password           |
++----------+--------------------+
+| Bhartesh | 0x313233343536     |
++----------+--------------------+
+1 row in set, 3 warnings (0.01 sec)
+
+mysql> alter table login add id int primary key auto_increment first;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from login;
++----+----------+--------------------+
+| id | username | password           |
++----+----------+--------------------+
+|  1 | Bhartesh | 0x313233343536     |
+|  2 | Girmal   | 0x4769726D616C     |
+|  3 | shubham  | 0x7368756268616D   |
+|  4 | Hardik   | 0x48617264696B     |
++----+----------+--------------------+
+4 rows in set (0.00 sec)
+
+mysql> select id , username ,cast(password as char) from login;
++----+----------+------------------------+
+| id | username | cast(password as char) |
++----+----------+------------------------+
+|  1 | Bhartesh | 123456                 |
+|  2 | Girmal   | Girmal                 |
+|  3 | shubham  | shubham                |
+|  4 | Hardik   | Hardik                 |
++----+----------+------------------------+
+4 rows in set (0.01 sec)
+
+mysql> call Display("Hello ...................");
++---------------------------+
+| message Box               |
++---------------------------+
+| Hello ................... |
++---------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call login_validation('bhartesh','123456');
++--------------+
+| message Box  |
++--------------+
+| valid user   |
++--------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call login_validation('bhartesh','1236');
++--------------+
+| message Box  |
++--------------+
+| Invalid user |
++--------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> call delete_login('shubham');
++--------------+
+| message Box  |
++--------------+
+| User deleted |
++--------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from login;
++----+----------+--------------------+
+| id | username | password           |
++----+----------+--------------------+
+|  1 | Bhartesh | 0x313233343536     |
+|  2 | Girmal   | 0x4769726D616C     |
+|  4 | Hardik   | 0x48617264696B     |
++----+----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> # functions..............................................
+mysql>
+mysql> select fun1();
+ERROR 1305 (42000): FUNCTION project.fun1 does not exist
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> select fun1("Hello");
+ERROR 1318 (42000): Incorrect number of arguments for FUNCTION project.fun1; expected 0, got 1
+mysql> select fun1();
++-------------+
+| fun1()      |
++-------------+
+| Hello World |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select fun2(10,20);
++-------------+
+| fun2(10,20) |
++-------------+
+|          30 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select fun2(112,20) addition;
++----------+
+| addition |
++----------+
+|      132 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> select *from db1,emp;
+ERROR 1146 (42S02): Table 'project.db1' doesn't exist
+mysql> select * from db1.emp;
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+| EMPNO | ENAME    | GENDER | JOB                 | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME    | PWD        | PHONE      | isActive | SrNO |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+|  6001 | GITA     | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | GITA         | sales@2017 | NULL       |        1 |    1 |
+|  6129 | VRUSHALI | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | VRUSHALI     | PUN@8877   | NULL       |        1 |    2 |
+|  6473 | SHARMIN  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | SHARMIN      | a12recmpm  | NULL       |        1 |    3 |
+|  6781 | BANDISH  | F      | Public Relation     | 7920 | 1981-07-19 | 1750 | NULL |     20 |       1 | BANDISH      | a12recmpm  | NULL       |        1 |    4 |
+|  7369 | SMITH    | M      | CLERK               | 7902 | 1980-12-17 |  800 | NULL |     20 |       2 | TRITONE      | a12recmpm  | 7032300023 |        0 |    5 |
+|  7415 | AARAV    | M      | CLERK               | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV        | NULL       | 7032300084 |        0 |    6 |
+|  7421 | THOMAS   | M      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS       | r50mpm     | 7032300011 |        0 |    7 |
+|  7499 | ALLEN    | M      | SALESMAN            | 7698 | 1981-02-20 | 1600 |  300 |     30 |       4 | ALWAYS TESTE | sales@2017 | 7032300096 |        1 |    8 |
+|  7521 | WARD     | M      | SALESMAN            | 7698 | 1981-02-22 | 1250 |  500 |     30 |       1 | WARD         | sales@2017 | 7132300034 |        1 |    9 |
+|  7566 | JONES    | M      | MANAGER             | 7839 | 1981-04-02 | 2975 | NULL |     20 |       4 | HONEYCOMB    | a12recmpm  | 7132300039 |        1 |   10 |
+|  7654 | MARTIN   | M      | SALESMAN            | 7698 | 1981-09-28 | 1250 | 1400 |     30 |       6 | LIFE RACER   | sales@2017 | 7132300050 |        1 |   11 |
+|  7698 | BLAKE    | M      | MANAGER             | 7839 | 1981-05-01 | 2850 | NULL |     30 |       1 | BIG BEN      | sales@2017 | 7132300027 |        1 |   12 |
+|  7782 | CLARK    | M      | MANAGER             | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK        | r50mpm     | 7032300001 |        1 |   13 |
+|  7788 | SCOTT    | M      | ANALYST             | 7766 | 1982-12-09 | 3000 | NULL |     20 |       3 | WHITE SAND   | a12recmpm  | NULL       |        1 |   14 |
+|  7839 | KING     | M      | PRESIDENT           | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING         | r50mpm     | 7132300081 |        1 |   15 |
+|  7840 | FRED     | M      | vice PRESIDENT      | 7839 | 1983-08-09 | 5000 | NULL |     20 |       1 | SAND STONE   | a12recmpm  | NULL       |        1 |   16 |
+|  7844 | TURNER   | M      | SALESMAN            | 7698 | 1981-09-08 | 1500 |    0 |     30 |       5 | SAND DUST    | sales@2017 | NULL       |        1 |   17 |
+|  7876 | ADAMS    | M      | CLERK               | 7788 | 1983-01-12 | 1100 | NULL |     20 |       1 | CRAZY ANYONE | a12recmpm  | 7132300086 |        1 |   18 |
+|  7900 | JAMES    | M      | CLERK               | 7698 | 1981-12-03 |  950 | NULL |     30 |       2 | CRAZY LEADER | sales@2017 | 7132300042 |        1 |   19 |
+|  7902 | zzz      | M      | ANALYST             | 7566 | 1981-12-03 | 3000 | NULL |     20 |       4 | CONBRIO      | a12recmpm  | NULL       |        0 |   20 |
+|  7919 | HOFFMAN  | M      | MANAGER             | 7566 | 1982-03-24 | 4150 | NULL |     30 |       3 | INTERVAL     | sales@2017 | NULL       |        1 |   21 |
+|  7920 | GRASS    | M      | SALESMAN            | 7919 | 1980-02-14 | 2575 | 2700 |     30 |       5 | GRASS        | sales@2017 | NULL       |        1 |   22 |
+|  7934 | MILLER   | M      | CLERK               | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE  | r50mpm     | 7132300055 |        0 |   23 |
+|  7945 | AARUSH   | M      | SALESMAN            | 7902 | 1980-02-14 | 1350 | 2700 |     30 |    NULL | AARUSH       | ABCDEF     | NULL       |        0 |   24 |
+|  7949 | ALEX     | M      | MANAGER             | 7698 | 1982-01-24 | 1250 |  500 |     30 |       5 | QUARTERREST  | sales@2017 | 7156567183 |        1 |   25 |
+|  8433 | NATASHA  | F      | CLERK               | 7920 | 1981-07-19 | 1750 | NULL |     30 |       1 | NATASHA      | sales@2017 | NULL       |        1 |   26 |
+|  9400 | SANGITA  | F      | Compliance officers | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SANGITA      | NULL       | NULL       |        1 |   27 |
+|  9473 | SUPRIYA  | F      | ANALYST             | 7920 | 1981-07-19 | 1750 | NULL |     50 |       1 | SUPRIYA      | XYZ@1234   | NULL       |        1 |   28 |
++-------+----------+--------+---------------------+------+------------+------+------+--------+---------+--------------+------------+------------+----------+------+
+28 rows in set (0.00 sec)
+
+mysql> select * from db1.emp where deptno=fun2(5,5);
++-------+--------+--------+-----------+------+------------+------+------+--------+---------+-------------+--------+------------+----------+------+
+| EMPNO | ENAME  | GENDER | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO | BONUSID | USER NAME   | PWD    | PHONE      | isActive | SrNO |
++-------+--------+--------+-----------+------+------------+------+------+--------+---------+-------------+--------+------------+----------+------+
+|  7415 | AARAV  | M      | CLERK     | 7902 | 1981-12-31 | 3350 | NULL |     10 |    NULL | AARAV       | NULL   | 7032300084 |        0 |    6 |
+|  7421 | THOMAS | M      | CLERK     | 7920 | 1981-07-19 | 1750 | NULL |     10 |       1 | THOMAS      | r50mpm | 7032300011 |        0 |    7 |
+|  7782 | CLARK  | M      | MANAGER   | 7839 | 1981-06-09 | 2450 | NULL |     10 |       3 | CLARK       | r50mpm | 7032300001 |        1 |   13 |
+|  7839 | KING   | M      | PRESIDENT | NULL | 1981-11-17 | 5000 | NULL |     10 |       1 | KING        | r50mpm | 7132300081 |        1 |   15 |
+|  7934 | MILLER | M      | CLERK     | 7782 | 1982-01-23 | 1300 | NULL |     10 |       2 | QUARTERNOTE | r50mpm | 7132300055 |        0 |   23 |
++-------+--------+--------+-----------+------+------------+------+------+--------+---------+-------------+--------+------------+----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select ename ,job , sal , comm ,fun2(sal,comm) from db1.emp;
++----------+---------------------+------+------+----------------+
+| ename    | job                 | sal  | comm | fun2(sal,comm) |
++----------+---------------------+------+------+----------------+
+| GITA     | Compliance officers | 1750 | NULL |           1750 |
+| VRUSHALI | Compliance officers | 1750 | NULL |           1750 |
+| SHARMIN  | Public Relation     | 1750 | NULL |           1750 |
+| BANDISH  | Public Relation     | 1750 | NULL |           1750 |
+| SMITH    | CLERK               |  800 | NULL |            800 |
+| AARAV    | CLERK               | 3350 | NULL |           3350 |
+| THOMAS   | CLERK               | 1750 | NULL |           1750 |
+| ALLEN    | SALESMAN            | 1600 |  300 |           1900 |
+| WARD     | SALESMAN            | 1250 |  500 |           1750 |
+| JONES    | MANAGER             | 2975 | NULL |           2975 |
+| MARTIN   | SALESMAN            | 1250 | 1400 |           2650 |
+| BLAKE    | MANAGER             | 2850 | NULL |           2850 |
+| CLARK    | MANAGER             | 2450 | NULL |           2450 |
+| SCOTT    | ANALYST             | 3000 | NULL |           3000 |
+| KING     | PRESIDENT           | 5000 | NULL |           5000 |
+| FRED     | vice PRESIDENT      | 5000 | NULL |           5000 |
+| TURNER   | SALESMAN            | 1500 |    0 |           1500 |
+| ADAMS    | CLERK               | 1100 | NULL |           1100 |
+| JAMES    | CLERK               |  950 | NULL |            950 |
+| zzz      | ANALYST             | 3000 | NULL |           3000 |
+| HOFFMAN  | MANAGER             | 4150 | NULL |           4150 |
+| GRASS    | SALESMAN            | 2575 | 2700 |           5275 |
+| MILLER   | CLERK               | 1300 | NULL |           1300 |
+| AARUSH   | SALESMAN            | 1350 | 2700 |           4050 |
+| ALEX     | MANAGER             | 1250 |  500 |           1750 |
+| NATASHA  | CLERK               | 1750 | NULL |           1750 |
+| SANGITA  | Compliance officers | 1750 | NULL |           1750 |
+| SUPRIYA  | ANALYST             | 1750 | NULL |           1750 |
++----------+---------------------+------+------+----------------+
+28 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_project |
++-------------------+
+| login             |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> create table A(id int ,Name varchar(30));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc a;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| Name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into a values(1,'bhartesh');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
++------+----------+
+| id   | Name     |
++------+----------+
+|    1 | bhartesh |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call fun3();
+ERROR 1305 (42000): PROCEDURE project.fun3 does not exist
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
++------+--------------+
+| id   | Name         |
++------+--------------+
+|    1 | bhartesh     |
+|    2 | bhartesh - 2 |
++------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3(),concat('bhartesh - ', fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
++------+--------------+
+| id   | Name         |
++------+--------------+
+|    1 | bhartesh     |
+|    2 | bhartesh - 2 |
+|    3 | bhartesh - 3 |
+|    4 | bhartesh - 4 |
+|    5 | bhartesh - 5 |
+|    6 | bhartesh - 6 |
+|    7 | bhartesh - 7 |
+|    8 | bhartesh - 8 |
+|    9 | bhartesh - 9 |
++------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from a;
++------+----------+
+| id   | Name     |
++------+----------+
+|    1 | bhartesh |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> delete from a;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
+Empty set (0.00 sec)
+
+mysql> insert into a values(fun3(),'Bhartesh');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
++------+----------+
+| id   | Name     |
++------+----------+
+|    1 | Bhartesh |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> select count(*) from a;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> call pro5();
++------+
+| x    |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    2 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    3 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|    4 |
++------+
+1 row in set (0.07 sec)
+
++------+
+| x    |
++------+
+|    5 |
++------+
+1 row in set (0.11 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> call fun6();
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc a1;
+ERROR 1146 (42S02): Table 'project.a1' doesn't exist
+mysql> desc al;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_project |
++-------------------+
+| a                 |
+| al                |
+| login             |
++-------------------+
+3 rows in set (0.00 sec)
+
+mysql> create table dept as select * from db1.dept;
+Query OK, 5 rows affected (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> table dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc a;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| Name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from a;
++------+----------+
+| id   | Name     |
++------+----------+
+|    1 | Bhartesh |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> create table Log( id int primary key auto_increment,LogData varchar(1000));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from log;
+Empty set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> desc log;
++---------+---------------+------+-----+---------+----------------+
+| Field   | Type          | Null | Key | Default | Extra          |
++---------+---------------+------+-----+---------+----------------+
+| id      | int           | NO   | PRI | NULL    | auto_increment |
+| LogData | varchar(1000) | YES  |     | NULL    |                |
++---------+---------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql>
+mysql>
+mysql> # ........................... Triggers .................................
+mysql>
+mysql>
+mysql>
+mysql> # triggers are fired implicitly
+mysql>
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from log;
+Empty set (0.00 sec)
+
+mysql> desc log;
++---------+---------------+------+-----+---------+----------------+
+| Field   | Type          | Null | Key | Default | Extra          |
++---------+---------------+------+-----+---------+----------------+
+| id      | int           | NO   | PRI | NULL    | auto_increment |
+| LogData | varchar(1000) | YES  |     | NULL    |                |
++---------+---------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into dept values(1,2,3,4,5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from log;
++----+-------------------------------+
+| id | LogData                       |
++----+-------------------------------+
+|  1 | Record Inserted in Dept Table |
++----+-------------------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | 2          | 3        | 4          | 5          |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from log;
+Empty set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
++--------+------------+----------+------------+------------+
+5 rows in set (0.00 sec)
+
+mysql> create table BackUp as select * from dept where 1=2;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc backup;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into dept values(1,'PRUCHASE', 'BARODA','xyz', '17/70/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from backup;
+Empty set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+insert into BackUp values(new.deptno , new.dname,new,loc,new.pwd,new.sta' at line 1
+
+mysql> rename table backup to deptbk;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
+Empty set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> alter table deptbk add InsertedBy varchar(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table deptbk add InsertedON date;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table deptbk add InsertedTIME time;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc deptbk;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| DEPTNO       | int         | NO   |     | NULL    |       |
+| DNAME        | varchar(12) | YES  |     | NULL    |       |
+| LOC          | varchar(10) | YES  |     | NULL    |       |
+| PWD          | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON    | varchar(10) | YES  |     | NULL    |       |
+| InsertedBy   | varchar(30) | YES  |     | NULL    |       |
+| InsertedON   | date        | YES  |     | NULL    |       |
+| InsertedTIME | time        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept values(1,'PRUCHASE', 'BARODA','xyz', '17/70/2022');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into dept values(11,'SALES', 'BANGLORE','RSDMNF', '17/70/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|     11 | SALES      | BANGLORE | RSDMNF     | 17/70/2022 |
++--------+------------+----------+------------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|      1 | PRUCHASE | BARODA   | xyz    | 17/70/2022 | root@localhost | 2022-05-24 | 18:41:45     |
+|     11 | SALES    | BANGLORE | RSDMNF | 17/70/2022 | root@localhost | 2022-05-24 | 18:42:21     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql>
+
+
+
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| assignment1        |
+| db1                |
+| db2                |
+| db3                |
+| db4                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| project            |
+| sys                |
++--------------------+
+11 rows in set (0.01 sec)
+
+mysql> use project;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_project |
++-------------------+
+| a                 |
+| al                |
+| dept              |
+| deptbk            |
+| log               |
+| login             |
++-------------------+
+6 rows in set (0.01 sec)
+
+mysql> desc a;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| Name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> desc al;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc deptbk;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| DEPTNO       | int         | NO   |     | NULL    |       |
+| DNAME        | varchar(12) | YES  |     | NULL    |       |
+| LOC          | varchar(10) | YES  |     | NULL    |       |
+| PWD          | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON    | varchar(10) | YES  |     | NULL    |       |
+| InsertedBy   | varchar(30) | YES  |     | NULL    |       |
+| InsertedON   | date        | YES  |     | NULL    |       |
+| InsertedTIME | time        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> desc log;
++---------+---------------+------+-----+---------+----------------+
+| Field   | Type          | Null | Key | Default | Extra          |
++---------+---------------+------+-----+---------+----------------+
+| id      | int           | NO   | PRI | NULL    | auto_increment |
+| LogData | varchar(1000) | YES  |     | NULL    |                |
++---------+---------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> desc login;
++----------+---------------+------+-----+---------+----------------+
+| Field    | Type          | Null | Key | Default | Extra          |
++----------+---------------+------+-----+---------+----------------+
+| id       | int           | NO   | PRI | NULL    | auto_increment |
+| username | varchar(20)   | YES  |     | NULL    |                |
+| password | varbinary(20) | YES  |     | NULL    |                |
++----------+---------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM information_schema.parameters
+    -> WHERE SPECIFIC_NAME = 'pro1';
+Empty set (0.01 sec)
+
+mysql> # cursors ..................................................
+mysql>
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept values(120,'bhartesh','kolhapur','466464','24/05/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
++--------+------------+----------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 22:53:26     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from dept where deptno-120;
+Query OK, 6 rows affected (0.01 sec)
+
+mysql> select * from dept;
++--------+----------+----------+--------+------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  |
++--------+----------+----------+--------+------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 |
++--------+----------+----------+--------+------------+
+1 row in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept values(120,'bhartesh','kolhapur','466464','24/05/2022');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 22:56:37     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from dept where deptno=120;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 22:56:37     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*/
+
+
+
+
+
+
+end $
+delimiter' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*/
+
+
+
+
+
+
+
+drop TRIGGER if exists trig2' at line 1
+ERROR 1359 (HY000): Trigger already exists
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(old.deptno , old.dname,old.loc,old.pwd,old.startedon,user(),curdate(),cur' at line 3
+mysql> source E:\PLSQL.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*/
+
+
+
+
+
+
+end $
+delimiter' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*/
+
+
+
+
+
+
+
+
+drop TRIGGER if exists trig3' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(old.deptno , old.dname,old.loc,old.pwd,old.startedon,user(),curdate(),cur' at line 3
+mysql> drop trigger;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> drop trig1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trig1' at line 1
+mysql> drop trigger trig1;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop trigger trig2;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> source E:\PLSQL.sql
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*/
+
+
+
+
+
+
+end $
+delimiter' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*/
+
+
+
+
+
+
+
+
+drop TRIGGER if exists trig3' at line 1
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(old.deptno , old.dname,old.loc,old.pwd,old.startedon,user(),curdate(),cur' at line 3
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(old.deptno , old.dname,old.loc,old.pwd,old.startedon,user(),curdate(),cur' at line 3
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 22:56:37     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into dept values(120,'bhartesh','kolhapur','466464','24/05/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
++--------+------------+----------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 22:56:37     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> delete from dept where deptno=120;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
++--------+------------+----------+------------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
+Empty set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept values(120,'bhartesh','kolhapur','466464','24/05/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
++--------+------------+----------+------------+------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
+Empty set (0.00 sec)
+
+mysql> drop trigger trig3;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into dept values(120,'bhartesh','kolhapur','466464','24/05/2022');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from deptbk;
+Empty set (0.00 sec)
+
+mysql> drop trigger trig2;
+ERROR 1360 (HY000): Trigger does not exist
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept values(120,'bhartesh','kolhapur','466464','24/05/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 23:16:58     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
++--------+------------+----------+------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> delete from dept where deptno=120;
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| DEPTNO    | int         | NO   |     | NULL    |       |
+| DNAME     | varchar(12) | YES  |     | NULL    |       |
+| LOC       | varchar(10) | YES  |     | NULL    |       |
+| PWD       | varchar(20) | YES  |     | NULL    |       |
+| STARTEDON | varchar(10) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> select * from log;
++----+-------------------------------+
+| id | LogData                       |
++----+-------------------------------+
+|  2 | Record Inserted in Dept Table |
+| 15 | Record Inserted in Dept Table |
++----+-------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from dept;
++--------+------------+----------+------------+------------+
+| DEPTNO | DNAME      | LOC      | PWD        | STARTEDON  |
++--------+------------+----------+------------+------------+
+|     10 | ACCOUNTING | NEW YORK | r50mpm     | 24/03/1989 |
+|     20 | RESEARCH   | DALLAS   | a12recmpm  | 12/04/1989 |
+|     30 | SALES      | CHICAGO  | sales@2017 | 13/04/1989 |
+|     40 | OPERATIONS | BOSTON   | opr@123    | 12/07/1989 |
+|     50 | HR         | PUNE     | PUN@8877   | 22/12/1989 |
+|      1 | PRUCHASE   | BARODA   | xyz        | 17/70/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
+|    120 | bhartesh   | kolhapur | 466464     | 24/05/2022 |
++--------+------------+----------+------------+------------+
+9 rows in set (0.00 sec)
+
+mysql> insert into dept values(11,'hardik','pune','46dsw','2/01/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into dept values(55,'Shubham','kolhapur','46er4s','24/10/2020');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from log;
++----+-------------------------------+
+| id | LogData                       |
++----+-------------------------------+
+|  2 | Record Inserted in Dept Table |
+| 15 | Record Inserted in Dept Table |
+| 16 | Record Inserted in Dept Table |
++----+-------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dept values(11,'hardik','pune','46dsw','2/01/2022');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from log;
++----+-------------------------------+
+| id | LogData                       |
++----+-------------------------------+
+|  2 | Record Inserted in Dept Table |
+| 15 | Record Inserted in Dept Table |
+| 16 | Record Inserted in Dept Table |
+| 17 | Record Inserted in Dept Table |
++----+-------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from deptbk;
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+| DEPTNO | DNAME    | LOC      | PWD    | STARTEDON  | InsertedBy     | InsertedON | InsertedTIME |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+|    120 | bhartesh | kolhapur | 466464 | 24/05/2022 | root@localhost | 2022-05-24 | 23:16:58     |
+|     11 | hardik   | pune     | 46dsw  | 2/01/2022  | root@localhost | 2022-05-24 | 23:23:01     |
+|     55 | Shubham  | kolhapur | 46er4s | 24/10/2020 | root@localhost | 2022-05-24 | 23:24:17     |
+|     11 | hardik   | pune     | 46dsw  | 2/01/2022  | root@localhost | 2022-05-24 | 23:24:43     |
++--------+----------+----------+--------+------------+----------------+------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from a;
++------+----------+
+| id   | Name     |
++------+----------+
+|    1 | Bhartesh |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> insert into a(fun3() , concat('Bhartesh-',fun3()));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '() , concat('Bhartesh-',fun3()))' at line 1
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.02 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into a(fun3() , concat('Bhartesh-',fun3()));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '() , concat('Bhartesh-',fun3()))' at line 1
+mysql> select fun3();
++--------+
+| fun3() |
++--------+
+|      2 |
++--------+
+1 row in set (0.01 sec)
+
+mysql> insert into a values(fun3() , concat('Bhartesh-',fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3() , concat('Bhartesh-',fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3() , concat('Bhartesh-',fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into a values(fun3() , concat('Bhartesh-',fun3()));
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from a;
++------+------------+
+| id   | Name       |
++------+------------+
+|    1 | Bhartesh   |
+|    2 | Bhartesh-2 |
+|    3 | Bhartesh-3 |
+|    4 | Bhartesh-4 |
+|    5 | Bhartesh-5 |
++------+------------+
+5 rows in set (0.00 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro5();
++------+
+| x    |
++------+
+|    0 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    3 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|    4 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|    5 |
++------+
+1 row in set (0.03 sec)
+
++------+
+| x    |
++------+
+|    6 |
++------+
+1 row in set (0.12 sec)
+
++------+
+| x    |
++------+
+|    7 |
++------+
+1 row in set (0.23 sec)
+
++------+
+| x    |
++------+
+|    8 |
++------+
+1 row in set (0.31 sec)
+
++------+
+| x    |
++------+
+|    9 |
++------+
+1 row in set (0.38 sec)
+
++------+
+| x    |
++------+
+|   10 |
++------+
+1 row in set (0.47 sec)
+
+Query OK, 0 rows affected (0.56 sec)
+
+mysql> source E:\PLSQL.sql
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> call pro5();
++------+
+| x    |
++------+
+|   10 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|   11 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|   12 |
++------+
+1 row in set (0.00 sec)
+
++------+
+| x    |
++------+
+|   13 |
++------+
+1 row in set (0.01 sec)
+
++------+
+| x    |
++------+
+|   14 |
++------+
+1 row in set (0.02 sec)
+
++------+
+| x    |
++------+
+|   15 |
++------+
+1 row in set (0.05 sec)
+
++------+
+| x    |
++------+
+|   16 |
++------+
+1 row in set (0.06 sec)
+
++------+
+| x    |
++------+
+|   17 |
++------+
+1 row in set (0.09 sec)
+
++------+
+| x    |
++------+
+|   18 |
++------+
+1 row in set (0.10 sec)
+
++------+
+| x    |
++------+
+|   19 |
++------+
+1 row in set (0.11 sec)
+
++------+
+| x    |
++------+
+|   20 |
++------+
+1 row in set (0.11 sec)
+
+Query OK, 0 rows affected (0.14 sec)
+
+mysql>

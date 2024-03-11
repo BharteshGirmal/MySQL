@@ -1,0 +1,83 @@
+Microsoft Windows [Version 10.0.22000.556]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\shree>mongo --host=192.168.1.8 --port=27017
+MongoDB shell version v5.0.8
+connecting to: mongodb://192.168.1.8:27017/?compressors=disabled&gssapiServiceName=mongodb
+Error: couldn't connect to server 192.168.1.8:27017, connection attempt failed: NetworkTimeout: Error connecting to 192.168.1.8:27017 :: caused by :: Socket operation timed out :
+connect@src/mongo/shell/mongo.js:372:17
+@(connect):2:6
+exception: connect failed
+exiting with code 1
+
+C:\Users\shree>mongo --host= 192.168.103.5 --port=27017
+Error parsing command line: the argument for option '--host' should follow immediately after the equal sign
+try 'mongo --help' for more information
+
+C:\Users\shree>mongo --host=192.168.103.5 --port=27017
+MongoDB shell version v5.0.8
+connecting to: mongodb://192.168.103.5:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("10be6f1c-fff4-4820-95fe-f92e82b0bb40") }
+MongoDB server version: 5.0.8
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+        https://community.mongodb.com
+---
+The server generated these startup warnings when booting:
+        2022-05-26T10:34:29.506+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> db
+test
+> show databases
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db version()
+uncaught exception: SyntaxError: unexpected token: identifier :
+@(shell):1:3
+> db.version()
+5.0.8
+> db,getMongo()
+uncaught exception: ReferenceError: getMongo is not defined :
+@(shell):1:4
+> db.getMongo()
+connection to 192.168.103.5:27017
+> getHostName()
+Bhartesh
+> getHostinfo()
+uncaught exception: ReferenceError: getHostinfo is not defined :
+@(shell):1:1
+> db.getHostinfo()
+uncaught exception: TypeError: db.getHostinfo is not a function :
+@(shell):1:1
+> db.Hostinfo()
+uncaught exception: TypeError: db.Hostinfo is not a function :
+@(shell):1:1
+> db.getName()
+test
+> ^C
+bye
+{"t":{"$date":"2022-05-26T12:24:07.179Z"},"s":"I",  "c":"QUERY",    "id":22791,   "ctx":"js","msg":"Failed to end logical session","attr":{"lsid":{"id":{"$uuid":"10be6f1c-fff4-4820-95fe-f92e82b0bb40"}},"error":{"code":6,"codeName":"HostUnreachable","errmsg":"network error while attempting to run command 'endSessions' on host '192.168.103.5:27017' "}}}
+
+C:\Users\shree>

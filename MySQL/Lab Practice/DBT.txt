@@ -1,0 +1,791 @@
+Microsoft Windows [Version 10.0.22000.556]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\shree>mysql
+ERROR 1045 (28000): Access denied for user 'ODBC'@'localhost' (using password: NO)
+
+C:\Users\shree>mysql -H127.0.0.1 -P3306 -uroot -p;
+mysql: [ERROR] mysql: unknown option '-1'.
+
+C:\Users\shree>mysql - vgt.H127. 0.0.1 -P3306 -uroot -p
+mysql: [ERROR] mysql: unknown option '-1'.
+
+C:\Users\shree>mysql -H123.0.0.1 -P3306 -uroot -p
+mysql: [ERROR] mysql: unknown option '-1'.
+
+C:\Users\shree>mysql -H127.0.0.1 -P3306 -uroot -p
+mysql: [ERROR] mysql: unknown option '-1'.
+
+C:\Users\shree>mysql -H127.0.0.1 -P3306 -uroot -p;
+mysql: [ERROR] mysql: unknown option '-1'.
+
+C:\Users\shree>mysql -h127.0.0.1 -P3306 -uroot -p;
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+
+C:\Users\shree>mysql -h127.0.0.1 -P3306 -uroot -p
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.29 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| db1                |
+| db2                |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.01 sec)
+
+mysql> use db1;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_db1       |
++---------------------+
+| a                   |
+| agent               |
+| andor               |
+| b                   |
+| blanktablea         |
+| blanktableb         |
+| blog                |
+| bonus               |
+| books               |
+| candidate           |
+| client              |
+| coalesce            |
+| comments            |
+| company             |
+| customer            |
+| customers           |
+| demodept1           |
+| demodept2           |
+| dept                |
+| dept1               |
+| docs                |
+| dummy               |
+| duplicate           |
+| emp                 |
+| emp1                |
+| emp2                |
+| emp_attendance      |
+| emp_cards           |
+| emp_phone           |
+| empj                |
+| envelope            |
+| food                |
+| hobby               |
+| item                |
+| key_parts           |
+| licence             |
+| location            |
+| mass_table          |
+| menucard            |
+| nearest             |
+| new                 |
+| newbooks            |
+| nullif              |
+| numberstring        |
+| ord                 |
+| orders              |
+| plumber             |
+| plumber_service_map |
+| points              |
+| price               |
+| product             |
+| products            |
+| quarter_revenue     |
+| r                   |
+| r1                  |
+| r2                  |
+| races               |
+| regexpr             |
+| replacedept         |
+| revenue             |
+| runners             |
+| sales               |
+| sales_channel       |
+| salespeople         |
+| salesperson         |
+| salgrade            |
+| service             |
+| seta                |
+| setb                |
+| softdrink           |
+| sort                |
+| stadium             |
+| states              |
+| station             |
+| status              |
+| stringnumber        |
+| tablea              |
+| tableaa             |
+| tableb              |
+| tablebb             |
+| tasks               |
+| temp1               |
+| transactions        |
+| vote_response       |
+| votes               |
+| warehouse           |
+| z                   |
++---------------------+
+87 rows in set (0.01 sec)
+
+mysql> use db2
+Database changed
+mysql> select databse();
+ERROR 1305 (42000): FUNCTION db2.databse does not exist
+mysql> select database();
++------------+
+| database() |
++------------+
+| db2        |
++------------+
+1 row in set (0.00 sec)
+
+mysql> show tables;
++---------------+
+| Tables_in_db2 |
++---------------+
+| car           |
+| dept          |
+| employee      |
+| employee2     |
++---------------+
+4 rows in set (0.00 sec)
+
+mysql> desc car;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| Colour  | varchar(40) | YES  |     | NULL    |       |
+| segment | varchar(55) | YES  |     | NULL    |       |
+| price   | float(10,2) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from car;
+Empty set (0.00 sec)
+
+mysql> select * from dept;
+Empty set (0.01 sec)
+
+mysql> select * from employee
+    -> select * from employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select * from employee' at line 2
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+------+------+
+| id | Name     | Job       | City     | Salary | c2   | c3   |
++----+----------+-----------+----------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
++----+----------+-----------+----------+--------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee;
++-------+----------+--------+--------+----------+
+| EmpId | EmpName  | Gender | Salary | Comision |
++-------+----------+--------+--------+----------+
+|   121 | Bhartesh | M      | 500000 |  1234.56 |
+|     7 | Girmal   | M      |   4000 |   124.56 |
++-------+----------+--------+--------+----------+
+2 rows in set (0.01 sec)
+
+mysql> alter table employee2 add coloumn ids int first;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids int first' at line 1
+mysql> alter table employee2 add coloumn ids int at first;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids int at first' at line 1
+mysql> alter table employee2 add coloumn ids int first;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ids int first' at line 1
+mysql> alter table employee2 add ids int first;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++------+----+----------+-----------+----------+--------+------+------+
+| ids  | id | Name     | Job       | City     | Salary | c2   | c3   |
++------+----+----------+-----------+----------+--------+------+------+
+| NULL | 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| NULL | 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| NULL | 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
++------+----+----------+-----------+----------+--------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee2 add coloumn C4 int after city;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'C4 int after city' at line 1
+mysql> alter table employee2 add coloumn C4 int after City;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'C4 int after City' at line 1
+mysql> alter table employee2 add  C4 int after city;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++------+----+----------+-----------+----------+------+--------+------+------+
+| ids  | id | Name     | Job       | City     | C4   | Salary | c2   | c3   |
++------+----+----------+-----------+----------+------+--------+------+------+
+| NULL | 22 | Bhartesh | Developer | Kolhapur | NULL |  25000 | NULL | NULL |
+| NULL | 23 | Bhartesh | Developer | Kolhapur | NULL |  25000 | NULL | NULL |
+| NULL | 24 | Bhartesh | Developer | Kolhapur | NULL | 250000 | NULL | NULL |
++------+----+----------+-----------+----------+------+--------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee2 drop ids;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++----+----------+-----------+----------+------+--------+------+------+
+| id | Name     | Job       | City     | C4   | Salary | c2   | c3   |
++----+----------+-----------+----------+------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur | NULL |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur | NULL |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | NULL | 250000 | NULL | NULL |
++----+----------+-----------+----------+------+--------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> desc employee2;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| Name   | varchar(50) | NO   |     | NULL    |                |
+| Job    | varchar(77) | YES  |     | NULL    |                |
+| City   | varchar(10) | YES  |     | pune    |                |
+| C4     | int         | YES  |     | NULL    |                |
+| Salary | int         | YES  |     | NULL    |                |
+| c2     | int         | YES  |     | NULL    |                |
+| c3     | int         | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql>
+mysql> alter table employee2 add C4 int first;
+ERROR 1060 (42S21): Duplicate column name 'C4'
+mysql> alter table employee2 add Fields int first;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee2;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| Fields | int         | YES  |     | NULL    |                |
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| Name   | varchar(50) | NO   |     | NULL    |                |
+| Job    | varchar(77) | YES  |     | NULL    |                |
+| City   | varchar(10) | YES  |     | pune    |                |
+| C4     | int         | YES  |     | NULL    |                |
+| Salary | int         | YES  |     | NULL    |                |
+| c2     | int         | YES  |     | NULL    |                |
+| c3     | int         | YES  |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from employee2;
++--------+----+----------+-----------+----------+------+--------+------+------+
+| Fields | id | Name     | Job       | City     | C4   | Salary | c2   | c3   |
++--------+----+----------+-----------+----------+------+--------+------+------+
+|   NULL | 22 | Bhartesh | Developer | Kolhapur | NULL |  25000 | NULL | NULL |
+|   NULL | 23 | Bhartesh | Developer | Kolhapur | NULL |  25000 | NULL | NULL |
+|   NULL | 24 | Bhartesh | Developer | Kolhapur | NULL | 250000 | NULL | NULL |
++--------+----+----------+-----------+----------+------+--------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee2 drop fileds , drop C4;
+ERROR 1091 (42000): Can't DROP 'fileds'; check that column/key exists
+mysql> alter table employee2 drop fields , drop C4;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+------+------+
+| id | Name     | Job       | City     | Salary | c2   | c3   |
++----+----------+-----------+----------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
++----+----------+-----------+----------+--------+------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employee2 values(22,"ABCD","Manager","",25555);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee2 values(22,"ABCD","Manager","null",25555);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into employee2 values(22,"ABCD","Manager","null",25555,0,0);
+ERROR 1062 (23000): Duplicate entry '22' for key 'employee2.PRIMARY'
+mysql> insert into employee2 values(default,"ABCD","Manager","null",25555,0,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+------+------+
+| id | Name     | Job       | City     | Salary | c2   | c3   |
++----+----------+-----------+----------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
+| 25 | ABCD     | Manager   | null     |  25555 |    0 |    0 |
++----+----------+-----------+----------+--------+------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into employee2 values(default,"PQRS","Director","",25555,0,0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+------+------+
+| id | Name     | Job       | City     | Salary | c2   | c3   |
++----+----------+-----------+----------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
+| 25 | ABCD     | Manager   | null     |  25555 |    0 |    0 |
+| 26 | PQRS     | Director  |          |  25555 |    0 |    0 |
++----+----------+-----------+----------+--------+------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into employee2 values(default,"PQRS","Director",default,25555,0,0);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+------+------+
+| id | Name     | Job       | City     | Salary | c2   | c3   |
++----+----------+-----------+----------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
+| 25 | ABCD     | Manager   | null     |  25555 |    0 |    0 |
+| 26 | PQRS     | Director  |          |  25555 |    0 |    0 |
+| 27 | PQRS     | Director  | pune     |  25555 |    0 |    0 |
++----+----------+-----------+----------+--------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee2 modify name varchar(100) not null;
+Query OK, 6 rows affected (0.05 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+------+------+
+| id | name     | Job       | City     | Salary | c2   | c3   |
++----+----------+-----------+----------+--------+------+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 | NULL | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 | NULL | NULL |
+| 25 | ABCD     | Manager   | null     |  25555 |    0 |    0 |
+| 26 | PQRS     | Director  |          |  25555 |    0 |    0 |
+| 27 | PQRS     | Director  | pune     |  25555 |    0 |    0 |
++----+----------+-----------+----------+--------+------+------+
+6 rows in set (0.00 sec)
+
+mysql> desc employee2;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int          | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| Job    | varchar(77)  | YES  |     | NULL    |                |
+| City   | varchar(10)  | YES  |     | pune    |                |
+| Salary | int          | YES  |     | NULL    |                |
+| c2     | int          | YES  |     | NULL    |                |
+| c3     | int          | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table employee2 modify city varchar(100) default "Satara";
+Query OK, 6 rows affected (0.05 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc employee2;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | int          | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| Job    | varchar(77)  | YES  |     | NULL    |                |
+| city   | varchar(100) | YES  |     | Satara  |                |
+| Salary | int          | YES  |     | NULL    |                |
+| c2     | int          | YES  |     | NULL    |                |
+| c3     | int          | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table employee2 modify id bigint;
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc employee2;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | bigint       | NO   | PRI | NULL    |       |
+| name   | varchar(100) | NO   |     | NULL    |       |
+| Job    | varchar(77)  | YES  |     | NULL    |       |
+| city   | varchar(100) | YES  |     | Satara  |       |
+| Salary | int          | YES  |     | NULL    |       |
+| c2     | int          | YES  |     | NULL    |       |
+| c3     | int          | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table employee2 modify c2 int unique key auto_increment;
+Query OK, 6 rows affected (0.06 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc employee2;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | bigint       | NO   | PRI | NULL    |                |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| Job    | varchar(77)  | YES  |     | NULL    |                |
+| city   | varchar(100) | YES  |     | Satara  |                |
+| Salary | int          | YES  |     | NULL    |                |
+| c2     | int          | NO   | UNI | NULL    | auto_increment |
+| c3     | int          | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table employee2 modify id int primary key auto_increment;
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> alter table employee2 change c3 SrNo int;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee2;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| id     | bigint       | NO   | PRI | NULL    |                |
+| name   | varchar(100) | NO   |     | NULL    |                |
+| Job    | varchar(77)  | YES  |     | NULL    |                |
+| city   | varchar(100) | YES  |     | Satara  |                |
+| Salary | int          | YES  |     | NULL    |                |
+| c2     | int          | NO   | UNI | NULL    | auto_increment |
+| SrNo   | int          | YES  |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> alter table employee2 change c3 SrNo int not null;
+ERROR 1054 (42S22): Unknown column 'c3' in 'employee2'
+mysql> alter table employee2 modify srno int not null;
+ERROR 1138 (22004): Invalid use of NULL value
+mysql> alter table employee2 modify srno not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 1
+mysql> insert into employee2 values(default,1,1,default,1,0,0);
+ERROR 1364 (HY000): Field 'id' doesn't have a default value
+mysql> insert into employee2 values(1,1,1,default,1,0,0);
+ERROR 3819 (HY000): Check constraint 'employee2_chk_1' is violated.
+mysql> insert into employee2 values(1,1,1,default,1,default,0);
+ERROR 3819 (HY000): Check constraint 'employee2_chk_1' is violated.
+mysql> insert into employee2 values(1,1,1,1,1,1,0);
+ERROR 3819 (HY000): Check constraint 'employee2_chk_1' is violated.
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+----+------+
+| id | name     | Job       | city     | Salary | c2 | SrNo |
++----+----------+-----------+----------+--------+----+------+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 |  1 | NULL |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 |  2 | NULL |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 |  3 | NULL |
+| 25 | ABCD     | Manager   | null     |  25555 |  4 |    0 |
+| 26 | PQRS     | Director  |          |  25555 |  5 |    0 |
+| 27 | PQRS     | Director  | pune     |  25555 |  6 |    0 |
++----+----------+-----------+----------+--------+----+------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee2 drop Srno;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee2;
++----+----------+-----------+----------+--------+----+
+| id | name     | Job       | city     | Salary | c2 |
++----+----------+-----------+----------+--------+----+
+| 22 | Bhartesh | Developer | Kolhapur |  25000 |  1 |
+| 23 | Bhartesh | Developer | Kolhapur |  25000 |  2 |
+| 24 | Bhartesh | Developer | Kolhapur | 250000 |  3 |
+| 25 | ABCD     | Manager   | null     |  25555 |  4 |
+| 26 | PQRS     | Director  |          |  25555 |  5 |
+| 27 | PQRS     | Director  | pune     |  25555 |  6 |
++----+----------+-----------+----------+--------+----+
+6 rows in set (0.00 sec)
+
+mysql> create table demo(C1 int ,C2 int ,total int genrated always as (c1+C2) virtual);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'genrated always as (c1+C2) virtual)' at line 1
+mysql> create table demo(C1 int ,C2 int ,total int generated always as (c1+C2) virtual);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc demo;
++-------+------+------+-----+---------+-------------------+
+| Field | Type | Null | Key | Default | Extra             |
++-------+------+------+-----+---------+-------------------+
+| C1    | int  | YES  |     | NULL    |                   |
+| C2    | int  | YES  |     | NULL    |                   |
+| total | int  | YES  |     | NULL    | VIRTUAL GENERATED |
++-------+------+------+-----+---------+-------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into demo values(5,5,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from demo;
++------+------+-------+
+| C1   | C2   | total |
++------+------+-------+
+|    5 |    5 |    10 |
++------+------+-------+
+1 row in set (0.00 sec)
+
+mysql> insert into demo values(5,5,default), values(7,7,default) ,values0;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(7,7,default) ,values0' at line 1
+mysql> insert into demo values(5,2,default), values(7,7,default) ,values(8,8,default);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(7,7,default) ,values(8,8,default)' at line 1
+mysql> insert into demo values(5,2,default) values(7,7,default) values(8,8,default);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(7,7,default) values(8,8,default)' at line 1
+mysql> insert into demo(C1 ,C2) values(5,2,default), values(7,7,default) ,values(8,8,default);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values(7,7,default) ,values(8,8,default)' at line 1
+mysql> insert into demo(C1 ,C2) values(5,2,default);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into demo values(6,6,default);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from demo;
++------+------+-------+
+| C1   | C2   | total |
++------+------+-------+
+|    5 |    5 |    10 |
+|    6 |    6 |    12 |
++------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> update C1=100 where C1=6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=100 where C1=6' at line 1
+mysql> update a set C1=100 where C1 = 6;
+ERROR 1146 (42S02): Table 'db2.a' doesn't exist
+mysql> update a set C1=100 where C1=6;
+ERROR 1146 (42S02): Table 'db2.a' doesn't exist
+mysql> update demo set C1=100 where C1=6;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from demo;
++------+------+-------+
+| C1   | C2   | total |
++------+------+-------+
+|    5 |    5 |    10 |
+|  100 |    6 |   106 |
++------+------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| EmpId    | int         | YES  |     | NULL    |       |
+| EmpName  | varchar(20) | YES  |     | NULL    |       |
+| Gender   | char(1)     | YES  |     | NULL    |       |
+| Salary   | int         | YES  |     | NULL    |       |
+| Comision | float(6,2)  | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table employee add Total bigint generated always as(salary + comision) virtual;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------------------+
+| Field    | Type        | Null | Key | Default | Extra             |
++----------+-------------+------+-----+---------+-------------------+
+| EmpId    | int         | YES  |     | NULL    |                   |
+| EmpName  | varchar(20) | YES  |     | NULL    |                   |
+| Gender   | char(1)     | YES  |     | NULL    |                   |
+| Salary   | int         | YES  |     | NULL    |                   |
+| Comision | float(6,2)  | YES  |     | NULL    |                   |
+| Total    | bigint      | YES  |     | NULL    | VIRTUAL GENERATED |
++----------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee modify empid int primary key auto_increment;
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------------------+
+| Field    | Type        | Null | Key | Default | Extra             |
++----------+-------------+------+-----+---------+-------------------+
+| empid    | int         | NO   | PRI | NULL    | auto_increment    |
+| EmpName  | varchar(20) | YES  |     | NULL    |                   |
+| Gender   | char(1)     | YES  |     | NULL    |                   |
+| Salary   | int         | YES  |     | NULL    |                   |
+| Comision | float(6,2)  | YES  |     | NULL    |                   |
+| Total    | bigint      | YES  |     | NULL    | VIRTUAL GENERATED |
++----------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> alter table employee modify gender unique key ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique key' at line 1
+mysql> alter table employee modify gender unique key check() ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique key check()' at line 1
+mysql> alter table employee modify gender not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 1
+mysql> alter table employee modify gender char(1) not null;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------------------+
+| Field    | Type        | Null | Key | Default | Extra             |
++----------+-------------+------+-----+---------+-------------------+
+| empid    | int         | NO   | PRI | NULL    | auto_increment    |
+| EmpName  | varchar(20) | YES  |     | NULL    |                   |
+| gender   | char(1)     | NO   |     | NULL    |                   |
+| Salary   | int         | YES  |     | NULL    |                   |
+| Comision | float(6,2)  | YES  |     | NULL    |                   |
+| Total    | bigint      | YES  |     | NULL    | VIRTUAL GENERATED |
++----------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> insert into employee values(default,"bhartesh",'M',60000,500,default);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from employee;
++-------+----------+--------+--------+----------+--------+
+| empid | EmpName  | gender | Salary | Comision | Total  |
++-------+----------+--------+--------+----------+--------+
+|     7 | Girmal   | M      |   4000 |   124.56 |   4125 |
+|   121 | Bhartesh | M      | 500000 |  1234.56 | 501235 |
+|   122 | bhartesh | M      |  60000 |   500.00 |  60500 |
++-------+----------+--------+--------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> desc employee;
++----------+-------------+------+-----+---------+-------------------+
+| Field    | Type        | Null | Key | Default | Extra             |
++----------+-------------+------+-----+---------+-------------------+
+| empid    | int         | NO   | PRI | NULL    | auto_increment    |
+| EmpName  | varchar(20) | YES  |     | NULL    |                   |
+| gender   | char(1)     | NO   |     | NULL    |                   |
+| Salary   | int         | YES  |     | NULL    |                   |
+| Comision | float(6,2)  | YES  |     | NULL    |                   |
+| Total    | bigint      | YES  |     | NULL    | VIRTUAL GENERATED |
++----------+-------------+------+-----+---------+-------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table LoginDetails(loginID int,loginName varchar(50) ,password varchar(66) invisible);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc logindetails;
++-----------+-------------+------+-----+---------+-----------+
+| Field     | Type        | Null | Key | Default | Extra     |
++-----------+-------------+------+-----+---------+-----------+
+| loginID   | int         | YES  |     | NULL    |           |
+| loginName | varchar(50) | YES  |     | NULL    |           |
+| password  | varchar(66) | YES  |     | NULL    | INVISIBLE |
++-----------+-------------+------+-----+---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> insert into logindetails values(121,"Bhartesh","123456789");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into logindetails(loginid , loginname,password) values(121,"Bhartesh","123456789");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from logindetails;
++---------+-----------+
+| loginID | loginName |
++---------+-----------+
+|     121 | Bhartesh  |
++---------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into logindetails(loginid , loginname,password) values(121,"PORS","112266");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from logindetails;
++---------+-----------+
+| loginID | loginName |
++---------+-----------+
+|     121 | Bhartesh  |
+|     121 | PORS      |
++---------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select loginid ,loginname ,password from logindetails;
++---------+-----------+-----------+
+| loginid | loginname | password  |
++---------+-----------+-----------+
+|     121 | Bhartesh  | 123456789 |
+|     121 | PORS      | 112266    |
++---------+-----------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> create table LoginDetails2(loginID int,loginName varchar(50) ,password varchar(66) varbinary(70));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varbinary(70))' at line 1
+mysql> create table LoginDetails2(loginID int,loginName varchar(50) ,password  varbinary(70));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc logindetails2;
++-----------+---------------+------+-----+---------+-------+
+| Field     | Type          | Null | Key | Default | Extra |
++-----------+---------------+------+-----+---------+-------+
+| loginID   | int           | YES  |     | NULL    |       |
+| loginName | varchar(50)   | YES  |     | NULL    |       |
+| password  | varbinary(70) | YES  |     | NULL    |       |
++-----------+---------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into logindetails2(loginid , loginname,password) values(111,"ABCD","1122");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into logindetails2(loginid , loginname,password) values(122,"XYZZ","1234");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into logindetails2(loginid , loginname,password) values(22,"ABAB","0000");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from logindetails2;
++---------+-----------+--------------------+
+| loginID | loginName | password           |
++---------+-----------+--------------------+
+|     111 | ABCD      | 0x31313232         |
+|     122 | XYZZ      | 0x31323334         |
+|      22 | ABAB      | 0x30303030         |
++---------+-----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from logindetails2;
++---------+-----------+--------------------+
+| loginID | loginName | password           |
++---------+-----------+--------------------+
+|     111 | ABCD      | 0x31313232         |
+|     122 | XYZZ      | 0x31323334         |
+|      22 | ABAB      | 0x30303030         |
++---------+-----------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select loginname ,cast(password as int) from logindetails2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int) from logindetails2' at line 1
+mysql> select loginname , cast(password as char) from logindetails2;
++-----------+------------------------+
+| loginname | cast(password as char) |
++-----------+------------------------+
+| ABCD      | 1122                   |
+| XYZZ      | 1234                   |
+| ABAB      | 0000                   |
++-----------+------------------------+
+3 rows in set (0.01 sec)
+
+mysql>
